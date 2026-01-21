@@ -1,0 +1,39 @@
+services:
+  astro:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    volumes:
+      - .:/app
+      - astro_node_modules:/app/node_modules
+    ports:
+      - "4321:4321"
+    environment:
+      - NODE_ENV=development
+      - DIRECTUS_URL=http://directus:8055
+    command: sh -c "pnpm install && pnpm run dev --host"
+    depends_on:
+      - directus
+
+  directus:
+    image: directus/directus:latest
+    ports:
+      - "8055:8055"
+    environment:
+      SECRET: "change-this-secret-in-production"
+      ADMIN_EMAIL: "admin@example.com"
+      ADMIN_PASSWORD: "admin"
+      DB_CLIENT: "sqlite3"
+      DB_FILENAME: "/directus/database/database.sqlite"
+      WEBSOCKETS_ENABLED: "true"
+    volumes:
+      - directus_database:/directus/database
+      - directus_uploads:/directus/uploads
+      - directus_extensions:/directus/extensions
+
+volumes:
+  astro_node_modules:
+  directus_database:
+  directus_uploads:
+  directus_extensions:

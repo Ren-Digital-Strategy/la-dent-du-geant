@@ -1,0 +1,60 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/logo.png";
+import { ArrowUpRight } from "lucide-astro";
+
+const links = [
+  {
+    label: "Nos services",
+    href: "/",
+  },
+  {
+    label: "Notre équipe",
+    href: "/",
+  },
+  {
+    label: "Blog",
+    href: "/",
+  },
+  {
+    label: "Recrutement",
+    href: "/",
+  },
+  {
+    label: "Contact",
+    href: "/",
+  },
+];
+---
+
+<header class="py-5 grid grid-cols-2">
+  <div class="flex items-center gap-3 col-span-1">
+    <Image
+      class="w-10"
+      src={logo}
+      alt="La Dent du Geant"
+      width={1000}
+      height={1000}
+    />
+    <h1 class="font-extrabold">La dent du géant</h1>
+  </div>
+  <div class="col-span-1 flex items-center justify-end">
+    <nav class="flex items-center">
+      <ul class="flex items-center">
+        {
+          links.map((link) => (
+            <li class="p-4">
+              <a href={link.href}>{link.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <button class="bg-primary text-white px-4 py-2 rounded-full font-bold">
+      Prendre RDV
+      <span>
+        <ArrowUpRight />
+      </span>
+    </button>
+  </div>
+</header>
