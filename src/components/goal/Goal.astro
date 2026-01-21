@@ -1,0 +1,65 @@
+---
+import { ArrowUpRight } from "@lucide/astro";
+import goal1 from "../../assets/goals/1.jpg";
+import goal2 from "../../assets/goals/2.jpg";
+import goal3 from "../../assets/goals/3.jpg";
+import goal4 from "../../assets/goals/4.png";
+import GoalCard from "./GoalCard.astro";
+const goals = [
+  {
+    title: "Soulager durablement",
+    description:
+      "Nous ne traitons pas seulement le symptôme, mais la cause, pour un soulagement à long terme.",
+    image: goal1,
+  },
+  {
+    title: "Retrouver une mastication efficace",
+    description:
+      "Grâce à nos solutions de prothèses et d'implants, mangez à nouveau sans gêne.",
+    image: goal2,
+  },
+  {
+    title: "Révéler votre plus beau sourire",
+    description:
+      "Nos soins esthétiques vous redonnent confiance pour sourire sans retenue.",
+    image: goal3,
+  },
+  {
+    title: "Préserver votre capital dentaire",
+    description:
+      "Notre philosophie est de conserver vos dents naturelles le plus longtemps possible grâce à la prévention et des soins de haute précision.",
+    image: goal4,
+  },
+];
+---
+
+<section
+  class="w-full flex flex-col items-center gap-18 justify-center pt-24 pb-40"
+>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+    <h2 class="text-primary font-bold text-3xl lg:text-5xl max-w-3xl">
+      <span class="text-tertiary">Notre mission :</span> vous offrir une solution
+      personnalisée pour un confort retrouvé.
+    </h2>
+    <button
+      class="bg-primary h-fit text-white pl-4 md:pl-6 pr-2 py-2 rounded-full font-semibold flex items-center gap-2 font-sans hover:bg-primary/80 hover:cursor-pointer transition-all duration-300 w-fit text-sm md:text-base self-center place-self-end"
+    >
+      Découvrir nos services
+      <span class="text-primary bg-secondary rounded-full p-2">
+        <ArrowUpRight />
+      </span>
+    </button>
+  </div>
+  <div class="grid grid-cols-1 xl:grid-cols-2 gap-4 w-full">
+    {
+      goals.map((goal, index) => (
+        <GoalCard
+          key={index}
+          title={goal.title}
+          description={goal.description}
+          image={goal.image}
+        />
+      ))
+    }
+  </div>
+</section>

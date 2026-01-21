@@ -1,0 +1,38 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  key: number;
+  description: string;
+  image: ImageMetadata;
+}
+
+const { key, description, image } = Astro.props;
+---
+
+<div
+  id={`about-card-${key}`}
+  class="relative w-full overflow-hidden rounded-[20px] md:rounded-[25px] xl:rounded-[30px] group h-[280px] sm:h-[320px] md:h-[380px] lg:h-[450px] xl:h-[540px]"
+>
+  <Image
+    class="w-full h-full object-cover"
+    src={image}
+    alt={description}
+    width={1000}
+    height={1000}
+  />
+  <div
+    class="absolute bottom-0 left-0 right-0 h-[200px] md:h-[300px] xl:h-[400px] bg-quinary rounded-2xl md:rounded-3xl -z-10"
+  >
+  </div>
+  <div
+    class="bg-tertiary absolute bottom-0 left-0 right-0 z-10 flex justify-center px-3 rounded-2xl md:rounded-3xl"
+  >
+    <p
+      class="text-white font-medium text-xs sm:text-sm md:text-base text-center px-3 py-2 md:px-4 md:py-3 w-[85%]"
+    >
+      {description}
+    </p>
+  </div>
+</div>

@@ -6,6 +6,7 @@
   font-family: "Bricolage Grotesque", serif !important;
 }
 
+
 @theme {
   --color-primary: #353535;
   --color-secondary: #F8F1E7;
@@ -14,4 +15,12 @@
   --color-quinary: #B7AFA6;
 
   --font-sans: "Inter", sans-serif;
+
+  /* Header height - génère la classe h-header */
+  --spacing-header: 88px;
+}
+
+/* Variable CSS pour la hauteur du hero (calc non supporté dans @theme) */
+:root {
+  --hero-height: calc(100vh - var(--spacing-header));
 }

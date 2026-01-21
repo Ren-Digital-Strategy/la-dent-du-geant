@@ -1,0 +1,37 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  key: number;
+  title: string;
+  description: string;
+  image: ImageMetadata;
+  reverse?: boolean;
+}
+
+const { key, title, description, image, reverse = false } = Astro.props;
+---
+
+<div
+  id={`goal-card-${key}`}
+  class={`w-full bg-white rounded-[24px] p-4 md:p-6 xl:p-3 flex flex-col ${reverse ? "sm:flex-row-reverse" : "sm:flex-row"} items-center gap-4 md:gap-6 xl:gap-8`}
+>
+  <div class="w-full sm:w-[216px] shrink-0">
+    <Image
+      class="w-full h-auto aspect-square object-cover rounded-[12px]"
+      src={image}
+      alt={title}
+      width={1000}
+      height={1000}
+    />
+  </div>
+  <div class="flex flex-col gap-2 md:gap-3 w-full sm:w-3/5">
+    <h3 class="text-primary font-semibold text-xl md:text-2xl">
+      {title}
+    </h3>
+    <p class="text-primary/80 text-base font-sans">
+      {description}
+    </p>
+  </div>
+</div>

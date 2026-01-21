@@ -1,0 +1,186 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+// Import des images - ajoute tes images ici
+import hero from "../assets/hero.jpg";
+import hero2 from "../assets/hero2.jpg";
+import hero3 from "../assets/hero3.jpg";
+import hero4 from "../assets/hero4.jpg";
+import { Asterisk, Phone } from "@lucide/astro";
+
+interface Props {
+  images?: ImageMetadata[];
+  interval?: number; // Intervalle en ms (défaut: 5000)
+  alt?: string;
+}
+
+const {
+  images = [hero, hero2, hero3, hero4], // Par défaut utilise hero.jpg
+  interval = 5000,
+  alt = "Hero image",
+} = Astro.props;
+---
+
+<section
+  class="relative h-[90vh] md:h-screen mt-22 w-full flex items-center justify-center px-4 md:px-8 lg:px-[60px] rounded-[20px] md:rounded-[30px] lg:rounded-[40px] overflow-hidden"
+  data-carousel
+  data-interval={interval}
+>
+  <!-- Container des images -->
+  <div
+    class="carousel-images absolute inset-0 w-full h-full -z-10 rounded-[20px] md:rounded-[30px] lg:rounded-[40px] overflow-hidden"
+  >
+    {
+      images.map((img, index) => (
+        <div
+          class={`carousel-slide absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${index === 0 ? "opacity-100" : "opacity-0"}`}
+          data-slide={index}
+        >
+          <Image
+            class="w-full h-full object-cover"
+            src={img}
+            alt={`${alt} ${index + 1}`}
+            width={1920}
+            height={1080}
+            loading={index === 0 ? "eager" : "lazy"}
+          />
+        </div>
+      ))
+    }
+    <!-- Overlay dégradé -->
+    <div class="absolute inset-0 bg-linear-to-r from-primary via-primary/60 to-primary/20 pointer-events-none"></div>
+  </div>
+
+  <!-- Contenu du hero -->
+  <div class="relative z-10 h-full grid grid-cols-1 lg:grid-cols-12 w-full">
+    <div
+      class="col-span-1 lg:col-span-5 h-full flex flex-col justify-between py-10 md:py-16 lg:py-20"
+    >
+      <div class="flex flex-col gap-4 md:gap-5 lg:gap-6 mt-auto">
+        <h2 class="text-white text-3xl md:text-5xl lg:text-7xl font-extrabold">
+          Retrouvez le plaisir d'un sourire sain et durable
+        </h2>
+        <p class="text-white text-base md:text-lg lg:text-xl font-sans">
+          Notre équipe de spécialistes vous accompagne avec bienveillance et les
+          technologies les plus modernes pour préserver votre santé
+          bucco-dentaire sur le long terme.
+        </p>
+        <button
+          class="bg-white text-primary pl-4 md:pl-6 pr-2 py-2 rounded-full font-semibold flex items-center gap-2 font-sans hover:bg-primary/80 hover:cursor-pointer transition-all duration-300 w-fit text-sm md:text-base"
+        >
+          Prendre un premier rendez-vous
+          <span class="text-primary bg-tertiary/60 rounded-full p-1.5 md:p-2">
+            <Phone class="text-primary w-4 h-4 md:w-5 md:h-5" />
+          </span>
+        </button>
+      </div>
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-2 text-white mt-auto text-sm md:text-base"
+      >
+        <div class="flex items-center gap-2 md:gap-3">
+          <Asterisk class="w-4 h-4 md:w-5 md:h-5 shrink-0" />
+          <p class="font-medium">Technologies de Pointe</p>
+        </div>
+        <div class="flex items-center gap-2 md:gap-3">
+          <Asterisk class="w-4 h-4 md:w-5 md:h-5 shrink-0" />
+          <p class="font-medium">Équipe à l'Écoute</p>
+        </div>
+        <div class="flex items-center gap-2 md:gap-3">
+          <Asterisk class="w-4 h-4 md:w-5 md:h-5 shrink-0" />
+          <p class="font-medium">Soins de Haute Précision</p>
+        </div>
+        <div class="flex items-center gap-2 md:gap-3">
+          <Asterisk class="w-4 h-4 md:w-5 md:h-5 shrink-0" />
+          <p class="font-medium">Cadre Moderne & Apaisant</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stepper / Indicateurs -->
+  {
+    images.length > 1 && (
+      <div class="carousel-indicators absolute bottom-4 md:bottom-6 lg:bottom-8 right-4 md:right-6 lg:right-8 z-20 flex gap-1.5 md:gap-2">
+        {images.map((_, index) => (
+          <button
+            class={`carousel-dot w-4 md:w-5 h-1 rounded-full transition-all duration-300 cursor-pointer ${index === 0 ? "bg-white" : "bg-white/40"}`}
+            data-dot={index}
+            aria-label={`Aller à l'image ${index + 1}`}
+          />
+        ))}
+      </div>
+    )
+  }
+</section>
+
+<script>
+  function initCarousels() {
+    const carousels = document.querySelectorAll("[data-carousel]");
+
+    carousels.forEach((carousel) => {
+      const slides = carousel.querySelectorAll(
+        "[data-slide]",
+      ) as NodeListOf<HTMLElement>;
+      const dots = carousel.querySelectorAll(
+        "[data-dot]",
+      ) as NodeListOf<HTMLElement>;
+      const interval = parseInt(
+        carousel.getAttribute("data-interval") || "5000",
+      );
+
+      if (slides.length <= 1) return;
+
+      let currentIndex = 0;
+      let timer: ReturnType<typeof setInterval>;
+
+      function goToSlide(index: number) {
+        // Désactive le slide actuel
+        slides[currentIndex].classList.remove("opacity-100");
+        slides[currentIndex].classList.add("opacity-0");
+        dots[currentIndex]?.classList.remove("bg-white");
+        dots[currentIndex]?.classList.add("bg-white/40");
+
+        // Active le nouveau slide
+        currentIndex = index;
+        slides[currentIndex].classList.remove("opacity-0");
+        slides[currentIndex].classList.add("opacity-100");
+        dots[currentIndex]?.classList.remove("bg-white/40");
+        dots[currentIndex]?.classList.add("bg-white");
+      }
+
+      function nextSlide() {
+        const next = (currentIndex + 1) % slides.length;
+        goToSlide(next);
+      }
+
+      function startAutoplay() {
+        timer = setInterval(nextSlide, interval);
+      }
+
+      function resetAutoplay() {
+        clearInterval(timer);
+        startAutoplay();
+      }
+
+      // Click sur les dots
+      dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          goToSlide(index);
+          resetAutoplay();
+        });
+      });
+
+      // Pause au hover
+      carousel.addEventListener("mouseenter", () => clearInterval(timer));
+      carousel.addEventListener("mouseleave", startAutoplay);
+
+      // Démarrage
+      startAutoplay();
+    });
+  }
+
+  // Init au chargement et après navigation (View Transitions)
+  document.addEventListener("astro:page-load", initCarousels);
+  initCarousels();
+</script>

@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import logo from "../assets/logo.png";
-import { ArrowUpRight } from "lucide-astro";
+import { ArrowUpRight } from "@lucide/astro";
 
 const links = [
   {
@@ -27,34 +27,193 @@ const links = [
 ];
 ---
 
-<header class="py-5 grid grid-cols-2">
-  <div class="flex items-center gap-3 col-span-1">
+<header
+  class="absolute top-0 left-0 right-0 px-4 md:px-8 lg:px-10 py-4 md:py-5 grid grid-cols-2 lg:grid-cols-12 z-50"
+>
+  <a href="/" class="flex items-center gap-2 md:gap-3 col-span-1 lg:col-span-5">
     <Image
-      class="w-10"
+      class="w-8 md:w-10"
       src={logo}
       alt="La Dent du Geant"
       width={1000}
       height={1000}
     />
-    <h1 class="font-extrabold">La dent du géant</h1>
-  </div>
-  <div class="col-span-1 flex items-center justify-end">
+    <p class="font-extrabold text-sm md:text-base">La dent du géant</p>
+  </a>
+
+  <!-- Desktop Navigation -->
+  <div class="hidden lg:flex col-span-7 items-center justify-end">
     <nav class="flex items-center">
       <ul class="flex items-center">
         {
           links.map((link) => (
             <li class="p-4">
-              <a href={link.href}>{link.label}</a>
+              <a
+                class="font-sans hover:text-quaternary hover:cursor-pointer transition-all duration-300"
+                href={link.href}
+              >
+                {link.label}
+              </a>
             </li>
           ))
         }
       </ul>
     </nav>
-    <button class="bg-primary text-white px-4 py-2 rounded-full font-bold">
+    <button
+      class="bg-primary text-white pl-6 pr-2 py-2 rounded-full font-semibold flex items-center gap-2 font-sans hover:bg-primary/80 hover:cursor-pointer transition-all duration-300"
+    >
       Prendre RDV
-      <span>
+      <span class="text-primary bg-secondary rounded-full p-2">
         <ArrowUpRight />
       </span>
     </button>
   </div>
+
+  <!-- Mobile Menu Button -->
+  <div class="flex lg:hidden col-span-1 items-center justify-end">
+    <button
+      id="menu-toggle"
+      class="relative z-50 w-10 h-10 flex flex-col items-center justify-center gap-1.5 cursor-pointer"
+      aria-label="Menu"
+      aria-expanded="false"
+    >
+      <span
+        class="burger-line w-6 h-0.5 bg-current transition-all duration-300 ease-out origin-center"
+      ></span>
+      <span
+        class="burger-line w-6 h-0.5 bg-current transition-all duration-300 ease-out origin-center"
+      ></span>
+      <span
+        class="burger-line w-6 h-0.5 bg-current transition-all duration-300 ease-out origin-center"
+      ></span>
+    </button>
+  </div>
 </header>
+
+<!-- Mobile Menu Fullscreen -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-40 bg-primary flex flex-col items-center justify-center opacity-0 invisible transition-all duration-500 ease-out"
+>
+  <nav class="flex flex-col items-center gap-6 md:gap-8">
+    {
+      links.map((link, index) => (
+        <a
+          href={link.href}
+          class="mobile-link text-white text-3xl md:text-5xl font-extrabold hover:text-secondary transition-all duration-300 translate-y-8 opacity-0"
+          style={`transition-delay: ${index * 75}ms`}
+        >
+          {link.label}
+        </a>
+      ))
+    }
+  </nav>
+  <button
+    class="mobile-link mt-10 md:mt-12 bg-white text-primary pl-6 pr-3 py-3 rounded-full font-semibold flex items-center gap-3 font-sans hover:bg-secondary hover:cursor-pointer transition-all duration-300 translate-y-8 opacity-0 text-lg md:text-xl"
+    style={`transition-delay: ${links.length * 75}ms`}
+  >
+    Prendre RDV
+    <span class="text-white bg-primary rounded-full p-2">
+      <ArrowUpRight class="w-5 h-5 md:w-6 md:h-6" />
+    </span>
+  </button>
+</div>
+
+<script>
+  function initMobileMenu() {
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const burgerLines = menuToggle?.querySelectorAll(".burger-line");
+    const mobileLinks = mobileMenu?.querySelectorAll(".mobile-link");
+
+    if (!menuToggle || !mobileMenu || !burgerLines) return;
+
+    let isOpen = false;
+
+    function openMenu() {
+      isOpen = true;
+      menuToggle.setAttribute("aria-expanded", "true");
+
+      // Animate burger to X
+      burgerLines[0].classList.add("rotate-45", "translate-y-2");
+      burgerLines[1].classList.add("opacity-0", "scale-0");
+      burgerLines[2].classList.add("-rotate-45", "-translate-y-2");
+
+      // Show menu
+      mobileMenu.classList.remove("opacity-0", "invisible");
+      mobileMenu.classList.add("opacity-100", "visible");
+
+      // Animate links
+      mobileLinks?.forEach((link) => {
+        link.classList.remove("translate-y-8", "opacity-0");
+        link.classList.add("translate-y-0", "opacity-100");
+      });
+
+      // Prevent body scroll
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeMenu() {
+      isOpen = false;
+      menuToggle.setAttribute("aria-expanded", "false");
+
+      // Animate X back to burger
+      burgerLines[0].classList.remove("rotate-45", "translate-y-2");
+      burgerLines[1].classList.remove("opacity-0", "scale-0");
+      burgerLines[2].classList.remove("-rotate-45", "-translate-y-2");
+
+      // Hide links first
+      mobileLinks?.forEach((link) => {
+        link.classList.add("translate-y-8", "opacity-0");
+        link.classList.remove("translate-y-0", "opacity-100");
+      });
+
+      // Hide menu after links animation
+      setTimeout(() => {
+        mobileMenu.classList.add("opacity-0", "invisible");
+        mobileMenu.classList.remove("opacity-100", "visible");
+      }, 200);
+
+      // Restore body scroll
+      document.body.style.overflow = "";
+    }
+
+    menuToggle.addEventListener("click", () => {
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    // Close menu on link click
+    mobileLinks?.forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    // Close menu on escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && isOpen) {
+        closeMenu();
+      }
+    });
+  }
+
+  // Init on load and after View Transitions
+  document.addEventListener("astro:page-load", initMobileMenu);
+  initMobileMenu();
+</script>
+
+<style>
+  .burger-line {
+    will-change: transform, opacity;
+  }
+
+  #mobile-menu {
+    will-change: opacity, visibility;
+  }
+
+  .mobile-link {
+    will-change: transform, opacity;
+  }
+</style>
