@@ -1,0 +1,63 @@
+---
+import TestimonialCard from "./TestimonialCard.astro";
+import avatar from "../../assets/testimonial/1.png";
+
+const testimonials = [
+  {
+    rating: 5,
+    text: "J'ai été très satisfait de mes soins. L'équipe est très professionnelle et attentive.",
+    author: "John Doe",
+    image: avatar,
+  },
+  {
+    rating: 5,
+    text: "J'ai été très satisfait de mes soins. L'équipe est très professionnelle et attentive.",
+    author: "John Doe",
+    image: avatar,
+  },
+  {
+    rating: 5,
+    text: "J'ai été très satisfait de mes soins. L'équipe est très professionnelle et attentive.",
+    author: "John Doe",
+    image: avatar,
+  },
+  {
+    rating: 5,
+    text: "J'ai été très satisfait de mes soins. L'équipe est très professionnelle et attentive.",
+    author: "John Doe",
+    image: avatar,
+  },
+  {
+    rating: 5,
+    text: "J'ai été très satisfait de mes soins. L'équipe est très professionnelle et attentive.",
+    author: "John Doe",
+    image: avatar,
+  },
+  {
+    rating: 5,
+    text: "J'ai été très satisfait de mes soins. L'équipe est très professionnelle et attentive.",
+    author: "John Doe",
+    image: avatar,
+  },
+];
+---
+
+<section
+  class="w-full flex flex-col items-center gap-12 justify-center pt-24 pb-32 overflow-hidden"
+>
+  <h2 class="text-primary font-bold max-w-2/3 xl:text-5xl text-3xl">
+    Ce que <span class="text-tertiary">nos patients</span> disent de nous
+  </h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {
+      testimonials.map((testimonial, index) => (
+        <TestimonialCard
+          rating={testimonial.rating}
+          text={testimonial.text}
+          author={testimonial.author}
+          image={testimonial.image}
+        />
+      ))
+    }
+  </div>
+</section>

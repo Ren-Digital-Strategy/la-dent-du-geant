@@ -1,0 +1,258 @@
+---
+import { ArrowUpRight, MoveLeft, MoveRight } from "@lucide/astro";
+import TeamCard from "./TeamCard.astro";
+import teamData from "../../data/team.json";
+
+// Combine dentists and assistants
+const allMembers = [...teamData.dentists, ...teamData.assistants];
+---
+
+<section
+  class="w-full flex flex-col items-center gap-12 justify-center pt-24 pb-40"
+>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+    <h2 class="text-primary font-bold text-3xl lg:text-5xl max-w-2xl">
+      <span class="text-tertiary">Une équipe</span> passionnée à votre écoute.
+    </h2>
+    <button
+      class="bg-primary h-fit text-white pl-4 md:pl-6 pr-2 py-2 rounded-full font-semibold flex items-center gap-2 font-sans hover:bg-primary/80 hover:cursor-pointer transition-all duration-300 w-fit text-sm md:text-base self-center place-self-end"
+    >
+      Voir l'équipe
+      <span class="text-primary bg-secondary rounded-full p-2">
+        <ArrowUpRight />
+      </span>
+    </button>
+  </div>
+
+  <!-- Carousel container -->
+  <div class="w-full relative" data-team-carousel>
+    <!-- Carousel track -->
+    <div class="overflow-hidden">
+      <div class="team-carousel-track flex gap-4 md:gap-6 select-none">
+        {
+          allMembers.map((member) => (
+            <TeamCard
+              name={member.name}
+              role={member.role}
+              image={member.image}
+            />
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Navigation arrows -->
+    <div class="flex gap-4 mt-8">
+      <button
+        class="team-prev w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer"
+        aria-label="Précédent"
+      >
+        <MoveLeft stroke-width="0.5" class="w-10 h-10" />
+      </button>
+      <button
+        class="team-next w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer"
+        aria-label="Suivant"
+      >
+        <MoveRight stroke-width="0.5" class="w-10 h-10" />
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initTeamCarousel() {
+    const carousels = document.querySelectorAll("[data-team-carousel]");
+
+    carousels.forEach((carousel) => {
+      const track = carousel.querySelector(
+        ".team-carousel-track",
+      ) as HTMLElement;
+      const prevBtn = carousel.querySelector(".team-prev") as HTMLButtonElement;
+      const nextBtn = carousel.querySelector(".team-next") as HTMLButtonElement;
+
+      if (!track || !prevBtn || !nextBtn) return;
+
+      const gap = 24;
+      let currentTranslate = 0;
+      let isDragging = false;
+      let startX = 0;
+      let startTranslate = 0;
+      let velocity = 0;
+      let lastX = 0;
+      let lastTime = 0;
+      let animationId: number | null = null;
+
+      // Clone cards for infinite scroll
+      function setupInfiniteScroll() {
+        const cards = track.querySelectorAll(".team-card");
+        const cardWidth = (cards[0] as HTMLElement).offsetWidth + gap;
+        const totalWidth = cards.length * cardWidth;
+
+        // Clone all cards at the end
+        cards.forEach((card) => {
+          const clone = card.cloneNode(true) as HTMLElement;
+          clone.setAttribute("data-clone", "true");
+          track.appendChild(clone);
+        });
+
+        // Clone all cards at the beginning
+        Array.from(cards)
+          .reverse()
+          .forEach((card) => {
+            const clone = card.cloneNode(true) as HTMLElement;
+            clone.setAttribute("data-clone", "true");
+            track.insertBefore(clone, track.firstChild);
+          });
+
+        // Start in the middle (at the original first card)
+        currentTranslate = -totalWidth;
+        track.style.transform = `translateX(${currentTranslate}px)`;
+      }
+
+      function getCardWidth(): number {
+        const card = track.querySelector(".team-card") as HTMLElement;
+        return card ? card.offsetWidth + gap : 300;
+      }
+
+      function getTotalOriginalWidth(): number {
+        const originalCards = track.querySelectorAll(
+          ".team-card:not([data-clone])",
+        );
+        return originalCards.length * getCardWidth();
+      }
+
+      function normalizePosition() {
+        const totalWidth = getTotalOriginalWidth();
+
+        // If we've scrolled too far left (into left clones)
+        if (currentTranslate > -totalWidth + getCardWidth()) {
+          currentTranslate -= totalWidth;
+          track.style.transition = "none";
+          track.style.transform = `translateX(${currentTranslate}px)`;
+        }
+        // If we've scrolled too far right (into right clones)
+        else if (currentTranslate < -totalWidth * 2 + getCardWidth()) {
+          currentTranslate += totalWidth;
+          track.style.transition = "none";
+          track.style.transform = `translateX(${currentTranslate}px)`;
+        }
+      }
+
+      function animateWithMomentum() {
+        if (Math.abs(velocity) < 0.5) {
+          velocity = 0;
+          normalizePosition();
+          return;
+        }
+
+        currentTranslate += velocity;
+        velocity *= 0.95; // Friction
+
+        track.style.transition = "none";
+        track.style.transform = `translateX(${currentTranslate}px)`;
+
+        normalizePosition();
+
+        animationId = requestAnimationFrame(animateWithMomentum);
+      }
+
+      function stopMomentum() {
+        if (animationId) {
+          cancelAnimationFrame(animationId);
+          animationId = null;
+        }
+        velocity = 0;
+      }
+
+      // Drag handlers
+      function handleDragStart(e: MouseEvent | TouchEvent) {
+        stopMomentum();
+        isDragging = true;
+        startX = e instanceof MouseEvent ? e.clientX : e.touches[0].clientX;
+        startTranslate = currentTranslate;
+        lastX = startX;
+        lastTime = Date.now();
+        track.style.cursor = "grabbing";
+      }
+
+      function handleDragMove(e: MouseEvent | TouchEvent) {
+        if (!isDragging) return;
+
+        const currentX =
+          e instanceof MouseEvent ? e.clientX : e.touches[0].clientX;
+        const diff = currentX - startX;
+        const now = Date.now();
+        const dt = now - lastTime;
+
+        if (dt > 0) {
+          velocity = ((currentX - lastX) / dt) * 16; // Normalize to ~60fps
+        }
+
+        lastX = currentX;
+        lastTime = now;
+
+        currentTranslate = startTranslate + diff;
+        track.style.transition = "none";
+        track.style.transform = `translateX(${currentTranslate}px)`;
+
+        normalizePosition();
+      }
+
+      function handleDragEnd() {
+        if (!isDragging) return;
+        isDragging = false;
+        track.style.cursor = "grab";
+
+        // Apply momentum if velocity is significant
+        if (Math.abs(velocity) > 2) {
+          animateWithMomentum();
+        } else {
+          normalizePosition();
+        }
+      }
+
+      function scrollByAmount(amount: number) {
+        stopMomentum();
+        const cardWidth = getCardWidth();
+
+        track.style.transition =
+          "transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)";
+        currentTranslate += amount * cardWidth;
+        track.style.transform = `translateX(${currentTranslate}px)`;
+
+        setTimeout(() => {
+          normalizePosition();
+        }, 400);
+      }
+
+      // Mouse events
+      track.addEventListener("mousedown", handleDragStart);
+      window.addEventListener("mousemove", handleDragMove);
+      window.addEventListener("mouseup", handleDragEnd);
+
+      // Touch events
+      track.addEventListener("touchstart", handleDragStart, { passive: true });
+      track.addEventListener("touchmove", handleDragMove, { passive: true });
+      track.addEventListener("touchend", handleDragEnd);
+
+      // Prevent image drag
+      track.querySelectorAll("img").forEach((img) => {
+        img.addEventListener("dragstart", (e) => e.preventDefault());
+      });
+
+      // Set initial cursor
+      track.style.cursor = "grab";
+
+      // Button events
+      prevBtn.addEventListener("click", () => scrollByAmount(1));
+      nextBtn.addEventListener("click", () => scrollByAmount(-1));
+
+      // Initialize
+      setupInfiniteScroll();
+    });
+  }
+
+  // Init on load and after View Transitions
+  document.addEventListener("astro:page-load", initTeamCarousel);
+  initTeamCarousel();
+</script>

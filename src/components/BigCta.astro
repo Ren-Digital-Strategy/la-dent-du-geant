@@ -1,0 +1,51 @@
+---
+import { ArrowUpRight } from "@lucide/astro";
+import { Image } from "astro:assets";
+import avatar1 from "../assets/avatar/1.jpg";
+import avatar2 from "../assets/avatar/2.jpg";
+import avatar3 from "../assets/avatar/3.jpg";
+import avatar4 from "../assets/avatar/4.jpg";
+
+const avatars = [avatar1, avatar2, avatar3, avatar4];
+---
+
+<section class="w-full flex flex-col items-center justify-center gap-12 pb-40">
+  <!-- Overlapping avatars -->
+  <div class="flex items-center justify-center">
+    {
+      avatars.map((avatar, index) => (
+        <div
+          class="avatar-circle w-20 h-20 md:w-28 md:h-28 lg:w-[140px] lg:h-[140px] rounded-full overflow-hidden border-4 border-white bg-white"
+          style={`margin-left: ${index === 0 ? "0" : "-1.5rem"};`}
+        >
+          <Image
+            src={avatar}
+            alt={`Membre de l'équipe ${index + 1}`}
+            width={280}
+            height={280}
+            class="w-full h-full object-cover"
+          />
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="flex flex-col items-center justify-center gap-6 max-w-3xl">
+    <h2 class="text-primary font-bold text-3xl lg:text-5xl text-center">
+      Prêt(e) à faire de votre santé bucco-dentaire une priorité ?
+    </h2>
+    <p class="text-primary/70 text-base font-sans text-center">
+      Rejoignez un cabinet qui place la qualité des soins, la prévention et
+      votre bien-être au cœur de sa pratique. Notre équipe est à votre
+      disposition pour répondre à toutes vos questions.
+    </p>
+  </div>
+  <button
+    class="bg-primary text-white pl-4 md:pl-6 pr-2 py-2 rounded-full font-semibold flex items-center gap-2 font-sans hover:bg-primary/80 hover:cursor-pointer transition-all duration-300 w-fit text-sm md:text-base"
+  >
+    Contactez le cabinet
+    <span class="text-primary bg-secondary rounded-full p-2">
+      <ArrowUpRight />
+    </span>
+  </button>
+</section>

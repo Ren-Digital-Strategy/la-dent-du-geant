@@ -1,0 +1,34 @@
+---
+import { Image } from "astro:assets";
+import tarification from "../assets/tarification.jpg";
+---
+
+<section
+  class="w-full grid grid-cols-1 md:grid-cols-2 gap-6 justify-center pt-24 pb-32 overflow-hidden"
+>
+  <div class="rounded-3xl overflow-hidden">
+    <Image src={tarification} alt="Tarification" width={1000} height={1000} />
+  </div>
+  <div class="bg-white rounded-3xl p-10 flex flex-col justify-center gap-9">
+    <h2 class="text-primary font-bold max-w-2/3 xl:text-3xl text-xl">
+      <span class="text-tertiary">Une tarification</span> claire pour des soins de
+      qualité
+    </h2>
+    <div class="flex flex-col gap-4 w-full">
+      <p class="text-primary/80 text-base font-sans">
+        En tant que cabinet déconventionné, nous choisissons de ne pas être
+        limités par les barèmes de la mutuelle. Ce choix nous permet de
+        consacrer le temps nécessaire à chaque patient, d'utiliser des matériaux
+        de la plus haute qualité et d'investir dans des technologies innovantes.
+        C'est la garantie de vous offrir des soins durables et à la pointe de la
+        dentisterie.
+      </p>
+      <p class="text-primary/80 text-base font-sans">
+        Aucun traitement n'est engagé sans que vous ayez reçu au préalable une
+        estimation d'honoraires la plus précise possible. Notre priorité est la
+        transparence pour que vous puissiez prendre votre décision en toute
+        confiance.
+      </p>
+    </div>
+  </div>
+</section>

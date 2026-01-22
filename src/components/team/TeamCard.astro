@@ -1,0 +1,33 @@
+---
+interface Props {
+  name: string;
+  role: string;
+  image: string;
+}
+
+const { name, role, image } = Astro.props;
+---
+
+<div
+  class="team-card flex flex-col gap-3 min-w-[200px] md:min-w-[250px] lg:min-w-[280px]"
+>
+  <div
+    class="relative w-full aspect-[3/4] rounded-[20px] md:rounded-[25px] overflow-hidden"
+  >
+    <!-- Background quinary en bas (1/4 de la hauteur) -->
+    <div
+      class="absolute bottom-0 left-0 right-0 h-1/4 bg-quinary rounded-t-[20px] md:rounded-t-[25px]"
+    >
+    </div>
+    <img
+      class="relative w-full h-full object-cover z-10"
+      src={image}
+      alt={name}
+      loading="lazy"
+    />
+  </div>
+  <div class="flex flex-col gap-1">
+    <h3 class="text-primary font-bold text-lg md:text-xl">{name}</h3>
+    <p class="text-primary/70 text-sm md:text-base font-sans">{role}</p>
+  </div>
+</div>

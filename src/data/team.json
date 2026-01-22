@@ -1,0 +1,72 @@
+{
+    "dentists":[
+        {
+            "name":"Julien Van de Velde",
+            "role":"Gérant du cabinet / Dentiste généraliste / Endodontiste spécialiste",
+            "description":"Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+            "image":"/images/dentists/1.png"
+        },
+        {
+            "name":"Julien Van de Velde",
+            "role":"Gérant du cabinet / Dentiste généraliste / Endodontiste spécialiste",
+            "description":"Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+            "image":"/images/dentists/1.png"
+        },
+        {
+            "name":"Julien Van de Velde",
+            "role":"Gérant du cabinet / Dentiste généraliste / Endodontiste spécialiste",
+            "description":"Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+            "image":"/images/dentists/1.png"
+        },
+        {
+            "name":"Julien Van de Velde",
+            "role":"Gérant du cabinet / Dentiste généraliste / Endodontiste spécialiste",
+            "description":"Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+            "image":"/images/dentists/1.png"
+        },
+        {
+            "name":"Julien Van de Velde",
+            "role":"Gérant du cabinet / Dentiste généraliste / Endodontiste spécialiste",
+            "description":"Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+            "image":"/images/dentists/1.png"
+        },
+        {
+            "name":"Julien Van de Velde",
+            "role":"Gérant du cabinet / Dentiste généraliste / Endodontiste spécialiste",
+            "description":"Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+            "image":"/images/dentists/1.png"
+        }
+    ],
+    "assistants":[
+        {
+            "name":"Inès Lemaire",
+            "role":"Assistante dentaire",
+            "description":"Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+            "image":"/images/assistants/1.png"
+        },
+        {
+            "name":"Inès Lemaire",
+            "role":"Assistante dentaire",
+            "description":"Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+            "image":"/images/assistants/1.png"
+        },
+        {
+            "name":"Inès Lemaire",
+            "role":"Assistante dentaire",
+            "description":"Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+            "image":"/images/assistants/1.png"
+        },
+        {
+            "name":"Inès Lemaire",
+            "role":"Assistante dentaire",
+            "description":"Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+            "image":"/images/assistants/1.png"
+        },
+        {
+            "name":"Inès Lemaire",
+            "role":"Assistante dentaire",
+            "description":"Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+            "image":"/images/assistants/1.png"
+        }
+    ]
+}

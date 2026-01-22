@@ -1,0 +1,96 @@
+---
+import { Image } from "astro:assets";
+import dent from "../../assets/dent.png";
+---
+
+<section
+  class="bg-white w-full flex flex-col items-center gap-16 justify-center pt-24 pb-24 rounded-3xl"
+>
+  <div
+    class="relative w-full max-w-7xl flex flex-col items-center justify-center"
+  >
+    <h2
+      class="relative text-primary font-bold text-center text-3xl lg:text-5xl max-w-3xl"
+    >
+      <span class="text-tertiary">Votre parcours</span> vers un sourire sain, en 4
+      étapes claires
+    </h2>
+  </div>
+
+  <div class="grid grid-cols-1 xl:grid-cols-3 gap-4 w-full px-20">
+    <div
+      class="w-full flex flex-col items-center justify-center gap-9 h-fit my-auto"
+    >
+      <div class="w-full h-full bg-secondary rounded-3xl p-6 flex gap-6">
+        <div
+          class="flex items-center justify-center bg-quaternary rounded-full w-6 h-6 shrink-0"
+        >
+          <p class="text-secondary font-bold text-base">1</p>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <h3 class="text-primary font-bold text-lg">
+            Premier contact & Écoute
+          </h3>
+          <p class="text-primary/80 text-base font-sans">
+            Vous nous contactez, nous écoutons attentivement votre besoin pour
+            fixer le rendez-vous adéquat.
+          </p>
+        </div>
+      </div>
+      <div class="w-full h-full bg-secondary rounded-3xl p-6 flex gap-6">
+        <div
+          class="flex items-center justify-center bg-quaternary rounded-full w-6 h-6 shrink-0"
+        >
+          <p class="text-secondary font-bold text-base">2</p>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <h3 class="text-primary font-bold text-lg">Bilan Complet & Devis</h3>
+          <p class="text-primary/80 text-base font-sans">
+            Lors de la première consultation, nous réalisons un diagnostic
+            complet (radios, photos) et vous proposons un plan de traitement
+            personnalisé et chiffré.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <Image src={dent} alt="Dent" width={1000} height={1000} />
+    </div>
+    <div
+      class="w-full flex flex-col items-center justify-center gap-9 h-fit my-auto"
+    >
+      <div class="w-full h-full bg-secondary rounded-3xl p-6 flex gap-6">
+        <div
+          class="flex items-center justify-center bg-quaternary rounded-full w-6 h-6 shrink-0"
+        >
+          <p class="text-secondary font-bold text-base">3</p>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <h3 class="text-primary font-bold text-lg">Réalisation des soins</h3>
+          <p class="text-primary/80 text-base font-sans">
+            Nous planifions ensemble les séances pour réaliser vos soins avec le
+            plus grand confort, sous digue et avec des technologies de pointe.
+          </p>
+        </div>
+      </div>
+      <div class="w-full h-full bg-secondary rounded-3xl p-6 flex gap-6">
+        <div
+          class="flex items-center justify-center bg-quaternary rounded-full w-6 h-6 shrink-0"
+        >
+          <p class="text-secondary font-bold text-base">4</p>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <h3 class="text-primary font-bold text-lg">Suivi & prévention</h3>
+          <p class="text-primary/80 text-base font-sans">
+            Nous assurons votre suivi et vous donnons tous les conseils pour
+            maintenir les résultats sur le long terme.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

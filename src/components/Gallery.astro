@@ -1,0 +1,161 @@
+---
+import { Image } from "astro:assets";
+
+import img1 from "../assets/gallery/1.jpg";
+import img2 from "../assets/gallery/2.jpg";
+import img3 from "../assets/gallery/3.jpg";
+import img4 from "../assets/gallery/4.jpg";
+import img5 from "../assets/gallery/5.jpg";
+import img6 from "../assets/gallery/6.jpg";
+
+const topRow = [img1, img2, img3, img4, img5, img6];
+const bottomRow = [img4, img5, img6, img1, img2, img3];
+---
+
+<section
+  class="w-full flex flex-col items-center gap-12 justify-center pt-24 pb-32 overflow-hidden"
+>
+  <h2
+    class="relative text-primary font-bold max-w-2xl text-center text-3xl lg:text-5xl px-4"
+  >
+    <span class="text-tertiary">Découvrez notre galerie :</span> un sourire à chaque
+    étape!
+  </h2>
+
+  <!-- Marquee Container - Full screen with negative margins -->
+  <div class="marquee-wrapper">
+    <!-- Top Row - scrolls left -->
+    <div class="marquee-container">
+      <div class="marquee-track marquee-left">
+        {
+          [...topRow, ...topRow, ...topRow].map((img, index) => (
+            <div class="marquee-item">
+              <Image
+                src={img}
+                alt={`Galerie ${(index % topRow.length) + 1}`}
+                width={1000}
+                height={1000}
+                class="w-full h-full object-cover rounded-[16px] md:rounded-[20px]"
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Bottom Row - scrolls right -->
+    <div class="marquee-container">
+      <div class="marquee-track marquee-right">
+        {
+          [...bottomRow, ...bottomRow, ...bottomRow].map((img, index) => (
+            <div class="marquee-item">
+              <Image
+                src={img}
+                alt={`Galerie ${(index % bottomRow.length) + 1}`}
+                width={1000}
+                height={1000}
+                class="w-full h-full object-cover rounded-[16px] md:rounded-[20px]"
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .marquee-wrapper {
+    width: 100vw;
+    margin-left: calc(-40px);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+  }
+
+  .marquee-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    /* Fade effect using mask */
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+  }
+
+  .marquee-item {
+    flex-shrink: 0;
+    width: 180px;
+    height: 130px;
+  }
+
+  @media (min-width: 640px) {
+    .marquee-item {
+      width: 250px;
+      height: 180px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .marquee-item {
+      width: 320px;
+      height: 230px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .marquee-item {
+      width: 400px;
+      height: 280px;
+    }
+  }
+
+  .marquee-left {
+    animation: scroll-left 40s linear infinite;
+  }
+
+  .marquee-right {
+    animation: scroll-right 40s linear infinite;
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-100% / 3));
+    }
+  }
+
+  @keyframes scroll-right {
+    0% {
+      transform: translateX(calc(-100% / 3));
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  /* Pause on hover */
+  .marquee-container:hover .marquee-track {
+    animation-play-state: paused;
+  }
+</style>

@@ -1,0 +1,186 @@
+---
+import { Image } from "astro:assets";
+import { Plus, Minus, ArrowUpRight } from "@lucide/astro";
+import faqImage from "../assets/faq.jpg";
+
+const faqs = [
+  {
+    question: "Comment prendre rendez-vous ?",
+    answer:
+      "Vous pouvez prendre rendez-vous en ligne via notre site, par téléphone au 01 23 45 67 89, ou directement à l'accueil du cabinet. Nous vous répondrons dans les plus brefs délais.",
+  },
+  {
+    question: "Quels sont les moyens de paiement acceptés ?",
+    answer:
+      "Nous acceptons les paiements par carte bancaire, espèces et chèques. Des facilités de paiement peuvent être proposées pour les traitements importants.",
+  },
+  {
+    question: "Prenez-vous en charge les urgences dentaires ?",
+    answer:
+      "Oui, nous réservons chaque jour des créneaux pour les urgences. Contactez-nous dès que possible et nous ferons notre maximum pour vous recevoir rapidement.",
+  },
+  {
+    question: "Quels types de soins proposez-vous ?",
+    answer:
+      "Nous proposons une gamme complète de soins : soins conservateurs, prothèses, implants, orthodontie, esthétique dentaire, parodontologie et chirurgie buccale.",
+  },
+  {
+    question: "Les soins sont-ils remboursés ?",
+    answer:
+      "La plupart des soins sont partiellement remboursés par la Sécurité sociale. Votre mutuelle peut compléter ce remboursement. Nous vous fournissons un devis détaillé avant tout traitement.",
+  },
+];
+---
+
+<section
+  class="w-full flex flex-col items-center gap-12 justify-center pt-24 pb-40"
+>
+  <div class="w-full grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Left: Image + Content below -->
+    <div class="flex flex-col gap-6 bg-white p-4 rounded-3xl">
+      <!-- Image -->
+      <div
+        class="w-full h-[250px] md:h-[300px] lg:h-[350px] rounded-[20px] md:rounded-[30px] overflow-hidden"
+      >
+        <Image
+          src={faqImage}
+          alt="FAQ - Cabinet dentaire"
+          width={800}
+          height={600}
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <!-- Content below image -->
+      <div class="flex flex-col gap-4 pb-10 pl-5">
+        <h2 class="text-primary font-bold text-2xl md:text-3xl lg:text-4xl">
+          Vos questions, nos réponses
+        </h2>
+        <p class="text-primary/70 text-sm md:text-base font-sans">
+          Vous ne trouvez pas la réponse ? Nous sommes là pour vous aider.
+        </p>
+        <button
+          class="text-primary border border-primary/30 p-3 rounded-full font-semibold flex items-center justify-center font-sans hover:cursor-pointer hover:border-primary transition-all duration-300 w-fit text-sm md:text-base"
+        >
+          Contactez-nous
+        </button>
+      </div>
+    </div>
+
+    <!-- Right: Accordion -->
+    <div class="flex flex-col gap-4 bg-white p-4 rounded-3xl">
+      <div class="flex flex-col gap-3" data-accordion>
+        {
+          faqs.map((faq) => (
+            <div
+              class="faq-item bg-white rounded-[16px] md:rounded-[20px] overflow-hidden"
+              data-faq-item
+            >
+              <button
+                class="faq-question w-full flex items-center  gap-4 p-4 md:p-6  cursor-pointer"
+                data-faq-trigger
+                aria-expanded="false"
+              >
+                <span class="faq-icon shrink-0 w-6 h-6 rounded-full border border-primary/30 flex items-center justify-center transition-transform duration-300">
+                  <Plus class="faq-plus w-2 h-2 md:w-3 md:h-3 text-primary transition-opacity duration-300" />
+                  <Minus class="faq-minus w-2 h-2 md:w-3 md:h-3 text-primary transition-opacity duration-300" />
+                </span>
+                <span class="text-primary font-bold text-base md:text-lg">
+                  {faq.question}
+                </span>
+              </button>
+              <div
+                class="faq-answer grid grid-rows-[0fr] transition-all duration-300 ease-out"
+                data-faq-content
+              >
+                <div class="overflow-hidden">
+                  <p class="text-primary/70 text-sm md:text-base font-sans px-4 md:px-6 pb-4 md:pb-6">
+                    {faq.answer}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initAccordion() {
+    const accordions = document.querySelectorAll("[data-accordion]");
+
+    accordions.forEach((accordion) => {
+      const items = accordion.querySelectorAll("[data-faq-item]");
+
+      items.forEach((item) => {
+        const trigger = item.querySelector("[data-faq-trigger]");
+        const content = item.querySelector("[data-faq-content]") as HTMLElement;
+        const plusIcon = item.querySelector(".faq-plus") as HTMLElement;
+        const minusIcon = item.querySelector(".faq-minus") as HTMLElement;
+
+        if (!trigger || !content) return;
+
+        trigger.addEventListener("click", () => {
+          const isOpen = trigger.getAttribute("aria-expanded") === "true";
+
+          // Close all other items
+          items.forEach((otherItem) => {
+            if (otherItem !== item) {
+              const otherTrigger =
+                otherItem.querySelector("[data-faq-trigger]");
+              const otherContent = otherItem.querySelector(
+                "[data-faq-content]",
+              ) as HTMLElement;
+              const otherPlus = otherItem.querySelector(
+                ".faq-plus",
+              ) as HTMLElement;
+              const otherMinus = otherItem.querySelector(
+                ".faq-minus",
+              ) as HTMLElement;
+
+              if (otherTrigger && otherContent) {
+                otherTrigger.setAttribute("aria-expanded", "false");
+                otherContent.style.gridTemplateRows = "0fr";
+                if (otherPlus) otherPlus.style.opacity = "1";
+                if (otherMinus) otherMinus.style.opacity = "0";
+              }
+            }
+          });
+
+          // Toggle current item
+          if (isOpen) {
+            trigger.setAttribute("aria-expanded", "false");
+            content.style.gridTemplateRows = "0fr";
+            if (plusIcon) plusIcon.style.opacity = "1";
+            if (minusIcon) minusIcon.style.opacity = "0";
+          } else {
+            trigger.setAttribute("aria-expanded", "true");
+            content.style.gridTemplateRows = "1fr";
+            if (plusIcon) plusIcon.style.opacity = "0";
+            if (minusIcon) minusIcon.style.opacity = "1";
+          }
+        });
+      });
+    });
+  }
+
+  // Init on load and after View Transitions
+  document.addEventListener("astro:page-load", initAccordion);
+  initAccordion();
+</script>
+
+<style>
+  .faq-icon {
+    position: relative;
+  }
+
+  .faq-plus,
+  .faq-minus {
+    position: absolute;
+  }
+
+  [aria-expanded="true"] .faq-icon {
+    transform: rotate(180deg);
+  }
+</style>
