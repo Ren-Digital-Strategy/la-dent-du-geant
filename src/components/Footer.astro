@@ -36,7 +36,9 @@ const schedule = [
 
   <div class="relative max-w-7xl mx-auto">
     <!-- Logo and title -->
-    <div class="flex items-center justify-center gap-3 md:gap-6 mb-10 md:mb-12 lg:mb-16">
+    <div
+      class="flex items-center justify-center gap-3 md:gap-6 mb-10 md:mb-12 lg:mb-16"
+    >
       <Image
         src={logo}
         alt="La Dent du Géant"
@@ -44,18 +46,20 @@ const schedule = [
         width={35}
         height={45}
       />
-      <h2 class="text-2xl md:text-3xl lg:text-[45px] font-bold text-[#f9f9f9] tracking-tight lg:tracking-[-3.75px]">
+      <h2
+        class="text-2xl md:text-3xl lg:text-[45px] font-bold text-[#f9f9f9] tracking-tight lg:tracking-[-3.75px]"
+      >
         La dent du géant
       </h2>
     </div>
 
     <!-- Three column content -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12 mb-10 md:mb-12 lg:mb-16 max-w-[1280px] mx-auto">
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12 mb-10 md:mb-12 lg:mb-16 max-w-[1280px] mx-auto"
+    >
       <!-- Pages Menu -->
       <div class="flex flex-col gap-4">
-        <h3 class="font-sans text-sm text-[#e2cbb9] tracking-tight">
-          Pages
-        </h3>
+        <h3 class="font-sans text-sm text-[#e2cbb9] tracking-tight">Pages</h3>
         <ul class="flex flex-col gap-2 font-sans">
           {
             pageLinks.map((link) => (
@@ -74,18 +78,22 @@ const schedule = [
 
       <!-- Contact Info -->
       <div class="flex flex-col gap-4">
-        <h3 class="font-sans text-sm text-[#e2cbb9] tracking-tight">
-          Contact
-        </h3>
+        <h3 class="font-sans text-sm text-[#e2cbb9] tracking-tight">Contact</h3>
         <div class="flex flex-col gap-3 text-white font-sans">
-          <a href="mailto:bienvenue@ladentdugeant.be" class="text-[15px] md:text-[16px] leading-[1.2] hover:text-tertiary transition-colors break-all">
+          <a
+            href="mailto:bienvenue@ladentdugeant.be"
+            class="text-[15px] md:text-[16px] leading-[1.2] hover:text-tertiary transition-colors break-all"
+          >
             bienvenue@ladentdugeant.be
           </a>
           <p class="text-[15px] md:text-[16px] leading-[1.2]">
             Chaussée de Mons 457,<br />
             7810 Ath, Belgique
           </p>
-          <a href="tel:+3268282156" class="text-[15px] md:text-[16px] leading-[1.5] hover:text-tertiary transition-colors">
+          <a
+            href="tel:+3268282156"
+            class="text-[15px] md:text-[16px] leading-[1.5] hover:text-tertiary transition-colors"
+          >
             +32 68 28 21 56
           </a>
         </div>
@@ -114,7 +122,9 @@ const schedule = [
     </div>
 
     <!-- Bottom bar -->
-    <div class="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-4 max-w-[1280px] mx-auto">
+    <div
+      class="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-4 max-w-[1280px] mx-auto"
+    >
       <!-- Copyright -->
       <div
         class="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 font-sans text-white text-xs md:text-[14px] tracking-tight text-center md:text-left"
@@ -131,7 +141,7 @@ const schedule = [
             <circle cx="12" cy="12" r="10"></circle>
             <path d="M12 6v6l4 2"></path>
           </svg>
-          <span>2025</span>
+          <span>{new Date().getFullYear()}</span>
         </div>
         <span class="hidden sm:inline text-[15.8px] tracking-tight">/</span>
         <a href="#" class="hover:text-tertiary transition-colors">

@@ -1,0 +1,86 @@
+---
+const services = [
+  {
+    title: "Endodontie",
+    description:
+      "Spécialité dentaire dédiée au traitement de l'intérieur de la dent (canaux, pulpe) afin de la conserver durablement.",
+  },
+  {
+    title: "Dévitalisation",
+    description:
+      "Intervention qui consiste à retirer le nerf d'une dent infectée ou endommagée pour la soulager et éviter son extraction.",
+  },
+  {
+    title: "Éclaircissement",
+    description:
+      "Soin esthétique qui vise à rendre vos dents plus blanches et à redonner de l'éclat à votre sourire.",
+  },
+  {
+    title: "Occlusodontie",
+    description:
+      "Analyse et correction des contacts entre les dents et des problèmes de mâchoire pour améliorer le confort de mastication.",
+  },
+  {
+    title: "Détartrage",
+    description:
+      "Soin préventif consistant à éliminer le tartre accumulé sur les dents pour maintenir des gencives saines.",
+  },
+  {
+    title: "Bilan Dentaire",
+    description:
+      "Examen complet de votre bouche (dents, gencives, mâchoire) pour diagnostiquer d'éventuels problèmes et établir un plan de traite..",
+  },
+  {
+    title: "Radio Panoramique Dentaire",
+    description:
+      "Examen radiologique offrant une vue d'ensemble de toutes vos dents et de vos mâchoires en un seul cliché.",
+  },
+  {
+    title: "Implantation",
+    description:
+      "Procédure chirurgicale consistant à poser une racine artificielle (implant) dans l'os de la mâchoire pour supporter une future dent.",
+  },
+  {
+    title: "Prothèse",
+    description:
+      "Solution sur mesure, fixe ou amovible, qui remplace une ou plusieurs dents manquantes pour restaurer la fonction et l'esthétique.",
+  },
+  {
+    title: "Couronne",
+    description:
+      '"Chapeau" protecteur qui recouvre entièrement une dent abîmée ou dévitalisée pour lui redonner sa solidité et sa forme d\'origine.',
+  },
+  {
+    title: "Implant",
+    description:
+      "Racine artificielle en titane insérée dans l'os de la mâchoire, servant de fondation solide pour une future couronne ou prothèse.",
+  },
+  {
+    title: "Traitement d'une carie",
+    description:
+      "Intervention qui consiste à nettoyer la partie de la dent abîmée par les bactéries et à la reboucher pour stopper sa progression.",
+  },
+  {
+    title: "Gouttières",
+    description:
+      "Appareil amovible sur mesure conçu pour protéger les dents de l'usure (bruxisme) ou pour aligner le sourire.",
+  },
+];
+---
+
+<section class="w-full flex flex-col items-center gap-12 justify-center pb-40">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {
+      services.map((service) => (
+        <div class="col-span-1 flex flex-col gap-4 bg-white rounded-3xl p-6">
+          <h2 class="text-primary font-semibold text-lg lg:text-2xl">
+            {service.title}
+          </h2>
+          <p class="text-primary/80 text-base font-sans">
+            {service.description}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+</section>

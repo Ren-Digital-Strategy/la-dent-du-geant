@@ -1,0 +1,96 @@
+---
+import { Image } from "astro:assets";
+import heroService from "../../assets/nos-services/hero-service.png";
+import avatar1 from "../../assets/avatar/1.jpg";
+import avatar2 from "../../assets/avatar/2.jpg";
+import avatar3 from "../../assets/avatar/3.jpg";
+---
+
+<section
+  class="w-full flex flex-col justify-center gap-12 pt-24 pb-24 lg:pt-32 lg:pb-32"
+>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <!-- Colonne 1: Texte -->
+    <div class="col-span-1 max-w-3xl flex flex-col gap-8">
+      <h1 class="text-4xl lg:text-6xl font-bold">
+        Des <span class="text-tertiary">soins complets</span> pour un sourire sain
+        et durable
+      </h1>
+      <p class="text-primary/80 text-base font-sans">
+        Au Cabinet La Dent du Géant, nous proposons une gamme complète de soins
+        dentaires pour répondre à tous vos besoins, des contrôles préventifs aux
+        restaurations les plus complexes. Notre équipe pluridisciplinaire
+        utilise les technologies les plus modernes pour vous garantir des
+        traitements de haute précision, toujours dans le respect de notre
+        philosophie conservatrice :
+      </p>
+      <p class="text-primary/80 text-base italic font-bold font-sans">
+        Préserver au Maximum Vos Dents Naturelles.
+      </p>
+    </div>
+
+    <!-- Colonne 2: Image avec avatars -->
+    <div class="col-span-1 relative">
+      <div class="relative w-full max-w-[732px] mx-auto">
+        <!-- Image principale -->
+        <Image
+          src={heroService}
+          alt="Soins dentaires"
+          class="w-full h-auto rounded-3xl"
+          width={732}
+          height={384}
+        />
+
+        <!-- Avatars et statistiques -->
+        <div
+          class="absolute bottom-3 right-0 flex items-center gap-3 rounded-2xl"
+        >
+          <!-- Avatars empilés -->
+          <div class="flex items-center -space-x-3">
+            <div
+              class="w-12 h-12 rounded-full border-2 border-white overflow-hidden relative z-30"
+            >
+              <Image
+                src={avatar1}
+                alt="Client satisfait"
+                class="w-full h-full object-cover"
+                width={48}
+                height={48}
+              />
+            </div>
+            <div
+              class="w-12 h-12 rounded-full border-2 border-white overflow-hidden relative z-20"
+            >
+              <Image
+                src={avatar2}
+                alt="Client satisfait"
+                class="w-full h-full object-cover"
+                width={48}
+                height={48}
+              />
+            </div>
+            <div
+              class="w-12 h-12 rounded-full border-2 border-white overflow-hidden relative z-10"
+            >
+              <Image
+                src={avatar3}
+                alt="Client satisfait"
+                class="w-full h-full object-cover"
+                width={48}
+                height={48}
+              />
+            </div>
+          </div>
+
+          <!-- Statistiques -->
+          <div class="flex flex-col">
+            <p class="text-xs font-bold text-primary leading-tight">3500+</p>
+            <p class="text-xs font-medium text-primary/60 font-sans">
+              Clients satisfaits
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
