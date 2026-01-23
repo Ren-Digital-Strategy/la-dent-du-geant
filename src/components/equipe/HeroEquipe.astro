@@ -1,0 +1,114 @@
+---
+import { Image } from "astro:assets";
+import img1 from "../../assets/equipe/1.jpg";
+import img2 from "../../assets/equipe/2.jpg";
+import img3 from "../../assets/equipe/3.jpg";
+---
+
+<section
+  class="w-full flex flex-col justify-center gap-12 pt-16 pb-24 lg:pt-24 lg:pb-32"
+>
+  <div class="w-full gap-12 items-center">
+    <div
+      class="col-span-1 max-w-3xl flex flex-col justify-center items-center gap-8 mx-auto"
+    >
+      <h1 class="text-4xl lg:text-6xl font-bold text-center">
+        Une équipe passionnée au service de votre sourire
+      </h1>
+      <p class="text-primary/80 text-base font-sans text-center">
+        En formation continue et à l'écoute des dernières innovations, nous
+        travaillons en parfaite coordination pour vous garantir une prise en
+        charge globale et une expérience sereine.
+      </p>
+    </div>
+  </div>
+
+  <!-- Images section -->
+  <div class="images-container flex flex-col lg:flex-row gap-4 lg:h-[500px]">
+    <div class="image-item h-[200px] lg:h-full" data-index="0">
+      <Image
+        src={img1}
+        alt="Équipe 1"
+        class="w-full h-full object-cover rounded-2xl"
+      />
+    </div>
+    <div class="image-item active h-[200px] lg:h-full" data-index="1">
+      <Image
+        src={img2}
+        alt="Équipe 2"
+        class="w-full h-full object-cover rounded-2xl"
+      />
+    </div>
+    <div class="image-item h-[200px] lg:h-full" data-index="2">
+      <Image
+        src={img3}
+        alt="Équipe 3"
+        class="w-full h-full object-cover rounded-2xl"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .images-container {
+    width: 100%;
+  }
+
+  .image-item {
+    overflow: hidden;
+    border-radius: 1rem;
+  }
+
+  /* Animation uniquement sur desktop (lg: 1024px+) */
+  @media (min-width: 1024px) {
+    .image-item {
+      flex: 1;
+      min-width: 0;
+      cursor: pointer;
+      transition: flex 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .image-item.active {
+      flex: 2;
+    }
+
+    .image-item:hover {
+      flex: 2;
+    }
+
+    .images-container:has(.image-item:hover) .image-item:not(:hover) {
+      flex: 1;
+    }
+
+    .images-container:has(.image-item:hover) .image-item.active:not(:hover) {
+      flex: 1;
+    }
+  }
+</style>
+
+<script>
+  function initImageHover() {
+    // Désactiver sur mobile
+    if (window.innerWidth < 1024) return;
+
+    const container = document.querySelector(".images-container");
+    const items = document.querySelectorAll(".image-item");
+
+    if (!container || !items.length) return;
+
+    items.forEach((item) => {
+      item.addEventListener("mouseenter", () => {
+        items.forEach((i) => i.classList.remove("active"));
+        item.classList.add("active");
+      });
+    });
+
+    container.addEventListener("mouseleave", () => {
+      items.forEach((i) => i.classList.remove("active"));
+      items[1]?.classList.add("active");
+    });
+  }
+
+  document.addEventListener("astro:page-load", initImageHover);
+  initImageHover();
+</script>

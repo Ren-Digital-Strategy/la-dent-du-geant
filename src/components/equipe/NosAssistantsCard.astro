@@ -1,0 +1,71 @@
+---
+interface Props {
+  name: string;
+  role: string;
+  description: string;
+  image: string;
+}
+
+const { name, role, description, image } = Astro.props;
+---
+
+<!-- Version Mobile -->
+<div class="md:hidden relative mt-32 rounded-3xl overflow-visible">
+  <!-- Image qui déborde vers le haut -->
+  <div
+    class="absolute left-1/2 -translate-x-1/2 -top-28 w-[200px] h-[240px] z-20"
+  >
+    <img
+      src={image}
+      alt={name}
+      class="w-full h-full object-cover object-top rounded-2xl"
+    />
+  </div>
+
+  <!-- Contenu -->
+  <div class="bg-secondary rounded-t-3xl px-5 pt-32 pb-4">
+    <h3 class="text-primary font-bold text-lg text-center">{name}</h3>
+    <p class="text-quinary text-sm font-sans mt-1 text-center">{role}</p>
+  </div>
+
+  <div class="bg-[#E5DDD7] rounded-b-3xl px-5 py-4">
+    <p class="text-primary/70 text-sm font-sans leading-relaxed text-center">
+      {description}
+    </p>
+  </div>
+</div>
+
+<!-- Version Desktop -->
+<div
+  class="hidden md:flex flex-col card-container relative rounded-3xl overflow-visible h-full"
+>
+  <!-- Zone haute: fond beige -->
+  <div
+    class="bg-secondary rounded-t-3xl pt-6 lg:pt-8 px-6 lg:px-8 pb-4 pl-[230px] lg:pl-[280px] flex-grow"
+  >
+    <div class="flex flex-col gap-1">
+      <h3 class="text-primary font-bold text-xl lg:text-2xl">{name}</h3>
+      <p class="text-quinary text-sm lg:text-base font-sans">{role}</p>
+    </div>
+  </div>
+
+  <!-- Zone basse: fond pour description -->
+  <div
+    class="bg-[#E5DDD7] rounded-3xl px-6 lg:px-8 pb-6 lg:pb-8 pt-4 pl-[230px] lg:pl-[280px]"
+  >
+    <p class="text-primary/70 text-sm lg:text-base font-sans leading-relaxed">
+      {description}
+    </p>
+  </div>
+
+  <!-- Image positionnée en bas -->
+  <div
+    class="absolute left-6 lg:left-8 bottom-6 lg:bottom-8 w-[190px] lg:w-[230px] z-20"
+  >
+    <img
+      src={image}
+      alt={name}
+      class="w-full h-auto object-cover object-top rounded-2xl lg:rounded-3xl"
+    />
+  </div>
+</div>

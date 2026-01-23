@@ -1,0 +1,32 @@
+---
+import NosDentistesCard from "./NosDentistesCard.astro";
+import teamData from "../../data/team.json";
+
+const { dentists } = teamData;
+---
+
+<section class="w-full flex flex-col gap-12 pb-40">
+  <div class="flex flex-col gap-4">
+    <h2 class="text-primary font-bold text-3xl lg:text-5xl max-w-2xl">
+      Nos <span class="text-[#7B8A96]">dentistes</span> et spécialistes
+    </h2>
+    <p class="text-primary/80 text-base font-sans max-w-xl">
+      Chaque praticien apporte son expertise pour construire avec vous le plan
+      de traitement le plus adapté.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-x-8 lg:gap-y-20">
+    {
+      dentists.map((dentist, index) => (
+        <NosDentistesCard
+          name={dentist.name}
+          role={dentist.role}
+          description={dentist.description}
+          image={dentist.image}
+          isFounder={index === 0}
+        />
+      ))
+    }
+  </div>
+</section>

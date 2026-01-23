@@ -1,0 +1,112 @@
+---
+interface Props {
+  name: string;
+  role: string;
+  description: string;
+  image: string;
+  isFounder?: boolean;
+}
+
+const { name, role, description, image, isFounder = false } = Astro.props;
+---
+
+<!-- Version Mobile -->
+<div class="md:hidden relative mt-32 rounded-3xl overflow-visible">
+  <!-- Image qui déborde vers le haut -->
+  <div
+    class="absolute left-1/2 -translate-x-1/2 -top-28 w-[200px] h-[240px] z-20"
+  >
+    <img
+      src={image}
+      alt={name}
+      class="w-full h-full object-cover object-top rounded-2xl"
+    />
+  </div>
+
+  <!-- Contenu -->
+  <div class="bg-secondary rounded-t-3xl px-5 pt-32 pb-4">
+    <h3 class="text-primary font-bold text-lg text-center">{name}</h3>
+    <p class="text-quinary text-sm font-sans mt-1 text-center">{role}</p>
+  </div>
+
+  <div class="bg-[#DCDFE2] rounded-b-3xl px-5 py-4">
+    <p class="text-primary/70 text-sm font-sans leading-relaxed text-center">
+      {description}
+    </p>
+
+    {
+      isFounder && (
+        <button class="mt-4 mx-auto bg-primary text-white px-4 py-2 rounded-full font-medium flex items-center gap-2 text-sm hover:bg-primary/80 transition-all duration-300">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+          </svg>
+          Mot du fondateur
+        </button>
+      )
+    }
+  </div>
+</div>
+
+<!-- Version Desktop -->
+<div
+  class="hidden md:flex flex-col card-container relative rounded-3xl overflow-visible h-full"
+>
+  <!-- Zone haute: fond beige -->
+  <div
+    class="bg-secondary rounded-t-3xl pt-6 lg:pt-8 px-6 lg:px-8 pb-4 pl-[230px] lg:pl-[280px] flex-grow"
+  >
+    <div class="flex flex-col gap-1">
+      <h3 class="text-primary font-bold text-xl lg:text-2xl">{name}</h3>
+      <p class="text-quinary text-sm lg:text-base font-sans">{role}</p>
+    </div>
+  </div>
+
+  <!-- Zone basse: fond gris pour description -->
+  <div
+    class="bg-[#DCDFE2] rounded-3xl px-6 lg:px-8 pb-6 lg:pb-8 pt-4 pl-[230px] lg:pl-[280px]"
+  >
+    <p class="text-primary/70 text-sm lg:text-base font-sans leading-relaxed">
+      {description}
+    </p>
+
+    {
+      isFounder && (
+        <button class="mt-4 bg-primary text-white px-5 py-2.5 rounded-full font-medium flex items-center gap-2 text-sm hover:bg-primary/80 transition-all duration-300">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+          </svg>
+          Mot du fondateur
+        </button>
+      )
+    }
+  </div>
+
+  <!-- Image positionnée en bas -->
+  <div
+    class="absolute left-6 lg:left-8 bottom-6 lg:bottom-8 w-[190px] lg:w-[230px] z-20"
+  >
+    <img
+      src={image}
+      alt={name}
+      class="w-full h-auto object-cover object-top rounded-2xl lg:rounded-3xl"
+    />
+  </div>
+</div>
