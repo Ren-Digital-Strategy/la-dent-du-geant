@@ -14,13 +14,18 @@ interface OffreEmploi {
   salaire: string;
   date_created: string;
   status: string;
+  regime_travail: string;
+  disponibilite: string;
+  remuneration: string;
+  avantages: string;
+  profil_recherche: string;
 }
 
 let offres: OffreEmploi[] = [];
 
 try {
   const response = await fetch(
-    `${DIRECTUS_URL}/items/recrutement?filter[status][_eq]=published&fields=id,titre,description,localisation,type_contrat,salaire,date_created&sort=-date_created`,
+    `${DIRECTUS_URL}/items/recrutement?filter[status][_eq]=published&fields=id,titre,description,localisation,type_contrat,salaire,date_created,regime_travail,disponibilite,remuneration,avantages,profil_recherche&sort=-date_created`,
   );
 
   if (response.ok) {
@@ -65,8 +70,8 @@ function formatDate(dateString: string) {
             </p>
           </div>
         ) : (
-          offres.map((offre) => (
-            <article class="bg-[#fdf9f2] border border-[#e9eaeb] rounded-2xl p-4 md:p-6 lg:p-8 flex flex-col gap-4 lg:gap-6 relative">
+          offres.map((offre, index) => (
+            <article class="bg-[#fdf9f2] border border-[#e9eaeb] rounded-2xl p-4 md:p-6 lg:p-8 flex flex-col gap-4 lg:gap-6 relative" data-offre-id={index}>
               {/* Date de publication - cachée sur mobile */}
               <p class="hidden md:block absolute top-1 right-28 text-xs text-[#535862] font-medium">
                 Publié le {formatDate(offre.date_created)}
@@ -86,6 +91,36 @@ function formatDate(dateString: string) {
               <p class="md:hidden text-xs text-[#535862] font-medium">
                 Publié le {formatDate(offre.date_created)}
               </p>
+
+              {/* Bouton Plus de détails */}
+              <button
+                class="details-toggle flex items-center gap-2 text-sm font-semibold text-[#535862] hover:text-[#3c3c3c] transition-colors duration-200 w-fit"
+                data-target={`details-${index}`}
+              >
+                <span>Plus de détails</span>
+                <svg class="w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
+
+              {/* Section détails (cachée par défaut) */}
+              <div id={`details-${index}`} class="details-content hidden flex-col gap-4 lg:gap-6 pt-4 border-t border-[#e9eaeb]">
+                {/* Avantages */}
+                {offre.avantages && (
+                  <div class="flex flex-col gap-2">
+                    <h3 class="text-base md:text-lg font-semibold text-[#3c3c3c]">Avantages</h3>
+                    <div class="text-sm md:text-base text-[#535862] leading-5 md:leading-6 prose prose-sm max-w-none" set:html={offre.avantages} />
+                  </div>
+                )}
+
+                {/* Profil recherché */}
+                {offre.profil_recherche && (
+                  <div class="flex flex-col gap-2">
+                    <h3 class="text-base md:text-lg font-semibold text-[#3c3c3c]">Profil recherché</h3>
+                    <div class="text-sm md:text-base text-[#535862] leading-5 md:leading-6 prose prose-sm max-w-none" set:html={offre.profil_recherche} />
+                  </div>
+                )}
+              </div>
 
               {/* Détails et bouton */}
               <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-5 w-full">
@@ -108,13 +143,13 @@ function formatDate(dateString: string) {
                     <span class="text-xs md:text-sm font-semibold text-[#535862]">{offre.type_contrat}</span>
                   </div>
 
-                  {/* Salaire */}
-                  {offre.salaire && (
+                  {/* Rémunération */}
+                  {offre.remuneration && (
                     <div class="flex items-center gap-1.5">
                       <svg class="w-4 h-4 text-[#535862] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                       </svg>
-                      <span class="text-xs md:text-sm font-semibold text-[#535862]">{offre.salaire}</span>
+                      <span class="text-xs md:text-sm font-semibold text-[#535862]">{offre.remuneration}</span>
                     </div>
                   )}
                 </div>
@@ -193,3 +228,50 @@ function formatDate(dateString: string) {
     <Footer />
   </div>
 </Layout>
+
+<script>
+  // Gestion de l'affichage des détails des offres
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleButtons = document.querySelectorAll('.details-toggle');
+
+    toggleButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const targetId = button.getAttribute('data-target');
+        const detailsContent = document.getElementById(targetId);
+        const svg = button.querySelector('svg');
+        const span = button.querySelector('span');
+
+        if (detailsContent) {
+          const isHidden = detailsContent.classList.contains('hidden');
+          
+          if (isHidden) {
+            // Ouvrir
+            detailsContent.classList.remove('hidden');
+            detailsContent.classList.add('flex');
+            svg?.classList.add('rotate-180');
+            if (span) span.textContent = 'Moins de détails';
+          } else {
+            // Fermer
+            detailsContent.classList.add('hidden');
+            detailsContent.classList.remove('flex');
+            svg?.classList.remove('rotate-180');
+            if (span) span.textContent = 'Plus de détails';
+          }
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  /* Style pour les listes HTML dans les détails */
+  .prose ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin: 0.5rem 0;
+  }
+  
+  .prose li {
+    margin: 0.25rem 0;
+  }
+</style>
