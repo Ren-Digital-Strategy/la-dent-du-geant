@@ -9,4 +9,7 @@ services:
       - NODE_ENV=production
       - HOST=0.0.0.0
       - PORT=4321
+      # Variables Directus (injectées par Dokploy)
+      - DIRECTUS_URL=${DIRECTUS_URL}
+      - PUBLIC_DIRECTUS_URL=${PUBLIC_DIRECTUS_URL}
     restart: unless-stopped
