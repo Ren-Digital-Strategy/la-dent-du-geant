@@ -3,6 +3,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        # Variables passées au build time
+        - DIRECTUS_URL=${DIRECTUS_URL}
+        - PUBLIC_DIRECTUS_URL=${PUBLIC_DIRECTUS_URL}
     ports:
       - "4321:4321"
     environment:

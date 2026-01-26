@@ -14,6 +14,15 @@ RUN pnpm install --frozen-lockfile
 
 # Build the application
 FROM base AS builder
+
+# Déclarer les ARG pour les variables d'environnement au build time
+ARG DIRECTUS_URL
+ARG PUBLIC_DIRECTUS_URL
+
+# Les rendre disponibles comme variables d'environnement pendant le build
+ENV DIRECTUS_URL=$DIRECTUS_URL
+ENV PUBLIC_DIRECTUS_URL=$PUBLIC_DIRECTUS_URL
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN pnpm run build
