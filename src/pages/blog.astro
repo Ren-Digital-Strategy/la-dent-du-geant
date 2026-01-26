@@ -1,0 +1,16 @@
+---
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+import HeroBlog from "../components/blog/HeroBlog.astro";
+import BlogSection from "../components/blog/BlogSection.astro";
+---
+
+<Layout title="La Dent du Geant - Blog">
+  <div class="px-4 md:px-8 lg:px-10">
+    <Header />
+    <HeroBlog />
+    <BlogSection />
+    <Footer />
+  </div>
+</Layout>

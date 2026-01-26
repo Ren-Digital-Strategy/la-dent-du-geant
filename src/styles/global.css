@@ -24,3 +24,73 @@
 :root {
   --hero-height: calc(100vh - var(--spacing-header));
 }
+
+/* Styles pour le contenu des articles de blog */
+.blog-content {
+  @apply text-primary/80 leading-relaxed;
+}
+
+.blog-content h2 {
+  @apply text-3xl font-bold text-primary mt-8 mb-4;
+}
+
+.blog-content h3 {
+  @apply text-2xl font-bold text-primary mt-6 mb-3;
+}
+
+.blog-content h4 {
+  @apply text-xl font-bold text-primary mt-4 mb-2;
+}
+
+.blog-content p {
+  @apply mb-4 text-base;
+}
+
+.blog-content ul,
+.blog-content ol {
+  @apply mb-4 ml-6 space-y-2;
+}
+
+.blog-content ul {
+  @apply list-disc;
+}
+
+.blog-content ol {
+  @apply list-decimal;
+}
+
+.blog-content li {
+  @apply text-primary/80;
+}
+
+.blog-content a {
+  @apply text-primary underline hover:text-primary/70 transition-colors;
+}
+
+.blog-content strong {
+  @apply font-bold text-primary;
+}
+
+.blog-content em {
+  @apply italic;
+}
+
+.blog-content blockquote {
+  @apply border-l-4 border-tertiary pl-4 italic my-6 text-primary/70;
+}
+
+.blog-content img {
+  @apply rounded-lg my-6 w-full;
+}
+
+.blog-content code {
+  @apply bg-secondary px-2 py-1 rounded text-sm font-mono;
+}
+
+.blog-content pre {
+  @apply bg-secondary p-4 rounded-lg my-4 overflow-x-auto;
+}
+
+.blog-content pre code {
+  @apply bg-transparent p-0;
+}

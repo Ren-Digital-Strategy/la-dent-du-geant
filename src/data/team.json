@@ -2,69 +2,75 @@
     "dentists":[
         {
             "name":"Julien Van de Velde",
-            "role":"Gérant du cabinet / Dentiste généraliste / Endodontiste spécialiste",
+            "role":"Fondateur, gérant, dentiste généraliste et endodontiste spécialiste",
             "description":"Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
             "image":"/images/dentists/1.png"
         },
         {
-            "name":"Julien Van de Velde",
-            "role":"Gérant du cabinet / Dentiste généraliste / Endodontiste spécialiste",
+            "name":"Guillem Busca",
+            "role":"Dentiste généraliste",
             "description":"Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
             "image":"/images/dentists/1.png"
         },
         {
-            "name":"Julien Van de Velde",
-            "role":"Gérant du cabinet / Dentiste généraliste / Endodontiste spécialiste",
+            "name":"Alex Minaberry",
+            "role":"Dentiste généraliste",
             "description":"Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
             "image":"/images/dentists/1.png"
         },
         {
-            "name":"Julien Van de Velde",
-            "role":"Gérant du cabinet / Dentiste généraliste / Endodontiste spécialiste",
+            "name":"Maxence Verdebout",
+            "role":"Dentiste généraliste",
             "description":"Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
             "image":"/images/dentists/1.png"
         },
         {
-            "name":"Julien Van de Velde",
-            "role":"Gérant du cabinet / Dentiste généraliste / Endodontiste spécialiste",
+            "name":"Alexis Fontaine",
+            "role":"Implantologue",
             "description":"Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
             "image":"/images/dentists/1.png"
         },
         {
-            "name":"Julien Van de Velde",
-            "role":"Gérant du cabinet / Dentiste généraliste / Endodontiste spécialiste",
+            "name":"Aude Quillet",
+            "role":"Dentiste généraliste",
             "description":"Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
             "image":"/images/dentists/1.png"
         }
     ],
     "assistants":[
         {
-            "name":"Inès Lemaire",
-            "role":"Assistante dentaire",
+            "name":"Ysaline Delbecq",
+            "role":"Office manager: ressources humaines, communication, organisation interne, support en gestion",
+            "description":"Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+            "image":"/images/assistants/1.png"
+        },
+        {
+            "name":"Madeline Barbosa",
+            "role":"Secrétaire médicale et assistanat en dentisterie générale et endodontie",
+            "description":"Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+            "image":"/images/assistants/1.png"
+        },
+        {
+            "name":"Sandrine Meyfroyd",
+            "role":"Secrétaire médicale et assistanat en dentisterie générale et endodontie",
             "description":"Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
             "image":"/images/assistants/1.png"
         },
         {
             "name":"Inès Lemaire",
-            "role":"Assistante dentaire",
+            "role":"Secrétaire médicale et assistanat en dentisterie générale, endodontie et implantologie",
             "description":"Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
             "image":"/images/assistants/1.png"
         },
         {
-            "name":"Inès Lemaire",
-            "role":"Assistante dentaire",
+            "name":"Véronique Gueben",
+            "role":"Secrétaire médicale et assistanat en dentisterie générale, endodontie et implantologie",
             "description":"Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
             "image":"/images/assistants/1.png"
         },
         {
-            "name":"Inès Lemaire",
-            "role":"Assistante dentaire",
-            "description":"Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
-            "image":"/images/assistants/1.png"
-        },
-        {
-            "name":"Inès Lemaire",
-            "role":"Assistante dentaire",
+            "name":"Héloïse Caisse",
+            "role":"Hygiéniste: inculquer les bonnes techniques d'hygiène et optimiser la santé bucco-dentaire. Actes essentiellement préventifs pour prévenir les pathologies ou les guérir",
             "description":"Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
             "image":"/images/assistants/1.png"
         }

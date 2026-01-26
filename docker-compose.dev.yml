@@ -10,6 +10,7 @@ services:
     environment:
       - NODE_ENV=development
       - DIRECTUS_URL=http://directus:8055
+      - PUBLIC_DIRECTUS_URL=http://localhost:8055
     command: sh -c "corepack enable && corepack prepare pnpm@latest --activate && pnpm install && pnpm run dev --host"
     depends_on:
       - directus

@@ -1,0 +1,270 @@
+---
+// URL pour les appels API côté serveur
+const DIRECTUS_URL = import.meta.env.DIRECTUS_URL || "http://localhost:8055";
+// URL publique pour les assets (images) côté client
+const PUBLIC_DIRECTUS_URL = import.meta.env.PUBLIC_DIRECTUS_URL || "http://localhost:8055";
+
+interface Badge {
+  badges_id: {
+    id: string;
+    nom: string;
+  };
+}
+
+interface BadgeItem {
+  id: string;
+  nom: string;
+}
+
+interface BlogArticle {
+  id: string;
+  titre: string;
+  description: string;
+  contenu: string;
+  auteur_nom: string;
+  auteur_profession: string;
+  photo_principale: {
+    id: string;
+    filename_disk: string;
+  };
+  avatar_auteur: {
+    id: string;
+    filename_disk: string;
+  };
+  date_created: string;
+  status: string;
+  temps_lecture: number | null;
+  badges: Badge[];
+}
+
+let articles: BlogArticle[] = [];
+let allBadges: BadgeItem[] = [];
+
+try {
+  // Récupérer les articles
+  const articlesResponse = await fetch(
+    `${DIRECTUS_URL}/items/blog?filter[status][_eq]=published&fields=id,titre,description,contenu,auteur_nom,auteur_profession,photo_principale.id,photo_principale.filename_disk,avatar_auteur.id,avatar_auteur.filename_disk,date_created,temps_lecture,badges.badges_id.id,badges.badges_id.nom&sort=-date_created`,
+  );
+
+  if (articlesResponse.ok) {
+    const data = await articlesResponse.json();
+    articles = data.data || [];
+  }
+
+  // Récupérer tous les badges
+  const badgesResponse = await fetch(
+    `${DIRECTUS_URL}/items/badges?filter[status][_eq]=published&fields=id,nom&sort=nom`,
+  );
+
+  if (badgesResponse.ok) {
+    const badgesData = await badgesResponse.json();
+    allBadges = badgesData.data || [];
+  }
+} catch (error) {
+  console.error("Erreur lors de la récupération des données:", error);
+}
+
+function formatDate(dateString: string) {
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat("fr-FR", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(date);
+}
+---
+
+<section class="w-full py-16 lg:py-24">
+  <div class="max-w-7xl mx-auto">
+    {/* Filtres par badges */}
+    {allBadges.length > 0 && (
+      <div class="mb-12">
+        <div class="flex flex-wrap items-start gap-3">
+          <button
+            data-filter="all"
+            class="filter-btn flex items-center justify-center h-9 px-1 pb-3 border-b-2 border-solid border-[#3c3c3c] transition-all duration-200"
+          >
+            <span class="font-semibold text-base leading-6 text-[#3c3c3c]">
+              Voir tout
+            </span>
+          </button>
+          {allBadges.map((badge) => (
+            <button
+              data-filter={badge.id}
+              class="filter-btn flex items-center justify-center h-9 px-1 pb-3 border-b-2 border-solid border-transparent transition-all duration-200 hover:border-[#3c3c3c]"
+            >
+              <span class="font-semibold text-base leading-6 text-[#6f6f6f]">
+                {badge.nom}
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {
+      articles.length === 0 ? (
+        <div class="text-center py-12">
+          <p class="text-primary/60 text-lg">
+            Aucun article disponible pour le moment.
+          </p>
+        </div>
+      ) : (
+        <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {articles.map((article) => (
+            <article 
+              class="article-card bg-[#fdf9f2] rounded-[24px] overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col"
+              data-badges={article.badges?.map(b => b.badges_id.id).join(',')}
+              data-title={article.titre.toLowerCase()}
+              data-description={article.description.toLowerCase()}
+              data-badge-names={article.badges?.map(b => b.badges_id.nom.toLowerCase()).join(' ')}
+            >
+              <a href={`/blog/${article.id}`} class="flex flex-col h-full">
+                {article.photo_principale && (
+                  <div class="relative w-full aspect-[384/256] overflow-hidden">
+                    <img
+                      src={`${PUBLIC_DIRECTUS_URL}/assets/${article.photo_principale.id}`}
+                      alt={article.titre}
+                      class="absolute inset-0 w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                )}
+
+                <div class="p-6 flex flex-col gap-8 flex-1">
+                  <div class="flex flex-col gap-3">
+                    {/* Badges et temps de lecture */}
+                    {(article.badges && article.badges.length > 0) || article.temps_lecture ? (
+                      <div class="flex flex-wrap items-center gap-2">
+                        {article.badges && article.badges.length > 0 && article.badges.map((badge) => (
+                          badge?.badges_id?.nom && (
+                            <div class="bg-[#fafafa] border border-[#e9eaeb] px-2 py-0.5 rounded-full">
+                              <span class="text-xs font-medium text-[#414651]">
+                                {badge.badges_id.nom}
+                              </span>
+                            </div>
+                          )
+                        ))}
+                        {article.temps_lecture && (
+                          <span class="text-xs font-medium text-[#3c3c3c] px-2 py-0.5">
+                            ⏱️ {article.temps_lecture} min
+                          </span>
+                        )}
+                      </div>
+                    ) : null}
+
+                    {/* Titre et description */}
+                    <div class="flex flex-col gap-2">
+                      <h3 class="text-lg font-semibold leading-[1.4] text-[#3c3c3c] hover:text-primary transition-colors">
+                        {article.titre}
+                      </h3>
+                      <p class="text-sm font-normal leading-5 text-[#6f6f6f] line-clamp-3">
+                        {article.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Auteur */}
+                  <div class="flex items-center gap-2 mt-auto">
+                    {article.avatar_auteur && (
+                      <img
+                        src={`${PUBLIC_DIRECTUS_URL}/assets/${article.avatar_auteur.id}`}
+                        alt={article.auteur_nom}
+                        class="w-10 h-10 rounded-full object-cover border border-[rgba(0,0,0,0.08)]"
+                      />
+                    )}
+                    <div class="flex flex-col text-sm leading-5">
+                      <p class="font-semibold text-[#181d27]">
+                        {article.auteur_nom}
+                      </p>
+                      <p class="font-normal text-[#535862]">
+                        {article.auteur_profession}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </article>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<script>
+  // Système de filtrage et recherche des articles
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const articleCards = document.querySelectorAll('.article-card');
+    const searchInput = document.getElementById('search-input') as HTMLInputElement;
+    
+    let currentBadgeFilter = 'all';
+    let currentSearchTerm = '';
+
+    // Fonction pour appliquer tous les filtres
+    function applyFilters() {
+      articleCards.forEach(card => {
+        const cardBadges = card.getAttribute('data-badges') || '';
+        const cardTitle = card.getAttribute('data-title') || '';
+        const cardDescription = card.getAttribute('data-description') || '';
+        const cardBadgeNames = card.getAttribute('data-badge-names') || '';
+        
+        // Vérifier le filtre par badge
+        let matchesBadge = currentBadgeFilter === 'all' || 
+                          cardBadges.split(',').includes(currentBadgeFilter);
+        
+        // Vérifier la recherche textuelle
+        let matchesSearch = true;
+        if (currentSearchTerm) {
+          const searchLower = currentSearchTerm.toLowerCase();
+          matchesSearch = cardTitle.includes(searchLower) || 
+                         cardDescription.includes(searchLower) || 
+                         cardBadgeNames.includes(searchLower);
+        }
+        
+        // Afficher seulement si les deux conditions sont remplies
+        if (matchesBadge && matchesSearch) {
+          (card as HTMLElement).style.display = '';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    }
+
+    // Gestion du filtrage par badges
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        currentBadgeFilter = button.getAttribute('data-filter') || 'all';
+
+        // Mettre à jour l'état actif des boutons (style Figma avec bordure en bas)
+        filterButtons.forEach(btn => {
+          btn.classList.remove('border-[#3c3c3c]');
+          btn.classList.add('border-transparent');
+          const span = btn.querySelector('span');
+          if (span) {
+            span.classList.remove('text-[#3c3c3c]');
+            span.classList.add('text-[#6f6f6f]');
+          }
+        });
+        
+        button.classList.remove('border-transparent');
+        button.classList.add('border-[#3c3c3c]');
+        const activeSpan = button.querySelector('span');
+        if (activeSpan) {
+          activeSpan.classList.remove('text-[#6f6f6f]');
+          activeSpan.classList.add('text-[#3c3c3c]');
+        }
+
+        applyFilters();
+      });
+    });
+
+    // Gestion de la recherche textuelle
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        currentSearchTerm = (e.target as HTMLInputElement).value;
+        applyFilters();
+      });
+    }
+  });
+</script>

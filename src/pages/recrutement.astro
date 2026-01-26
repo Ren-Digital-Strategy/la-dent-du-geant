@@ -1,0 +1,195 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const DIRECTUS_URL = import.meta.env.DIRECTUS_URL || "http://localhost:8055";
+
+interface OffreEmploi {
+  id: string;
+  titre: string;
+  description: string;
+  localisation: string;
+  type_contrat: string;
+  salaire: string;
+  date_created: string;
+  status: string;
+}
+
+let offres: OffreEmploi[] = [];
+
+try {
+  const response = await fetch(
+    `${DIRECTUS_URL}/items/recrutement?filter[status][_eq]=published&fields=id,titre,description,localisation,type_contrat,salaire,date_created&sort=-date_created`,
+  );
+
+  if (response.ok) {
+    const data = await response.json();
+    offres = data.data || [];
+  }
+} catch (error) {
+  console.error("Erreur lors de la récupération des offres:", error);
+}
+
+function formatDate(dateString: string) {
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat("fr-FR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  }).format(date);
+}
+---
+
+<Layout title="La Dent du Geant - Recrutement">
+  <div class="px-4 md:px-8 lg:px-10">
+    <Header />
+    
+    <!-- Section Hero -->
+    <section class="w-full flex flex-col items-center justify-center pt-24 pb-16 lg:pt-32 lg:pb-24 gap-12 lg:gap-24">
+      <div class="w-full max-w-3xl flex flex-col items-center gap-4 lg:gap-6 px-4">
+        <h1 class="text-3xl md:text-4xl lg:text-6xl font-extrabold text-[#3c3c3c] text-center leading-tight lg:leading-[72px] tracking-[-0.8px] lg:tracking-[-1.2px]">
+          Rejoignez une équipe engagée et bienveillante
+        </h1>
+        <p class="text-base md:text-lg lg:text-xl text-[#3c3c3c] text-center leading-6 lg:leading-[30px]">
+          Rejoignez une équipe passionnée, dans un environnement professionnel, moderne et tourné vers l'avenir.
+        </p>
+      </div>
+
+      <!-- Liste des offres -->
+      <div class="w-full max-w-3xl flex flex-col gap-4 lg:gap-6 px-4">
+        {offres.length === 0 ? (
+          <div class="text-center py-12">
+            <p class="text-[#535862] text-base lg:text-lg">
+              Aucune offre d'emploi disponible pour le moment.
+            </p>
+          </div>
+        ) : (
+          offres.map((offre) => (
+            <article class="bg-[#fdf9f2] border border-[#e9eaeb] rounded-2xl p-4 md:p-6 lg:p-8 flex flex-col gap-4 lg:gap-6 relative">
+              {/* Date de publication - cachée sur mobile */}
+              <p class="hidden md:block absolute top-1 right-28 text-xs text-[#535862] font-medium">
+                Publié le {formatDate(offre.date_created)}
+              </p>
+
+              {/* Titre et description */}
+              <div class="flex flex-col gap-3 lg:gap-5">
+                <h2 class="text-lg md:text-xl lg:text-[22px] font-semibold text-[#3c3c3c] leading-[1.4] tracking-[-0.308px]">
+                  {offre.titre}
+                </h2>
+                <p class="text-sm md:text-base text-[#535862] leading-5 md:leading-6">
+                  {offre.description}
+                </p>
+              </div>
+
+              {/* Date de publication - visible sur mobile */}
+              <p class="md:hidden text-xs text-[#535862] font-medium">
+                Publié le {formatDate(offre.date_created)}
+              </p>
+
+              {/* Détails et bouton */}
+              <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-5 w-full">
+                {/* Détails */}
+                <div class="flex-1 flex flex-wrap items-center gap-3 md:gap-4">
+                  {/* Localisation */}
+                  <div class="flex items-center gap-1.5">
+                    <svg class="w-4 h-4 text-[#535862] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                    <span class="text-xs md:text-sm font-semibold text-[#535862]">{offre.localisation}</span>
+                  </div>
+
+                  {/* Type de contrat */}
+                  <div class="flex items-center gap-1.5">
+                    <svg class="w-4 h-4 text-[#535862] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    <span class="text-xs md:text-sm font-semibold text-[#535862]">{offre.type_contrat}</span>
+                  </div>
+
+                  {/* Salaire */}
+                  {offre.salaire && (
+                    <div class="flex items-center gap-1.5">
+                      <svg class="w-4 h-4 text-[#535862] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                      </svg>
+                      <span class="text-xs md:text-sm font-semibold text-[#535862]">{offre.salaire}</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Bouton Postuler */}
+                <a
+                  href={`mailto:contact@ladentdugeant.be?subject=Candidature - ${offre.titre}`}
+                  class="bg-[#3c3c3c] text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-[#2c2c2c] transition-colors duration-200 text-center md:text-left whitespace-nowrap"
+                >
+                  Postuler
+                </a>
+              </div>
+            </article>
+          ))
+        )}
+      </div>
+    </section>
+
+    <!-- Section CTA Contact -->
+    <section class="w-full flex flex-col items-center justify-center py-16 lg:py-32">
+      <div class="w-full max-w-7xl flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 px-4">
+        <!-- Image avec citation -->
+        <div class="w-full lg:w-[560px] h-[400px] md:h-[500px] lg:h-[614px] rounded-3xl relative overflow-hidden">
+          <img
+            src="https://www.figma.com/api/mcp/asset/984f8acb-e041-4c80-ba7f-61f554adfd12"
+            alt="Équipe du cabinet"
+            class="absolute inset-0 w-full h-full object-cover"
+          />
+          <!-- Overlay avec citation -->
+          <div class="absolute bottom-0 left-0 right-0 pt-24 rounded-3xl bg-gradient-to-b from-transparent to-black/50">
+            <div class="backdrop-blur-xl bg-white/30 border-t border-white/30 p-6 md:p-8 rounded-b-3xl">
+              <p class="text-lg md:text-xl lg:text-2xl font-semibold text-white mb-6 md:mb-8">
+                "Ici, chaque personne compte. Nous avançons ensemble, avec confiance et esprit d'équipe"
+              </p>
+              <div class="flex flex-col gap-1">
+                <p class="text-base md:text-lg font-semibold text-white">
+                  Julien Van de Velde
+                </p>
+                <p class="text-sm font-medium text-white/90">
+                  Gérant du cabinet
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contenu texte et bouton -->
+        <div class="w-full lg:w-[560px] flex flex-col gap-8 lg:gap-12">
+          <div class="flex flex-col gap-4 lg:gap-6">
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#3c3c3c] leading-tight tracking-tight">
+              Une question ? Parlons-en simplement.
+            </h2>
+            <p class="text-base md:text-lg lg:text-xl text-[#535862] leading-relaxed">
+              Si vous avez la moindre question sur nos opportunités ou notre façon de travailler, notre équipe se tient à votre écoute.
+            </p>
+          </div>
+
+          <!-- Bouton Contact -->
+          <a
+            href="mailto:contact@ladentdugeant.be"
+            class="bg-[#3c3c3c] hover:bg-[#2c2c2c] transition-colors duration-200 flex items-center justify-between pl-3 pr-1.5 py-1.5 rounded-full w-fit group"
+          >
+            <span class="text-base md:text-lg font-semibold text-white px-3">
+              Contactez le cabinet
+            </span>
+            <div class="bg-[#f8f1e7] rounded-full p-2.5 md:p-3 flex items-center justify-center">
+              <svg class="w-5 h-5 md:w-6 md:h-6 text-[#3c3c3c] transform -rotate-45 group-hover:scale-110 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+              </svg>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+  </div>
+</Layout>

@@ -5,29 +5,29 @@ import faqImage from "../assets/faq.jpg";
 
 const faqs = [
   {
-    question: "Comment prendre rendez-vous ?",
+    question: "Acceptez-vous de nouveaux patients ?",
     answer:
-      "Vous pouvez prendre rendez-vous en ligne via notre site, par téléphone au 01 23 45 67 89, ou directement à l'accueil du cabinet. Nous vous répondrons dans les plus brefs délais.",
+      "Oui, nous accueillons de nouveaux patients avec plaisir. Cependant, pour garantir une qualité de soins irréprochable et des délais raisonnables pour tous, nous sommes parfois contraints de réguler les nouvelles inscriptions. Nous vous invitons à nous contacter par téléphone pour connaître nos disponibilités actuelles.",
   },
   {
-    question: "Quels sont les moyens de paiement acceptés ?",
+    question: "Que signifie être un cabinet \"déconventionné\" pour mes remboursements ?",
     answer:
-      "Nous acceptons les paiements par carte bancaire, espèces et chèques. Des facilités de paiement peuvent être proposées pour les traitements importants.",
+      "Être déconventionné nous offre la liberté d'utiliser les meilleures techniques et matériaux sans être limités par les contraintes de temps imposées par l'INAMI. Concrètement, la mutuelle vous rembourse la base légale habituelle, et la différence d'honoraires reste à votre charge (ou à celle de votre assurance dentaire complémentaire si vous en avez une). C'est le choix d'une dentisterie de qualité, sans compromis.",
   },
   {
-    question: "Prenez-vous en charge les urgences dentaires ?",
+    question: "Je suis très anxieux(se) chez le dentiste, comment cela se passe-t-il ?",
     answer:
-      "Oui, nous réservons chaque jour des créneaux pour les urgences. Contactez-nous dès que possible et nous ferons notre maximum pour vous recevoir rapidement.",
+      "Nous savons que la visite chez le dentiste peut être source de stress. Notre équipe est formée pour vous écouter et vous mettre à l'aise. Nous prenons le temps de vous expliquer chaque geste avant de le réaliser. Grâce à nos techniques modernes et à une anesthésie maîtrisée, la très grande majorité des soins se déroulent aujourd'hui sans aucune douleur.",
   },
   {
-    question: "Quels types de soins proposez-vous ?",
+    question: "Le cabinet est-il facilement accessible (parking, mobilité douce) ?",
     answer:
-      "Nous proposons une gamme complète de soins : soins conservateurs, prothèses, implants, orthodontie, esthétique dentaire, parodontologie et chirurgie buccale.",
+      "Absolument. Nous avons pensé l'accès pour votre confort : un parking privé et gratuit est réservé à notre patientèle juste devant le cabinet. Si vous venez en transports en commun, la Gare de Maffle est toute proche et un arrêt de bus se trouve en face. Pour les cyclistes, le cabinet est desservi par le RAVeL et dispose d'un parking vélos.",
   },
   {
-    question: "Les soins sont-ils remboursés ?",
+    question: "Comment se déroule une première consultation ?",
     answer:
-      "La plupart des soins sont partiellement remboursés par la Sécurité sociale. Votre mutuelle peut compléter ce remboursement. Nous vous fournissons un devis détaillé avant tout traitement.",
+      "Sauf en cas d'urgence douloureuse, le premier rendez-vous n'est généralement pas destiné à réaliser un soin. C'est un moment d'échange et de diagnostic complet (examen clinique, radiographies, photos). Cela nous permet d'établir une estimation d'honoraires précise et de vous expliquer les différentes options de traitement avant de commencer.",
   },
 ];
 ---
@@ -76,15 +76,15 @@ const faqs = [
               data-faq-item
             >
               <button
-                class="faq-question w-full flex items-center  gap-4 p-4 md:p-6  cursor-pointer"
+                class="faq-question w-full flex items-start gap-4 p-4 md:p-6 cursor-pointer text-left"
                 data-faq-trigger
                 aria-expanded="false"
               >
-                <span class="faq-icon shrink-0 w-6 h-6 rounded-full border border-primary/30 flex items-center justify-center transition-transform duration-300">
+                <span class="faq-icon shrink-0 w-6 h-6 rounded-full border border-primary/30 flex items-center justify-center transition-transform duration-300 mt-1 pointer-events-none">
                   <Plus class="faq-plus w-2 h-2 md:w-3 md:h-3 text-primary transition-opacity duration-300" />
                   <Minus class="faq-minus w-2 h-2 md:w-3 md:h-3 text-primary transition-opacity duration-300" />
                 </span>
-                <span class="text-primary font-bold text-base md:text-lg">
+                <span class="text-primary font-bold text-base md:text-lg leading-relaxed pointer-events-none">
                   {faq.question}
                 </span>
               </button>
@@ -111,6 +111,10 @@ const faqs = [
     const accordions = document.querySelectorAll("[data-accordion]");
 
     accordions.forEach((accordion) => {
+      // Éviter d'initialiser plusieurs fois le même accordion
+      if (accordion.hasAttribute("data-initialized")) return;
+      accordion.setAttribute("data-initialized", "true");
+
       const items = accordion.querySelectorAll("[data-faq-item]");
 
       items.forEach((item) => {
@@ -178,6 +182,14 @@ const faqs = [
   .faq-plus,
   .faq-minus {
     position: absolute;
+  }
+
+  .faq-plus {
+    opacity: 1;
+  }
+
+  .faq-minus {
+    opacity: 0;
   }
 
   [aria-expanded="true"] .faq-icon {
