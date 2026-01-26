@@ -24,13 +24,19 @@ interface OffreEmploi {
 let offres: OffreEmploi[] = [];
 
 try {
-  const response = await fetch(
-    `${DIRECTUS_URL}/items/recrutement?filter[status][_eq]=published&fields=id,titre,description,localisation,type_contrat,salaire,date_created,regime_travail,disponibilite,remuneration,avantages,profil_recherche&sort=-date_created`,
-  );
+  console.log("DIRECTUS_URL pour recrutement:", DIRECTUS_URL);
+  const url = `${DIRECTUS_URL}/items/recrutement?filter[status][_eq]=published&fields=id,titre,description,localisation,type_contrat,salaire,date_created,regime_travail,disponibilite,remuneration,avantages,profil_recherche&sort=-date_created`;
+  console.log("Fetching recrutement from:", url);
+  
+  const response = await fetch(url);
+  console.log("Response status:", response.status);
 
   if (response.ok) {
     const data = await response.json();
+    console.log("Offres récupérées:", data.data?.length || 0);
     offres = data.data || [];
+  } else {
+    console.error("Erreur HTTP:", response.status, response.statusText);
   }
 } catch (error) {
   console.error("Erreur lors de la récupération des offres:", error);
