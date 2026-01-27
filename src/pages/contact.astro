@@ -1,0 +1,280 @@
+---
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+import { Image } from "astro:assets";
+import forme from "../assets/forme.png";
+import { Mail, Phone, MapPin, Clock, Send } from "@lucide/astro";
+
+const schedule = [
+  { day: "Lundi", hours: "8:30 - 12:30, 14:00 - 18:00" },
+  { day: "Mardi", hours: "8:30 - 12:30, 14:00 - 18:00" },
+  { day: "Mercredi", hours: "8:30 - 12:30, 14:00 - 16:00" },
+  { day: "Jeudi", hours: "8:30 - 12:30, 14:00 - 18:00" },
+  { day: "Vendredi", hours: "8:30 - 12:30, 14:00 - 17:00" },
+  { day: "Samedi - Dimanche", hours: "Fermé" },
+];
+---
+
+<Layout title="Contact - La Dent du Geant">
+  <div class="px-4 md:px-8 lg:px-10">
+    <Header />
+
+    <section class="pt-20 md:pt-32 pb-16 md:pb-24">
+      <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-12 md:mb-16">
+          <div class="relative inline-block">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-primary">
+              Contactez-<span class="text-tertiary">nous</span>
+            </h1>
+            <Image
+              class="w-10 md:w-12 absolute -top-8 -right-10 md:-right-14 hidden md:block"
+              src={forme}
+              alt="Forme"
+              width={1000}
+              height={1000}
+            />
+          </div>
+          <p class="mt-4 md:mt-6 text-primary/70 font-sans max-w-2xl mx-auto text-base md:text-lg">
+            Une question, un besoin de rendez-vous ou simplement envie d'en savoir plus ?
+            N'hésitez pas à nous contacter, notre équipe vous répondra dans les plus brefs délais.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+          <!-- Contact Form -->
+          <div class="bg-white rounded-[24px] md:rounded-[32px] p-6 md:p-8 lg:p-10 shadow-sm">
+            <h2 class="text-2xl md:text-3xl font-bold text-primary mb-6 md:mb-8">
+              Envoyez-nous un message
+            </h2>
+
+            <form id="contact-form" class="flex flex-col gap-5 md:gap-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+                <div class="flex flex-col gap-2">
+                  <label for="name" class="text-sm font-semibold text-primary font-sans">
+                    Nom complet <span class="text-tertiary">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    class="px-4 py-3 rounded-xl border border-primary/20 bg-secondary/50 font-sans text-primary placeholder:text-primary/40 focus:outline-none focus:border-tertiary focus:ring-2 focus:ring-tertiary/20 transition-all"
+                    placeholder="Votre nom"
+                  />
+                </div>
+
+                <div class="flex flex-col gap-2">
+                  <label for="email" class="text-sm font-semibold text-primary font-sans">
+                    Email <span class="text-tertiary">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    class="px-4 py-3 rounded-xl border border-primary/20 bg-secondary/50 font-sans text-primary placeholder:text-primary/40 focus:outline-none focus:border-tertiary focus:ring-2 focus:ring-tertiary/20 transition-all"
+                    placeholder="votre@email.com"
+                  />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+                <div class="flex flex-col gap-2">
+                  <label for="phone" class="text-sm font-semibold text-primary font-sans">
+                    Téléphone
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    class="px-4 py-3 rounded-xl border border-primary/20 bg-secondary/50 font-sans text-primary placeholder:text-primary/40 focus:outline-none focus:border-tertiary focus:ring-2 focus:ring-tertiary/20 transition-all"
+                    placeholder="+32 XXX XX XX XX"
+                  />
+                </div>
+
+                <div class="flex flex-col gap-2">
+                  <label for="subject" class="text-sm font-semibold text-primary font-sans">
+                    Sujet
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    class="px-4 py-3 rounded-xl border border-primary/20 bg-secondary/50 font-sans text-primary placeholder:text-primary/40 focus:outline-none focus:border-tertiary focus:ring-2 focus:ring-tertiary/20 transition-all"
+                    placeholder="Prise de rendez-vous"
+                  />
+                </div>
+              </div>
+
+              <div class="flex flex-col gap-2">
+                <label for="message" class="text-sm font-semibold text-primary font-sans">
+                  Message <span class="text-tertiary">*</span>
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows="5"
+                  class="px-4 py-3 rounded-xl border border-primary/20 bg-secondary/50 font-sans text-primary placeholder:text-primary/40 focus:outline-none focus:border-tertiary focus:ring-2 focus:ring-tertiary/20 transition-all resize-none"
+                  placeholder="Votre message..."
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="mt-2 bg-primary text-white px-6 py-3 md:py-4 rounded-full font-semibold font-sans flex items-center justify-center gap-3 hover:bg-primary/80 hover:cursor-pointer transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <span id="btn-text">Envoyer le message</span>
+                <Send class="w-5 h-5" id="btn-icon" />
+                <svg id="btn-spinner" class="hidden w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+              </button>
+
+              <div id="form-message" class="hidden text-center py-3 px-4 rounded-xl font-sans text-sm"></div>
+            </form>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="flex flex-col gap-6">
+            <!-- Info Cards -->
+            <div class="bg-tertiary rounded-[24px] md:rounded-[32px] p-6 md:p-8">
+              <h3 class="text-xl md:text-2xl font-bold text-white mb-6">
+                Informations de contact
+              </h3>
+
+              <div class="flex flex-col gap-5">
+                <a href="mailto:bienvenue@ladentdugeant.be" class="flex items-start gap-4 group">
+                  <div class="bg-white/20 rounded-full p-3">
+                    <Mail class="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <p class="text-white/70 text-sm font-sans">Email</p>
+                    <p class="text-white font-semibold font-sans group-hover:text-secondary transition-colors">
+                      bienvenue@ladentdugeant.be
+                    </p>
+                  </div>
+                </a>
+
+                <a href="tel:+3268282156" class="flex items-start gap-4 group">
+                  <div class="bg-white/20 rounded-full p-3">
+                    <Phone class="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <p class="text-white/70 text-sm font-sans">Téléphone</p>
+                    <p class="text-white font-semibold font-sans group-hover:text-secondary transition-colors">
+                      +32 68 28 21 56
+                    </p>
+                  </div>
+                </a>
+
+                <a
+                  href="https://maps.google.com/?q=Chaussée+de+Mons+457+7810+Ath+Belgique"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-start gap-4 group"
+                >
+                  <div class="bg-white/20 rounded-full p-3">
+                    <MapPin class="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <p class="text-white/70 text-sm font-sans">Adresse</p>
+                    <p class="text-white font-semibold font-sans group-hover:text-secondary transition-colors">
+                      Chaussée de Mons 457<br />7810 Ath, Belgique
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Schedule Card -->
+            <div class="bg-white rounded-[24px] md:rounded-[32px] p-6 md:p-8 shadow-sm">
+              <div class="flex items-center gap-3 mb-6">
+                <div class="bg-tertiary/20 rounded-full p-3">
+                  <Clock class="w-5 h-5 text-tertiary" />
+                </div>
+                <h3 class="text-xl md:text-2xl font-bold text-primary">
+                  Horaires d'ouverture
+                </h3>
+              </div>
+
+              <div class="flex flex-col gap-3">
+                {schedule.map((item) => (
+                  <div class="flex items-center justify-between py-2 border-b border-primary/10 last:border-0">
+                    <span class="text-primary font-semibold font-sans">{item.day}</span>
+                    <span class="text-primary/70 font-sans text-sm">{item.hours}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+  </div>
+</Layout>
+
+<script>
+  function initContactForm() {
+    const form = document.getElementById("contact-form") as HTMLFormElement;
+    const btnText = document.getElementById("btn-text");
+    const btnIcon = document.getElementById("btn-icon");
+    const btnSpinner = document.getElementById("btn-spinner");
+    const formMessage = document.getElementById("form-message");
+
+    if (!form) return;
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Show loading state
+      if (btnText) btnText.textContent = "Envoi en cours...";
+      if (btnIcon) btnIcon.classList.add("hidden");
+      if (btnSpinner) btnSpinner.classList.remove("hidden");
+      form.querySelector("button")?.setAttribute("disabled", "true");
+
+      try {
+        const formData = new FormData(form);
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          body: formData,
+        });
+
+        const result = await response.json();
+
+        if (formMessage) {
+          formMessage.classList.remove("hidden", "bg-green-100", "text-green-800", "bg-red-100", "text-red-800");
+
+          if (response.ok) {
+            formMessage.classList.add("bg-green-100", "text-green-800");
+            formMessage.textContent = result.message || "Message envoyé avec succès!";
+            form.reset();
+          } else {
+            formMessage.classList.add("bg-red-100", "text-red-800");
+            formMessage.textContent = result.error || "Une erreur est survenue.";
+          }
+        }
+      } catch (error) {
+        if (formMessage) {
+          formMessage.classList.remove("hidden", "bg-green-100", "text-green-800");
+          formMessage.classList.add("bg-red-100", "text-red-800");
+          formMessage.textContent = "Une erreur est survenue. Veuillez réessayer.";
+        }
+      } finally {
+        // Reset button state
+        if (btnText) btnText.textContent = "Envoyer le message";
+        if (btnIcon) btnIcon.classList.remove("hidden");
+        if (btnSpinner) btnSpinner.classList.add("hidden");
+        form.querySelector("button")?.removeAttribute("disabled");
+      }
+    });
+  }
+
+  document.addEventListener("astro:page-load", initContactForm);
+  initContactForm();
+</script>

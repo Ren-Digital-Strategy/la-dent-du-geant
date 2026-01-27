@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import logo from "../assets/logo.png";
+import logoWhite from "../assets/logo blanc.png";
 import { ArrowUpRight } from "@lucide/astro";
 
 const links = [
@@ -22,19 +23,29 @@ const links = [
   },
   {
     label: "Contact",
-    href: "/",
+    href: "/contact",
   },
 ];
 ---
 
 <header
+  id="main-header"
   transition:persist
-  class="sticky top-0 left-0 right-0 py-4 md:py-5 grid grid-cols-2 lg:grid-cols-12 z-50 bg-secondary/80 backdrop-blur-md"
+  class="sticky top-0 left-0 right-0 py-4 md:py-5 grid grid-cols-2 lg:grid-cols-12 z-50 bg-secondary/80 backdrop-blur-md transition-all duration-300"
 >
-  <a href="/" class="flex items-center gap-2 md:gap-3 col-span-1 lg:col-span-5">
+  <a href="/" class="relative flex items-center gap-2 md:gap-3 col-span-1 lg:col-span-5">
     <Image
-      class="w-8 md:w-10"
+      id="logo-dark"
+      class="w-8 md:w-10 transition-opacity duration-300"
       src={logo}
+      alt="La Dent du Geant"
+      width={1000}
+      height={1000}
+    />
+    <Image
+      id="logo-white"
+      class="w-8 md:w-10 absolute opacity-0 transition-opacity duration-300"
+      src={logoWhite}
       alt="La Dent du Geant"
       width={1000}
       height={1000}
@@ -124,10 +135,13 @@ const links = [
   function initMobileMenu() {
     const menuToggle = document.getElementById("menu-toggle");
     const mobileMenu = document.getElementById("mobile-menu");
+    const mainHeader = document.getElementById("main-header");
+    const logoDark = document.getElementById("logo-dark");
+    const logoWhite = document.getElementById("logo-white");
     const burgerLines = menuToggle?.querySelectorAll(".burger-line");
     const mobileLinks = mobileMenu?.querySelectorAll(".mobile-link");
 
-    if (!menuToggle || !mobileMenu || !burgerLines) return;
+    if (!menuToggle || !mobileMenu || !burgerLines || !mainHeader) return;
 
     let isOpen = false;
 
@@ -139,6 +153,14 @@ const links = [
       burgerLines[0].classList.add("rotate-45", "translate-y-2");
       burgerLines[1].classList.add("opacity-0", "scale-0");
       burgerLines[2].classList.add("-rotate-45", "-translate-y-2");
+
+      // Make header transparent and text white
+      mainHeader.classList.remove("bg-secondary/80", "backdrop-blur-md");
+      mainHeader.classList.add("bg-transparent", "text-white");
+
+      // Switch to white logo
+      logoDark?.classList.add("opacity-0");
+      logoWhite?.classList.remove("opacity-0");
 
       // Show menu
       mobileMenu.classList.remove("opacity-0", "invisible");
@@ -162,6 +184,14 @@ const links = [
       burgerLines[0].classList.remove("rotate-45", "translate-y-2");
       burgerLines[1].classList.remove("opacity-0", "scale-0");
       burgerLines[2].classList.remove("-rotate-45", "-translate-y-2");
+
+      // Restore header background
+      mainHeader.classList.add("bg-secondary/80", "backdrop-blur-md");
+      mainHeader.classList.remove("bg-transparent", "text-white");
+
+      // Switch back to dark logo
+      logoDark?.classList.remove("opacity-0");
+      logoWhite?.classList.add("opacity-0");
 
       // Hide links first
       mobileLinks?.forEach((link) => {

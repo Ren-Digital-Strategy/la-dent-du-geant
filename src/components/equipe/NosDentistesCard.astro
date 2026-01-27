@@ -36,7 +36,7 @@ const { name, role, description, image, isFounder = false } = Astro.props;
 
     {
       isFounder && (
-        <button class="mt-4 mx-auto bg-primary text-white px-4 py-2 rounded-full font-medium flex items-center gap-2 text-sm hover:bg-primary/80 transition-all duration-300">
+        <div class="mt-4 mx-auto  text-primary px-4 py-2 rounded-full font-medium flex items-center gap-2 text-sm hover:bg-primary/80 transition-all duration-300">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="w-4 h-4"
@@ -50,7 +50,7 @@ const { name, role, description, image, isFounder = false } = Astro.props;
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
           </svg>
           Mot du fondateur
-        </button>
+        </div>
       )
     }
   </div>
@@ -80,7 +80,7 @@ const { name, role, description, image, isFounder = false } = Astro.props;
 
     {
       isFounder && (
-        <button class="mt-4 bg-primary text-white px-5 py-2.5 rounded-full font-medium flex items-center gap-2 text-sm hover:bg-primary/80 transition-all duration-300">
+        <div class="mt-4  text-primary  py-2.5 rounded-full font-medium flex items-center gap-2 text-sm ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="w-4 h-4"
@@ -94,7 +94,7 @@ const { name, role, description, image, isFounder = false } = Astro.props;
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
           </svg>
           Mot du fondateur
-        </button>
+        </div>
       )
     }
   </div>

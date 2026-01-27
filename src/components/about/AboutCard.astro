@@ -13,10 +13,10 @@ const { key, description, image } = Astro.props;
 
 <div
   id={`about-card-${key}`}
-  class="relative w-full overflow-hidden rounded-[20px] md:rounded-[25px] xl:rounded-[30px] group h-[280px] sm:h-[320px] md:h-[380px] lg:h-[450px] xl:h-[540px]"
+  class="relative w-full overflow-hidden rounded-[20px] md:rounded-[25px] xl:rounded-[30px] group flex items-end justify-center h-[420px] sm:h-[450px] md:h-[380px] lg:h-[450px] xl:h-[540px]"
 >
   <Image
-    class="w-full h-full object-cover"
+    class="w-full h-auto max-h-full object-contain"
     src={image}
     alt={description}
     width={1000}
