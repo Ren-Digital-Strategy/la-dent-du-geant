@@ -1,78 +1,78 @@
 {
-    "dentists":[
-        {
-            "name":"Julien Van de Velde",
-            "role":"Fondateur, gérant, dentiste généraliste et endodontiste spécialiste",
-            "description":"Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
-            "image":"/images/dentists/1.png"
-        },
-        {
-            "name":"Guillem Busca",
-            "role":"Dentiste généraliste",
-            "description":"Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
-            "image":"/images/dentists/1.png"
-        },
-        {
-            "name":"Alex Minaberry",
-            "role":"Dentiste généraliste",
-            "description":"Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
-            "image":"/images/dentists/1.png"
-        },
-        {
-            "name":"Maxence Verdebout",
-            "role":"Dentiste généraliste",
-            "description":"Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
-            "image":"/images/dentists/1.png"
-        },
-        {
-            "name":"Alexis Fontaine",
-            "role":"Implantologue",
-            "description":"Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
-            "image":"/images/dentists/1.png"
-        },
-        {
-            "name":"Aude Quillet",
-            "role":"Dentiste généraliste",
-            "description":"Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
-            "image":"/images/dentists/1.png"
-        }
-    ],
-    "assistants":[
-        {
-            "name":"Ysaline Delbecq",
-            "role":"Office manager: ressources humaines, communication, organisation interne, support en gestion",
-            "description":"Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
-            "image":"/images/assistants/1.png"
-        },
-        {
-            "name":"Madeline Barbosa",
-            "role":"Secrétaire médicale et assistanat en dentisterie générale et endodontie",
-            "description":"Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
-            "image":"/images/assistants/1.png"
-        },
-        {
-            "name":"Sandrine Meyfroyd",
-            "role":"Secrétaire médicale et assistanat en dentisterie générale et endodontie",
-            "description":"Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
-            "image":"/images/assistants/1.png"
-        },
-        {
-            "name":"Inès Lemaire",
-            "role":"Secrétaire médicale et assistanat en dentisterie générale, endodontie et implantologie",
-            "description":"Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
-            "image":"/images/assistants/1.png"
-        },
-        {
-            "name":"Véronique Gueben",
-            "role":"Secrétaire médicale et assistanat en dentisterie générale, endodontie et implantologie",
-            "description":"Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
-            "image":"/images/assistants/1.png"
-        },
-        {
-            "name":"Héloïse Caisse",
-            "role":"Hygiéniste: inculquer les bonnes techniques d'hygiène et optimiser la santé bucco-dentaire. Actes essentiellement préventifs pour prévenir les pathologies ou les guérir",
-            "description":"Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
-            "image":"/images/assistants/1.png"
-        }
-    ]
+  "dentists": [
+    {
+      "name": "Julien Van de Velde",
+      "role": "Fondateur, gérant, dentiste généraliste et endodontiste spécialiste",
+      "description": "Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+      "image": "../../assets/dentists/julien.jpg"
+    },
+    {
+      "name": "Guillem Busca",
+      "role": "Dentiste généraliste",
+      "description": "Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+      "image": "../assets/dentists/guillem.jpg"
+    },
+    {
+      "name": "Alex Minaberry",
+      "role": "Dentiste généraliste",
+      "description": "Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+      "image": "../assets/dentists/alex.jpg"
+    },
+    {
+      "name": "Maxence Verdebout",
+      "role": "Dentiste généraliste",
+      "description": "Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+      "image": "../assets/dentists/maxence.jpg"
+    },
+    {
+      "name": "Alexis Fontaine",
+      "role": "Implantologue",
+      "description": "Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+      "image": "../assets/dentists/alexis.jpg"
+    },
+    {
+      "name": "Aude Quillet",
+      "role": "Dentiste généraliste",
+      "description": "Dentiste généraliste et endodontiste spécialiste avec presque 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+      "image": "../assets/dentists/aude.jpg"
+    },
+    {
+      "name": "Héloïse Caisse",
+      "role": "Hygiéniste: inculquer les bonnes techniques d'hygiène et optimiser la santé bucco-dentaire. Actes essentiellement préventifs pour prévenir les pathologies ou les guérir",
+      "description": "Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+      "image": "../assets/dentists/heloise.jpg"
+    }
+  ],
+  "assistants": [
+    {
+      "name": "Ysaline Delbecq",
+      "role": "Office manager: ressources humaines, communication, organisation interne, support en gestion",
+      "description": "Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+      "image": "../assets/assistants/ysaline.jpg"
+    },
+    {
+      "name": "Madeline Barbosa",
+      "role": "Secrétaire médicale et assistanat en dentisterie générale et endodontie",
+      "description": "Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+      "image": "../assets/assistants/madeline.jpg"
+    },
+    {
+      "name": "Sandrine Meyfroyd",
+      "role": "Secrétaire médicale et assistanat en dentisterie générale et endodontie",
+      "description": "Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+      "image": "../assets/assistants/sandrine.jpg"
+    },
+    {
+      "name": "Inès Lemaire",
+      "role": "Secrétaire médicale et assistanat en dentisterie générale, endodontie et implantologie",
+      "description": "Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+      "image": "../assets/assistants/ines.jpg"
+    },
+    {
+      "name": "Véronique Gueben",
+      "role": "Secrétaire médicale et assistanat en dentisterie générale, endodontie et implantologie",
+      "description": "Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+      "image": "../assets/assistants/veronique.jpg"
+    }
+  ]
 }

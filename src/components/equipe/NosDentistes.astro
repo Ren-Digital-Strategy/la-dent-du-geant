@@ -2,6 +2,26 @@
 import NosDentistesCard from "./NosDentistesCard.astro";
 import teamData from "../../data/team.json";
 
+// Import des images des dentistes
+import julienImg from "../../assets/dentists/julien.png";
+import guillemImg from "../../assets/dentists/guillem.png";
+import alexImg from "../../assets/dentists/alex.png";
+import maxenceImg from "../../assets/dentists/maxence.png";
+import alexisImg from "../../assets/dentists/alexis.png";
+import audeImg from "../../assets/dentists/aude.png";
+import heloiseImg from "../../assets/dentists/heloise.png";
+
+// Mapping des noms vers les images importées
+const imageMap: Record<string, ImageMetadata> = {
+  "Julien Van de Velde": julienImg,
+  "Guillem Busca": guillemImg,
+  "Alex Minaberry": alexImg,
+  "Maxence Verdebout": maxenceImg,
+  "Alexis Fontaine": alexisImg,
+  "Aude Quillet": audeImg,
+  "Héloïse Caisse": heloiseImg,
+};
+
 const { dentists } = teamData;
 ---
 
@@ -23,7 +43,7 @@ const { dentists } = teamData;
           name={dentist.name}
           role={dentist.role}
           description={dentist.description}
-          image={dentist.image}
+          image={imageMap[dentist.name]?.src || dentist.image}
           isFounder={index === 0}
         />
       ))

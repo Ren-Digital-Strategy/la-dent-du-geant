@@ -2,6 +2,22 @@
 import NosAssistantsCard from "./NosAssistantsCard.astro";
 import teamData from "../../data/team.json";
 
+// Import des images des assistants
+import ysalineImg from "../../assets/assistants/ysaline.png";
+import madelineImg from "../../assets/assistants/madeline.png";
+import sandrineImg from "../../assets/assistants/sandrine.png";
+import inesImg from "../../assets/assistants/ines.png";
+import veroniqueImg from "../../assets/assistants/veronique.png";
+
+// Mapping des noms vers les images importées
+const imageMap: Record<string, ImageMetadata> = {
+  "Ysaline Delbecq": ysalineImg,
+  "Madeline Barbosa": madelineImg,
+  "Sandrine Meyfroyd": sandrineImg,
+  "Inès Lemaire": inesImg,
+  "Véronique Gueben": veroniqueImg,
+};
+
 const { assistants } = teamData;
 ---
 
@@ -25,7 +41,7 @@ const { assistants } = teamData;
           name={assistant.name}
           role={assistant.role}
           description={assistant.description}
-          image={assistant.image}
+          image={imageMap[assistant.name]?.src || assistant.image}
         />
       ))
     }

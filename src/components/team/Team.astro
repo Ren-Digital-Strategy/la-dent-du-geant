@@ -3,8 +3,45 @@ import { ArrowUpRight, MoveLeft, MoveRight } from "@lucide/astro";
 import TeamCard from "./TeamCard.astro";
 import teamData from "../../data/team.json";
 
-// Combine dentists and assistants
-const allMembers = [...teamData.dentists, ...teamData.assistants];
+// Import des images des dentistes
+import julienImg from "../../assets/dentists/julien.png";
+import guillemImg from "../../assets/dentists/guillem.png";
+import alexImg from "../../assets/dentists/alex.png";
+import maxenceImg from "../../assets/dentists/maxence.png";
+import alexisImg from "../../assets/dentists/alexis.png";
+import audeImg from "../../assets/dentists/aude.png";
+import heloiseImg from "../../assets/dentists/heloise.png";
+
+// Import des images des assistants
+import ysalineImg from "../../assets/assistants/ysaline.png";
+import madelineImg from "../../assets/assistants/madeline.png";
+import sandrineImg from "../../assets/assistants/sandrine.png";
+import inesImg from "../../assets/assistants/ines.png";
+import veroniqueImg from "../../assets/assistants/veronique.png";
+
+// Mapping des noms vers les images importées
+const imageMap: Record<string, ImageMetadata> = {
+  "Julien Van de Velde": julienImg,
+  "Guillem Busca": guillemImg,
+  "Alex Minaberry": alexImg,
+  "Maxence Verdebout": maxenceImg,
+  "Alexis Fontaine": alexisImg,
+  "Aude Quillet": audeImg,
+  "Héloïse Caisse": heloiseImg,
+  "Ysaline Delbecq": ysalineImg,
+  "Madeline Barbosa": madelineImg,
+  "Sandrine Meyfroyd": sandrineImg,
+  "Inès Lemaire": inesImg,
+  "Véronique Gueben": veroniqueImg,
+};
+
+// Combine dentists and assistants avec les images correctes
+const allMembers = [...teamData.dentists, ...teamData.assistants].map(
+  (member) => ({
+    ...member,
+    image: imageMap[member.name]?.src || member.image,
+  }),
+);
 ---
 
 <section
