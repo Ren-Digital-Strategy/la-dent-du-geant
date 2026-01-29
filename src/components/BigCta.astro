@@ -5,15 +5,22 @@ import avatar1 from "../assets/avatar/1.jpg";
 import avatar2 from "../assets/avatar/2.jpg";
 import avatar3 from "../assets/avatar/3.jpg";
 import avatar4 from "../assets/avatar/4.jpg";
+import logoBackground from "../assets/logo-background.png";
 
 const avatars = [avatar1, avatar2, avatar3, avatar4];
 ---
 
 <section
-  class="w-full flex flex-col items-center justify-center gap-12 pb-12 md:pb-40"
+  class="relative w-full flex flex-col items-center justify-center gap-12 pb-12 md:pb-40"
 >
+  <!-- Logo background en bas au milieu -->
+  <div
+    class="absolute left-1/2 -translate-x-1/2 -bottom-[50px] w-[300px] pointer-events-none z-0"
+  >
+    <Image src={logoBackground} alt="" class="w-full h-auto opacity-20" />
+  </div>
   <!-- Overlapping avatars -->
-  <div class="flex items-center justify-center">
+  <div class="relative z-10 flex items-center justify-center">
     {
       avatars.map((avatar, index) => (
         <div
@@ -32,7 +39,9 @@ const avatars = [avatar1, avatar2, avatar3, avatar4];
     }
   </div>
 
-  <div class="flex flex-col items-center justify-center gap-6 max-w-3xl">
+  <div
+    class="relative z-10 flex flex-col items-center justify-center gap-6 max-w-3xl"
+  >
     <h2 class="text-primary font-bold text-3xl lg:text-5xl text-center">
       Prêt(e) à faire de votre santé bucco-dentaire une priorité ?
     </h2>
@@ -43,7 +52,7 @@ const avatars = [avatar1, avatar2, avatar3, avatar4];
     </p>
   </div>
   <button
-    class="bg-primary text-white pl-4 md:pl-6 pr-2 py-2 rounded-full font-semibold flex items-center gap-2 font-sans hover:bg-primary/80 hover:cursor-pointer transition-all duration-300 w-fit text-sm md:text-base"
+    class="relative z-10 bg-primary text-white pl-4 md:pl-6 pr-2 py-2 rounded-full font-semibold flex items-center gap-2 font-sans hover:bg-primary/80 hover:cursor-pointer transition-all duration-300 w-fit text-sm md:text-base"
   >
     Contactez le cabinet
     <span class="text-primary bg-secondary rounded-full p-2">

@@ -1,0 +1,337 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const DIRECTUS_URL = import.meta.env.DIRECTUS_URL || "http://localhost:8055";
+
+interface OffreEmploi {
+  id: string;
+  titre: string;
+  description: string;
+  localisation: string;
+  type_contrat: string;
+  salaire: string;
+  date_created: string;
+  status: string;
+  regime_travail: string;
+  disponibilite: string;
+  remuneration: string;
+  avantages: string;
+  profil_recherche: string;
+}
+
+export async function getStaticPaths() {
+  const DIRECTUS_URL =
+    import.meta.env.DIRECTUS_URL || "http://localhost:8055";
+
+  try {
+    const response = await fetch(
+      `${DIRECTUS_URL}/items/recrutement?filter[status][_eq]=published&fields=id`
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      const offres = data.data || [];
+
+      return offres.map((offre: { id: string }) => ({
+        params: { id: offre.id },
+      }));
+    }
+  } catch (error) {
+    console.error("Erreur lors de la récupération des offres:", error);
+  }
+
+  return [];
+}
+
+const { id } = Astro.params;
+
+let offre: OffreEmploi | null = null;
+
+try {
+  const response = await fetch(
+    `${DIRECTUS_URL}/items/recrutement/${id}?fields=id,titre,description,localisation,type_contrat,date_created,regime_travail,disponibilite,remuneration,avantages,profil_recherche`
+  );
+
+  if (response.ok) {
+    const data = await response.json();
+    offre = data.data;
+  }
+} catch (error) {
+  console.error("Erreur lors de la récupération de l'offre:", error);
+}
+
+function formatDate(dateString: string) {
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat("fr-FR", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  }).format(date);
+}
+---
+
+<Layout title={offre ? `${offre.titre} - Recrutement` : "Offre non trouvée"}>
+  <div class="px-4 md:px-8 lg:px-10">
+    <Header />
+
+    {
+      offre ? (
+        <section class="w-full flex flex-col items-center pt-12 pb-12 lg:pt-24 lg:pb-24">
+          <div class="w-full max-w-3xl flex flex-col gap-8 lg:gap-12 px-4">
+            {/* Bouton retour */}
+            <a
+              href="/recrutement"
+              class="flex items-center gap-2 text-sm font-semibold text-[#535862] hover:text-[#3c3c3c] transition-colors duration-200 w-fit"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+              <span>Retour aux offres</span>
+            </a>
+
+            {/* En-tête avec caractéristiques */}
+            <div class="bg-[#fdf9f2] border border-[#e9eaeb] rounded-2xl p-6 md:p-8 flex flex-col gap-6">
+              {/* Titre et date */}
+              <div class="flex flex-col gap-2">
+                <p class="text-sm text-[#535862] font-medium">
+                  Publié le {formatDate(offre.date_created)}
+                </p>
+                <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-[#3c3c3c] leading-tight">
+                  {offre.titre}
+                </h1>
+              </div>
+
+              {/* Caractéristiques */}
+              <div class="flex flex-wrap items-center gap-4 md:gap-6">
+                {/* Localisation */}
+                <div class="flex items-center gap-2 bg-white rounded-full px-4 py-2 border border-[#e9eaeb]">
+                  <svg
+                    class="w-5 h-5 text-[#535862] flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                  </svg>
+                  <span class="text-sm font-semibold text-[#535862]">
+                    {offre.localisation}
+                  </span>
+                </div>
+
+                {/* Type de contrat */}
+                <div class="flex items-center gap-2 bg-white rounded-full px-4 py-2 border border-[#e9eaeb]">
+                  <svg
+                    class="w-5 h-5 text-[#535862] flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
+                  </svg>
+                  <span class="text-sm font-semibold text-[#535862]">
+                    {offre.type_contrat}
+                  </span>
+                </div>
+
+                {/* Régime de travail */}
+                {offre.regime_travail && (
+                  <div class="flex items-center gap-2 bg-white rounded-full px-4 py-2 border border-[#e9eaeb]">
+                    <svg
+                      class="w-5 h-5 text-[#535862] flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <span class="text-sm font-semibold text-[#535862]">
+                      {offre.regime_travail}
+                    </span>
+                  </div>
+                )}
+
+                {/* Rémunération */}
+                {offre.remuneration && (
+                  <div class="flex items-center gap-2 bg-white rounded-full px-4 py-2 border border-[#e9eaeb]">
+                    <svg
+                      class="w-5 h-5 text-[#535862] flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    <span class="text-sm font-semibold text-[#535862]">
+                      {offre.remuneration}
+                    </span>
+                  </div>
+                )}
+
+                {/* Disponibilité */}
+                {offre.disponibilite && (
+                  <div class="flex items-center gap-2 bg-white rounded-full px-4 py-2 border border-[#e9eaeb]">
+                    <svg
+                      class="w-5 h-5 text-[#535862] flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      />
+                    </svg>
+                    <span class="text-sm font-semibold text-[#535862]">
+                      {offre.disponibilite}
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              {/* Bouton Postuler */}
+              <a
+                href={`mailto:contact@ladentdugeant.be?subject=Candidature - ${offre.titre}`}
+                class="bg-[#3c3c3c] text-white px-8 py-3 rounded-full text-base font-semibold hover:bg-[#2c2c2c] transition-colors duration-200 text-center w-fit"
+              >
+                Postuler à cette offre
+              </a>
+            </div>
+
+            {/* Contenu de l'offre */}
+            <div class="flex flex-col gap-8">
+              {/* Description */}
+              <div class="flex flex-col gap-4">
+                <h2 class="text-xl md:text-2xl font-bold text-[#3c3c3c]">
+                  Description du poste
+                </h2>
+                <p class="text-base md:text-lg text-[#535862] leading-7">
+                  {offre.description}
+                </p>
+              </div>
+
+              {/* Avantages */}
+              {offre.avantages && (
+                <div class="flex flex-col gap-4">
+                  <h2 class="text-xl md:text-2xl font-bold text-[#3c3c3c]">
+                    Avantages
+                  </h2>
+                  <div
+                    class="text-base md:text-lg text-[#535862] leading-7 prose prose-lg max-w-none"
+                    set:html={offre.avantages}
+                  />
+                </div>
+              )}
+
+              {/* Profil recherché */}
+              {offre.profil_recherche && (
+                <div class="flex flex-col gap-4">
+                  <h2 class="text-xl md:text-2xl font-bold text-[#3c3c3c]">
+                    Profil recherché
+                  </h2>
+                  <div
+                    class="text-base md:text-lg text-[#535862] leading-7 prose prose-lg max-w-none"
+                    set:html={offre.profil_recherche}
+                  />
+                </div>
+              )}
+            </div>
+
+            {/* CTA Postuler en bas */}
+            <div class="bg-[#f8f1e7] rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+              <div class="flex flex-col gap-2 text-center md:text-left">
+                <h3 class="text-lg md:text-xl font-bold text-[#3c3c3c]">
+                  Intéressé(e) par ce poste ?
+                </h3>
+                <p class="text-sm md:text-base text-[#535862]">
+                  Envoyez-nous votre candidature dès maintenant.
+                </p>
+              </div>
+              <a
+                href={`mailto:contact@ladentdugeant.be?subject=Candidature - ${offre.titre}`}
+                class="bg-[#3c3c3c] text-white px-8 py-3 rounded-full text-base font-semibold hover:bg-[#2c2c2c] transition-colors duration-200 whitespace-nowrap"
+              >
+                Postuler
+              </a>
+            </div>
+          </div>
+        </section>
+      ) : (
+        <section class="w-full flex flex-col items-center justify-center pt-12 pb-12 lg:pt-32 lg:pb-24">
+          <div class="w-full max-w-3xl flex flex-col items-center gap-6 px-4 text-center">
+            <h1 class="text-2xl md:text-3xl font-bold text-[#3c3c3c]">
+              Offre non trouvée
+            </h1>
+            <p class="text-base md:text-lg text-[#535862]">
+              Cette offre d'emploi n'existe pas ou n'est plus disponible.
+            </p>
+            <a
+              href="/recrutement"
+              class="bg-[#3c3c3c] text-white px-6 py-3 rounded-full text-base font-semibold hover:bg-[#2c2c2c] transition-colors duration-200"
+            >
+              Voir toutes les offres
+            </a>
+          </div>
+        </section>
+      )
+    }
+
+    <Footer />
+  </div>
+</Layout>
+
+<style>
+  /* Style pour les listes HTML dans les détails */
+  .prose ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin: 0.5rem 0;
+  }
+
+  .prose li {
+    margin: 0.25rem 0;
+  }
+
+  .prose p {
+    margin: 0.5rem 0;
+  }
+</style>

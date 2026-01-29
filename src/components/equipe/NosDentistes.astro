@@ -1,6 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import NosDentistesCard from "./NosDentistesCard.astro";
 import teamData from "../../data/team.json";
+import logoBackground from "../../assets/logo-background.png";
 
 // Import des images des dentistes
 import julienImg from "../../assets/dentists/julien.png";
@@ -25,8 +27,15 @@ const imageMap: Record<string, ImageMetadata> = {
 const { dentists } = teamData;
 ---
 
-<section class="w-full flex flex-col gap-12 pb-40">
-  <div class="flex flex-col gap-4">
+<section class="relative w-full flex flex-col gap-12 pb-12 md:pb-40">
+  <!-- Logo background centré derrière les cards -->
+  <div
+    class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] pointer-events-none z-0"
+  >
+    <Image src={logoBackground} alt="" class="w-full h-auto opacity-30" />
+  </div>
+
+  <div class="relative z-10 flex flex-col gap-4">
     <h2 class="text-primary font-bold text-3xl lg:text-5xl max-w-2xl">
       Nos <span class="text-[#7B8A96]">dentistes</span> et spécialistes
     </h2>
@@ -36,7 +45,9 @@ const { dentists } = teamData;
     </p>
   </div>
 
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-x-8 lg:gap-y-20">
+  <div
+    class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-x-8 lg:gap-y-20"
+  >
     {
       dentists.map((dentist, index) => (
         <NosDentistesCard

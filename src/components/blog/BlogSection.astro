@@ -2,7 +2,8 @@
 // URL pour les appels API côté serveur
 const DIRECTUS_URL = import.meta.env.DIRECTUS_URL || "http://localhost:8055";
 // URL publique pour les assets (images) côté client
-const PUBLIC_DIRECTUS_URL = import.meta.env.PUBLIC_DIRECTUS_URL || "http://localhost:8055";
+const PUBLIC_DIRECTUS_URL =
+  import.meta.env.PUBLIC_DIRECTUS_URL || "http://localhost:8055";
 
 interface Badge {
   badges_id: {
@@ -74,33 +75,35 @@ function formatDate(dateString: string) {
 }
 ---
 
-<section class="w-full py-16 lg:py-24">
+<section class="w-full pb-12 md:py-16 lg:py-24">
   <div class="max-w-7xl mx-auto">
     {/* Filtres par badges */}
-    {allBadges.length > 0 && (
-      <div class="mb-12">
-        <div class="flex flex-wrap items-start gap-3">
-          <button
-            data-filter="all"
-            class="filter-btn flex items-center justify-center h-9 px-1 pb-3 border-b-2 border-solid border-[#3c3c3c] transition-all duration-200"
-          >
-            <span class="font-semibold text-base leading-6 text-[#3c3c3c]">
-              Voir tout
-            </span>
-          </button>
-          {allBadges.map((badge) => (
+    {
+      allBadges.length > 0 && (
+        <div class="mb-12">
+          <div class="flex flex-wrap items-start gap-3">
             <button
-              data-filter={badge.id}
-              class="filter-btn flex items-center justify-center h-9 px-1 pb-3 border-b-2 border-solid border-transparent transition-all duration-200 hover:border-[#3c3c3c]"
+              data-filter="all"
+              class="filter-btn flex items-center justify-center h-9 px-1 pb-3 border-b-2 border-solid border-[#3c3c3c] transition-all duration-200"
             >
-              <span class="font-semibold text-base leading-6 text-[#6f6f6f]">
-                {badge.nom}
+              <span class="font-semibold text-base leading-6 text-[#3c3c3c]">
+                Voir tout
               </span>
             </button>
-          ))}
+            {allBadges.map((badge) => (
+              <button
+                data-filter={badge.id}
+                class="filter-btn flex items-center justify-center h-9 px-1 pb-3 border-b-2 border-solid border-transparent transition-all duration-200 hover:border-[#3c3c3c]"
+              >
+                <span class="font-semibold text-base leading-6 text-[#6f6f6f]">
+                  {badge.nom}
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
-    )}
+      )
+    }
 
     {
       articles.length === 0 ? (
@@ -110,14 +113,19 @@ function formatDate(dateString: string) {
           </p>
         </div>
       ) : (
-        <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          id="articles-grid"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {articles.map((article) => (
-            <article 
+            <article
               class="article-card bg-[#fdf9f2] rounded-[24px] overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col"
-              data-badges={article.badges?.map(b => b.badges_id.id).join(',')}
+              data-badges={article.badges?.map((b) => b.badges_id.id).join(",")}
               data-title={article.titre.toLowerCase()}
               data-description={article.description.toLowerCase()}
-              data-badge-names={article.badges?.map(b => b.badges_id.nom.toLowerCase()).join(' ')}
+              data-badge-names={article.badges
+                ?.map((b) => b.badges_id.nom.toLowerCase())
+                .join(" ")}
             >
               <a href={`/blog/${article.id}`} class="flex flex-col h-full">
                 {article.photo_principale && (
@@ -133,17 +141,21 @@ function formatDate(dateString: string) {
                 <div class="p-6 flex flex-col gap-8 flex-1">
                   <div class="flex flex-col gap-3">
                     {/* Badges et temps de lecture */}
-                    {(article.badges && article.badges.length > 0) || article.temps_lecture ? (
+                    {(article.badges && article.badges.length > 0) ||
+                    article.temps_lecture ? (
                       <div class="flex flex-wrap items-center gap-2">
-                        {article.badges && article.badges.length > 0 && article.badges.map((badge) => (
-                          badge?.badges_id?.nom && (
-                            <div class="bg-[#fafafa] border border-[#e9eaeb] px-2 py-0.5 rounded-full">
-                              <span class="text-xs font-medium text-[#414651]">
-                                {badge.badges_id.nom}
-                              </span>
-                            </div>
-                          )
-                        ))}
+                        {article.badges &&
+                          article.badges.length > 0 &&
+                          article.badges.map(
+                            (badge) =>
+                              badge?.badges_id?.nom && (
+                                <div class="bg-[#fafafa] border border-[#e9eaeb] px-2 py-0.5 rounded-full">
+                                  <span class="text-xs font-medium text-[#414651]">
+                                    {badge.badges_id.nom}
+                                  </span>
+                                </div>
+                              ),
+                          )}
                         {article.temps_lecture && (
                           <span class="text-xs font-medium text-[#3c3c3c] px-2 py-0.5">
                             ⏱️ {article.temps_lecture} min
@@ -193,66 +205,70 @@ function formatDate(dateString: string) {
 
 <script>
   // Système de filtrage et recherche des articles
-  document.addEventListener('DOMContentLoaded', () => {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const articleCards = document.querySelectorAll('.article-card');
-    const searchInput = document.getElementById('search-input') as HTMLInputElement;
-    
-    let currentBadgeFilter = 'all';
-    let currentSearchTerm = '';
+  document.addEventListener("DOMContentLoaded", () => {
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const articleCards = document.querySelectorAll(".article-card");
+    const searchInput = document.getElementById(
+      "search-input",
+    ) as HTMLInputElement;
+
+    let currentBadgeFilter = "all";
+    let currentSearchTerm = "";
 
     // Fonction pour appliquer tous les filtres
     function applyFilters() {
-      articleCards.forEach(card => {
-        const cardBadges = card.getAttribute('data-badges') || '';
-        const cardTitle = card.getAttribute('data-title') || '';
-        const cardDescription = card.getAttribute('data-description') || '';
-        const cardBadgeNames = card.getAttribute('data-badge-names') || '';
-        
+      articleCards.forEach((card) => {
+        const cardBadges = card.getAttribute("data-badges") || "";
+        const cardTitle = card.getAttribute("data-title") || "";
+        const cardDescription = card.getAttribute("data-description") || "";
+        const cardBadgeNames = card.getAttribute("data-badge-names") || "";
+
         // Vérifier le filtre par badge
-        let matchesBadge = currentBadgeFilter === 'all' || 
-                          cardBadges.split(',').includes(currentBadgeFilter);
-        
+        let matchesBadge =
+          currentBadgeFilter === "all" ||
+          cardBadges.split(",").includes(currentBadgeFilter);
+
         // Vérifier la recherche textuelle
         let matchesSearch = true;
         if (currentSearchTerm) {
           const searchLower = currentSearchTerm.toLowerCase();
-          matchesSearch = cardTitle.includes(searchLower) || 
-                         cardDescription.includes(searchLower) || 
-                         cardBadgeNames.includes(searchLower);
+          matchesSearch =
+            cardTitle.includes(searchLower) ||
+            cardDescription.includes(searchLower) ||
+            cardBadgeNames.includes(searchLower);
         }
-        
+
         // Afficher seulement si les deux conditions sont remplies
         if (matchesBadge && matchesSearch) {
-          (card as HTMLElement).style.display = '';
+          (card as HTMLElement).style.display = "";
         } else {
-          (card as HTMLElement).style.display = 'none';
+          (card as HTMLElement).style.display = "none";
         }
       });
     }
 
     // Gestion du filtrage par badges
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        currentBadgeFilter = button.getAttribute('data-filter') || 'all';
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        currentBadgeFilter = button.getAttribute("data-filter") || "all";
 
         // Mettre à jour l'état actif des boutons (style Figma avec bordure en bas)
-        filterButtons.forEach(btn => {
-          btn.classList.remove('border-[#3c3c3c]');
-          btn.classList.add('border-transparent');
-          const span = btn.querySelector('span');
+        filterButtons.forEach((btn) => {
+          btn.classList.remove("border-[#3c3c3c]");
+          btn.classList.add("border-transparent");
+          const span = btn.querySelector("span");
           if (span) {
-            span.classList.remove('text-[#3c3c3c]');
-            span.classList.add('text-[#6f6f6f]');
+            span.classList.remove("text-[#3c3c3c]");
+            span.classList.add("text-[#6f6f6f]");
           }
         });
-        
-        button.classList.remove('border-transparent');
-        button.classList.add('border-[#3c3c3c]');
-        const activeSpan = button.querySelector('span');
+
+        button.classList.remove("border-transparent");
+        button.classList.add("border-[#3c3c3c]");
+        const activeSpan = button.querySelector("span");
         if (activeSpan) {
-          activeSpan.classList.remove('text-[#6f6f6f]');
-          activeSpan.classList.add('text-[#3c3c3c]');
+          activeSpan.classList.remove("text-[#6f6f6f]");
+          activeSpan.classList.add("text-[#3c3c3c]");
         }
 
         applyFilters();
@@ -261,7 +277,7 @@ function formatDate(dateString: string) {
 
     // Gestion de la recherche textuelle
     if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
+      searchInput.addEventListener("input", (e) => {
         currentSearchTerm = (e.target as HTMLInputElement).value;
         applyFilters();
       });

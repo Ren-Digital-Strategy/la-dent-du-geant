@@ -58,7 +58,7 @@ function formatDate(dateString: string) {
 
     <!-- Section Hero -->
     <section
-      class="w-full flex flex-col items-center justify-center pt-24 pb-16 lg:pt-32 lg:pb-24 gap-12 lg:gap-24"
+      class="w-full flex flex-col items-center justify-center pt-12 pb-12 lg:pt-32 lg:pb-24 gap-12 lg:gap-24"
     >
       <div
         class="w-full max-w-3xl flex flex-col items-center gap-4 lg:gap-6 px-4"
@@ -111,14 +111,14 @@ function formatDate(dateString: string) {
                   Publié le {formatDate(offre.date_created)}
                 </p>
 
-                {/* Bouton Plus de détails */}
-                <button
-                  class="details-toggle flex items-center gap-2 text-sm font-semibold text-[#535862] hover:text-[#3c3c3c] transition-colors duration-200 w-fit"
-                  data-target={`details-${index}`}
+                {/* Bouton Voir l'offre */}
+                <a
+                  href={`/recrutement/${offre.id}`}
+                  class="flex items-center gap-2 text-sm font-semibold text-[#535862] hover:text-[#3c3c3c] transition-colors duration-200 w-fit"
                 >
-                  <span>Plus de détails</span>
+                  <span>Voir l'offre complète</span>
                   <svg
-                    class="w-4 h-4 transition-transform duration-200"
+                    class="w-4 h-4"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -127,42 +127,10 @@ function formatDate(dateString: string) {
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M19 9l-7 7-7-7"
+                      d="M9 5l7 7-7 7"
                     />
                   </svg>
-                </button>
-
-                {/* Section détails (cachée par défaut) */}
-                <div
-                  id={`details-${index}`}
-                  class="details-content hidden flex-col gap-4 lg:gap-6 pt-4 border-t border-[#e9eaeb]"
-                >
-                  {/* Avantages */}
-                  {offre.avantages && (
-                    <div class="flex flex-col gap-2">
-                      <h3 class="text-base md:text-lg font-semibold text-[#3c3c3c]">
-                        Avantages
-                      </h3>
-                      <div
-                        class="text-sm md:text-base text-[#535862] leading-5 md:leading-6 prose prose-sm max-w-none"
-                        set:html={offre.avantages}
-                      />
-                    </div>
-                  )}
-
-                  {/* Profil recherché */}
-                  {offre.profil_recherche && (
-                    <div class="flex flex-col gap-2">
-                      <h3 class="text-base md:text-lg font-semibold text-[#3c3c3c]">
-                        Profil recherché
-                      </h3>
-                      <div
-                        class="text-sm md:text-base text-[#535862] leading-5 md:leading-6 prose prose-sm max-w-none"
-                        set:html={offre.profil_recherche}
-                      />
-                    </div>
-                  )}
-                </div>
+                </a>
 
                 {/* Détails et bouton */}
                 <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-5 w-full">
@@ -237,12 +205,12 @@ function formatDate(dateString: string) {
                     )}
                   </div>
 
-                  {/* Bouton Postuler */}
+                  {/* Bouton Voir l'offre */}
                   <a
-                    href={`mailto:contact@ladentdugeant.be?subject=Candidature - ${offre.titre}`}
+                    href={`/recrutement/${offre.id}`}
                     class="bg-[#3c3c3c] text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-[#2c2c2c] transition-colors duration-200 text-center md:text-left whitespace-nowrap"
                   >
-                    Postuler
+                    Voir l'offre
                   </a>
                 </div>
               </article>
@@ -254,7 +222,7 @@ function formatDate(dateString: string) {
 
     <!-- Section CTA Contact -->
     <section
-      class="w-full flex flex-col items-center justify-center py-16 lg:py-32"
+      class="w-full flex flex-col items-center justify-center pb-12 md:py-16 lg:py-32"
     >
       <div
         class="w-full max-w-7xl flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 px-4"
@@ -342,49 +310,3 @@ function formatDate(dateString: string) {
   </div>
 </Layout>
 
-<script>
-  // Gestion de l'affichage des détails des offres
-  document.addEventListener("DOMContentLoaded", () => {
-    const toggleButtons = document.querySelectorAll(".details-toggle");
-
-    toggleButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const targetId = button.getAttribute("data-target");
-        const detailsContent = document.getElementById(targetId);
-        const svg = button.querySelector("svg");
-        const span = button.querySelector("span");
-
-        if (detailsContent) {
-          const isHidden = detailsContent.classList.contains("hidden");
-
-          if (isHidden) {
-            // Ouvrir
-            detailsContent.classList.remove("hidden");
-            detailsContent.classList.add("flex");
-            svg?.classList.add("rotate-180");
-            if (span) span.textContent = "Moins de détails";
-          } else {
-            // Fermer
-            detailsContent.classList.add("hidden");
-            detailsContent.classList.remove("flex");
-            svg?.classList.remove("rotate-180");
-            if (span) span.textContent = "Plus de détails";
-          }
-        }
-      });
-    });
-  });
-</script>
-
-<style>
-  /* Style pour les listes HTML dans les détails */
-  .prose ul {
-    list-style-type: disc;
-    padding-left: 1.5rem;
-    margin: 0.5rem 0;
-  }
-
-  .prose li {
-    margin: 0.25rem 0;
-  }
-</style>

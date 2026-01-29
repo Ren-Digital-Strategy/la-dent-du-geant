@@ -1,10 +1,11 @@
 ---
 import { Image } from "astro:assets";
 import dent from "../../assets/dent.png";
+import logoBackground from "../../assets/logo-background.png";
 ---
 
 <section
-  class="bg-white w-full flex flex-col items-center gap-16 justify-center pt-24 mb-24 pb-24 rounded-3xl"
+  class="bg-white w-full flex flex-col items-center gap-16 justify-center pt-12 md:pt-24 mb-12 md:mb-24 pb-12 md:pb-24 rounded-3xl"
 >
   <div
     class="relative w-full max-w-7xl flex flex-col items-center justify-center"
@@ -55,8 +56,23 @@ import dent from "../../assets/dent.png";
         </div>
       </div>
     </div>
-    <div>
-      <Image src={dent} alt="Dent" width={1000} height={1000} />
+    <div class="relative flex items-center justify-center opacity-30">
+      <!-- Logo background derrière la dent -->
+      <div class="absolute inset-0 flex items-center justify-center">
+        <Image
+          src={logoBackground}
+          alt=""
+          class="w-[110%] h-[110%] object-contain opacity-30"
+        />
+      </div>
+      <!-- Image de la dent -->
+      <Image
+        src={dent}
+        alt="Dent"
+        width={1000}
+        height={1000}
+        class="relative z-10"
+      />
     </div>
     <div
       class="w-full flex flex-col items-center justify-center gap-9 h-fit my-auto"

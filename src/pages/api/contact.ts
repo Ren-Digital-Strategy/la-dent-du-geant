@@ -15,12 +15,12 @@ export const POST: APIRoute = async ({ request }) => {
     if (!name || !email || !message) {
       return new Response(
         JSON.stringify({ error: "Veuillez remplir tous les champs requis." }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
+        { status: 400, headers: { "Content-Type": "application/json" } },
       );
     }
 
     const { error } = await resend.emails.send({
-      from: "Contact Site Web <onboarding@resend.dev>",
+      from: "Contact Site Web <bienvenue@ladentdugeant.be>",
       to: "bienvenue@ladentdugeant.be",
       replyTo: email,
       subject: subject || `Nouveau message de ${name}`,
@@ -39,19 +39,19 @@ export const POST: APIRoute = async ({ request }) => {
       console.error("Resend error:", error);
       return new Response(
         JSON.stringify({ error: "Erreur lors de l'envoi du message." }),
-        { status: 500, headers: { "Content-Type": "application/json" } }
+        { status: 500, headers: { "Content-Type": "application/json" } },
       );
     }
 
     return new Response(
       JSON.stringify({ success: true, message: "Message envoyé avec succès!" }),
-      { status: 200, headers: { "Content-Type": "application/json" } }
+      { status: 200, headers: { "Content-Type": "application/json" } },
     );
   } catch (error) {
     console.error("Contact form error:", error);
-    return new Response(
-      JSON.stringify({ error: "Une erreur est survenue." }),
-      { status: 500, headers: { "Content-Type": "application/json" } }
-    );
+    return new Response(JSON.stringify({ error: "Une erreur est survenue." }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 };
