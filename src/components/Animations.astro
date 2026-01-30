@@ -1,0 +1,328 @@
+---
+// Composant d'animations centralisé utilisant Motion
+// Effet mask reveal pour les textes + animations fluides
+---
+
+<style is:global>
+  /* États initiaux pour les animations au scroll */
+  /* Effet "sort du sol" avec wrapper overflow hidden */
+  [data-reveal-title] {
+    opacity: 0;
+  }
+  
+  [data-reveal-section] {
+    opacity: 0;
+  }
+  
+  [data-reveal-card] {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  
+  [data-reveal-step] {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  
+  [data-reveal-left] {
+    opacity: 0;
+    transform: translateX(-25px);
+  }
+  
+  [data-reveal-right] {
+    opacity: 0;
+    transform: translateX(25px);
+  }
+  
+  [data-reveal-scale] {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  
+  [data-reveal-cta] {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  
+  [data-reveal-gallery-item] {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+</style>
+
+<script>
+  import { animate, inView, stagger } from "motion";
+
+  // Configuration des animations
+  const CONFIG = {
+    duration: 0.8,
+    staggerDelay: 0.1,
+    // Easing personnalisé smooth
+    easing: [0.22, 1, 0.36, 1] as [number, number, number, number],
+    translateY: 30,
+    translateX: 25,
+    inViewAmount: 0.15,
+  };
+
+  // Cast animate pour éviter les erreurs de typage
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const motion = animate as any;
+
+  function initAnimations() {
+    // ============================================
+    // ANIMATIONS AU CHARGEMENT (Header)
+    // ============================================
+    
+    const headerLogo = document.querySelector("[data-header-logo]");
+    if (headerLogo) {
+      (headerLogo as HTMLElement).style.opacity = "1";
+      motion(
+        headerLogo,
+        { opacity: [0, 1], y: [-15, 0] },
+        { duration: 0.5, easing: CONFIG.easing }
+      );
+    }
+
+    const headerLinks = document.querySelectorAll("[data-header-link]");
+    headerLinks.forEach((link, i) => {
+      (link as HTMLElement).style.opacity = "1";
+      motion(
+        link,
+        { opacity: [0, 1], y: [-10, 0] },
+        { duration: 0.4, delay: 0.1 + i * 0.04, easing: CONFIG.easing }
+      );
+    });
+
+    const headerCta = document.querySelector("[data-header-cta]");
+    if (headerCta) {
+      (headerCta as HTMLElement).style.opacity = "1";
+      motion(
+        headerCta,
+        { opacity: [0, 1] },
+        { duration: 0.5, delay: 0.25, easing: CONFIG.easing }
+      );
+    }
+
+    const headerMobile = document.querySelector("[data-header-mobile]");
+    if (headerMobile) {
+      (headerMobile as HTMLElement).style.opacity = "1";
+      motion(
+        headerMobile,
+        { opacity: [0, 1] },
+        { duration: 0.4, delay: 0.1, easing: CONFIG.easing }
+      );
+    }
+
+    // ============================================
+    // ANIMATIONS AU CHARGEMENT (Hero) - Mask Reveal
+    // ============================================
+    
+    const heroImage = document.querySelector("[data-hero-image]");
+    if (heroImage) {
+      (heroImage as HTMLElement).style.opacity = "1";
+      motion(
+        heroImage,
+        { 
+          clipPath: ["inset(0 100% 0 0)", "inset(0 0% 0 0)"],
+          opacity: [0.5, 1]
+        },
+        { duration: 0.9, delay: 0.1, easing: CONFIG.easing }
+      );
+    }
+
+    // Effet "sort du sol" pour le titre hero
+    const heroTitle = document.querySelector("[data-hero-title]");
+    if (heroTitle) {
+      motion(
+        heroTitle,
+        { 
+          clipPath: ["inset(0 0 100% 0)", "inset(0 0 0% 0)"],
+          transform: ["translateY(100%)", "translateY(0%)"]
+        },
+        { duration: 1, easing: CONFIG.easing }
+      );
+    }
+
+    // Effet "sort du sol" pour le texte hero
+    const heroText = document.querySelector("[data-hero-text]");
+    if (heroText) {
+      motion(
+        heroText,
+        { 
+          clipPath: ["inset(0 0 100% 0)", "inset(0 0 0% 0)"],
+          transform: ["translateY(100%)", "translateY(0%)"]
+        },
+        { duration: 1, delay: 0.15, easing: CONFIG.easing }
+      );
+    }
+
+    // CTA hero - simple fade
+    const heroCta = document.querySelector("[data-hero-cta]");
+    if (heroCta) {
+      (heroCta as HTMLElement).style.opacity = "1";
+      motion(
+        heroCta,
+        { opacity: [0, 1], y: [15, 0] },
+        { duration: 0.6, delay: 0.35, easing: CONFIG.easing }
+      );
+    }
+
+    // Features hero
+    const heroFeatures = document.querySelectorAll("[data-hero-feature]");
+    heroFeatures.forEach((feature, i) => {
+      (feature as HTMLElement).style.opacity = "1";
+      motion(
+        feature,
+        { opacity: [0, 1], x: [-15, 0] },
+        { duration: 0.5, delay: 0.45 + i * 0.06, easing: CONFIG.easing }
+      );
+    });
+
+    // ============================================
+    // ANIMATIONS AU SCROLL
+    // ============================================
+
+    // Titres avec effet "sort du sol"
+    // On wrap chaque titre dans un div overflow:hidden pour l'effet
+    document.querySelectorAll("[data-reveal-title]").forEach((el) => {
+      const htmlEl = el as HTMLElement;
+      
+      // Sauvegarder le display original
+      const computedStyle = window.getComputedStyle(htmlEl);
+      const originalDisplay = computedStyle.display;
+      
+      // Créer un wrapper pour l'effet overflow
+      const wrapper = document.createElement("div");
+      wrapper.style.overflow = "hidden";
+      
+      // Insérer le wrapper
+      el.parentNode?.insertBefore(wrapper, el);
+      wrapper.appendChild(el);
+      
+      // Préparer l'élément pour l'animation (garder le display original)
+      htmlEl.style.opacity = "1";
+      htmlEl.style.transform = "translateY(100%)";
+      
+      inView(wrapper, () => {
+        motion(
+          el,
+          { transform: "translateY(0%)" },
+          { duration: 0.9, easing: CONFIG.easing }
+        );
+      }, { amount: 0.2 });
+    });
+
+    // Sections - fade simple
+    document.querySelectorAll("[data-reveal-section]").forEach((el) => {
+      inView(el, () => {
+        motion(
+          el,
+          { opacity: 1 },
+          { duration: CONFIG.duration, easing: "ease-out" }
+        );
+      }, { amount: 0.1 });
+    });
+
+    // Cartes avec stagger
+    document.querySelectorAll("[data-reveal-cards]").forEach((container) => {
+      const cards = container.querySelectorAll("[data-reveal-card]");
+      
+      inView(container, () => {
+        cards.forEach((card, i) => {
+          motion(
+            card,
+            { opacity: 1, transform: "translateY(0)" },
+            { 
+              duration: CONFIG.duration, 
+              delay: i * CONFIG.staggerDelay,
+              easing: CONFIG.easing 
+            }
+          );
+        });
+      }, { amount: CONFIG.inViewAmount });
+    });
+
+    // Étapes avec stagger
+    document.querySelectorAll("[data-reveal-steps]").forEach((container) => {
+      const steps = container.querySelectorAll("[data-reveal-step]");
+      
+      inView(container, () => {
+        steps.forEach((step, i) => {
+          motion(
+            step,
+            { opacity: 1, transform: "translateY(0)" },
+            { duration: CONFIG.duration, delay: i * 0.12, easing: CONFIG.easing }
+          );
+        });
+      }, { amount: 0.15 });
+    });
+
+    // Slide depuis la gauche
+    document.querySelectorAll("[data-reveal-left]").forEach((el) => {
+      inView(el, () => {
+        motion(
+          el,
+          { opacity: 1, transform: "translateX(0)" },
+          { duration: CONFIG.duration, easing: CONFIG.easing }
+        );
+      }, { amount: CONFIG.inViewAmount });
+    });
+
+    // Slide depuis la droite
+    document.querySelectorAll("[data-reveal-right]").forEach((el) => {
+      inView(el, () => {
+        motion(
+          el,
+          { opacity: 1, transform: "translateX(0)" },
+          { duration: CONFIG.duration, easing: CONFIG.easing }
+        );
+      }, { amount: CONFIG.inViewAmount });
+    });
+
+    // Scale reveal
+    document.querySelectorAll("[data-reveal-scale]").forEach((el) => {
+      inView(el, () => {
+        motion(
+          el,
+          { opacity: 1, transform: "scale(1)" },
+          { duration: CONFIG.duration, easing: CONFIG.easing }
+        );
+      }, { amount: CONFIG.inViewAmount });
+    });
+
+    // CTA buttons
+    document.querySelectorAll("[data-reveal-cta]").forEach((el) => {
+      inView(el, () => {
+        motion(
+          el,
+          { opacity: 1, transform: "translateY(0)" },
+          { duration: 0.6, delay: 0.1, easing: CONFIG.easing }
+        );
+      }, { amount: CONFIG.inViewAmount });
+    });
+
+    // Galerie items
+    document.querySelectorAll("[data-reveal-gallery]").forEach((container) => {
+      const items = container.querySelectorAll("[data-reveal-gallery-item]");
+      
+      inView(container, () => {
+        items.forEach((item, i) => {
+          motion(
+            item,
+            { opacity: 1, transform: "scale(1)" },
+            { duration: CONFIG.duration, delay: i * 0.06, easing: CONFIG.easing }
+          );
+        });
+      }, { amount: 0.1 });
+    });
+  }
+
+  // Initialisation
+  document.addEventListener("astro:page-load", initAnimations);
+  
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAnimations);
+  } else {
+    initAnimations();
+  }
+</script>

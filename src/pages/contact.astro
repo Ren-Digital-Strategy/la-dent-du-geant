@@ -25,7 +25,7 @@ const schedule = [
         <!-- Header -->
         <div class="text-center mb-12 md:mb-16">
           <div class="relative inline-block">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-primary">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-primary" data-hero-title style="clip-path: inset(0 0 100% 0); transform: translateY(100%);">
               Contactez-<span class="text-tertiary">nous</span>
             </h1>
             <Image
@@ -36,7 +36,7 @@ const schedule = [
               height={1000}
             />
           </div>
-          <p class="mt-4 md:mt-6 text-primary/70 font-sans max-w-2xl mx-auto text-base md:text-lg">
+          <p class="mt-4 md:mt-6 text-primary/70 font-sans max-w-2xl mx-auto text-base md:text-lg" data-hero-text style="clip-path: inset(0 0 100% 0); transform: translateY(100%);">
             Une question, un besoin de rendez-vous ou simplement envie d'en savoir plus ?
             N'hésitez pas à nous contacter, notre équipe vous répondra dans les plus brefs délais.
           </p>
@@ -44,7 +44,7 @@ const schedule = [
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           <!-- Contact Form -->
-          <div class="bg-white rounded-[24px] md:rounded-[32px] p-6 md:p-8 lg:p-10 shadow-sm">
+          <div class="bg-white rounded-[24px] md:rounded-[32px] p-6 md:p-8 lg:p-10 shadow-sm" data-reveal-left>
             <h2 class="text-2xl md:text-3xl font-bold text-primary mb-6 md:mb-8">
               Envoyez-nous un message
             </h2>
@@ -139,9 +139,9 @@ const schedule = [
           </div>
 
           <!-- Contact Info -->
-          <div class="flex flex-col gap-6">
+          <div class="flex flex-col gap-6" data-reveal-cards>
             <!-- Info Cards -->
-            <div class="bg-tertiary rounded-[24px] md:rounded-[32px] p-6 md:p-8">
+            <div class="bg-tertiary rounded-[24px] md:rounded-[32px] p-6 md:p-8" data-reveal-card>
               <h3 class="text-xl md:text-2xl font-bold text-white mb-6">
                 Informations de contact
               </h3>
@@ -191,7 +191,7 @@ const schedule = [
             </div>
 
             <!-- Schedule Card -->
-            <div class="bg-white rounded-[24px] md:rounded-[32px] p-6 md:p-8 shadow-sm">
+            <div class="bg-white rounded-[24px] md:rounded-[32px] p-6 md:p-8 shadow-sm" data-reveal-card>
               <div class="flex items-center gap-3 mb-6">
                 <div class="bg-tertiary/20 rounded-full p-3">
                   <Clock class="w-5 h-5 text-tertiary" />

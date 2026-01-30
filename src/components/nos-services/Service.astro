@@ -71,10 +71,10 @@ const services = [
 <section
   class="w-full flex flex-col items-center gap-12 justify-center pb-12 md:pb-40"
 >
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8" data-reveal-cards>
     {
       services.map((service) => (
-        <div class="col-span-1 flex flex-col gap-4 bg-white rounded-3xl p-6">
+        <div class="col-span-1 flex flex-col gap-4 bg-white rounded-3xl p-6" data-reveal-card>
           <h2 class="text-primary font-semibold text-lg lg:text-2xl">
             {service.title}
           </h2>

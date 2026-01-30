@@ -12,10 +12,10 @@ import img3 from "../../assets/equipe/3.jpg";
     <div
       class="col-span-1 max-w-3xl flex flex-col justify-center items-center gap-8 mx-auto"
     >
-      <h1 class="text-4xl lg:text-6xl font-bold text-center">
+      <h1 class="text-4xl lg:text-6xl font-bold text-center" data-hero-title style="clip-path: inset(0 0 100% 0); transform: translateY(100%);">
         Une équipe passionnée au service de votre sourire
       </h1>
-      <p class="text-primary/80 text-base font-sans text-center">
+      <p class="text-primary/80 text-base font-sans text-center" data-hero-text style="clip-path: inset(0 0 100% 0); transform: translateY(100%);">
         En formation continue et à l'écoute des dernières innovations, nous
         travaillons en parfaite coordination pour vous garantir une prise en
         charge globale et une expérience sereine.
@@ -24,22 +24,22 @@ import img3 from "../../assets/equipe/3.jpg";
   </div>
 
   <!-- Images section -->
-  <div class="images-container flex flex-col lg:flex-row gap-4 lg:h-[500px]">
-    <div class="image-item h-[200px] lg:h-full" data-index="0">
+  <div class="images-container flex flex-col lg:flex-row gap-4 lg:h-[500px]" data-reveal-cards>
+    <div class="image-item h-[200px] lg:h-full" data-index="0" data-reveal-card>
       <Image
         src={img1}
         alt="Équipe 1"
         class="w-full h-full object-cover rounded-2xl"
       />
     </div>
-    <div class="image-item active h-[200px] lg:h-full" data-index="1">
+    <div class="image-item active h-[200px] lg:h-full" data-index="1" data-reveal-card>
       <Image
         src={img2}
         alt="Équipe 2"
         class="w-full h-full object-cover rounded-2xl"
       />
     </div>
-    <div class="image-item h-[200px] lg:h-full" data-index="2">
+    <div class="image-item h-[200px] lg:h-full" data-index="2" data-reveal-card>
       <Image
         src={img3}
         alt="Équipe 3"

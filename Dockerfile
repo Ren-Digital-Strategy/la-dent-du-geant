@@ -18,10 +18,14 @@ FROM base AS builder
 # Déclarer les ARG pour les variables d'environnement au build time
 ARG DIRECTUS_URL
 ARG PUBLIC_DIRECTUS_URL
+ARG GOOGLE_PLACES_API_KEY
+ARG GOOGLE_PLACE_ID
 
 # Les rendre disponibles comme variables d'environnement pendant le build
 ENV DIRECTUS_URL=$DIRECTUS_URL
 ENV PUBLIC_DIRECTUS_URL=$PUBLIC_DIRECTUS_URL
+ENV GOOGLE_PLACES_API_KEY=$GOOGLE_PLACES_API_KEY
+ENV GOOGLE_PLACE_ID=$GOOGLE_PLACE_ID
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .

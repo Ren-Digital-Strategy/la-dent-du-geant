@@ -33,7 +33,12 @@ const links = [
   transition:persist
   class="sticky top-0 left-0 right-0 py-4 md:py-5 grid grid-cols-2 lg:grid-cols-12 z-50 bg-secondary/80 backdrop-blur-md transition-all duration-300"
 >
-  <a href="/" class="relative flex items-center gap-2 md:gap-3 col-span-1 lg:col-span-5">
+  <a
+    href="/"
+    class="relative flex items-center gap-2 md:gap-3 col-span-1 lg:col-span-5"
+    data-header-logo
+    style="opacity: 0;"
+  >
     <Image
       id="logo-dark"
       class="w-8 md:w-10 transition-opacity duration-300"
@@ -55,11 +60,11 @@ const links = [
 
   <!-- Desktop Navigation -->
   <div class="hidden lg:flex col-span-7 items-center justify-end">
-    <nav class="flex items-center">
+    <nav class="flex items-center" data-header-nav>
       <ul class="flex items-center">
         {
-          links.map((link) => (
-            <li class="p-4">
+          links.map((link, index) => (
+            <li class="p-4" data-header-link style={`opacity: 0;`}>
               <a
                 class="font-sans hover:text-quaternary hover:cursor-pointer transition-all duration-300"
                 href={link.href}
@@ -71,18 +76,21 @@ const links = [
         }
       </ul>
     </nav>
-    <button
+    <a
+      href="/contact"
       class="bg-primary text-white pl-6 pr-2 py-2 rounded-full font-semibold flex items-center gap-2 font-sans hover:bg-primary/80 hover:cursor-pointer transition-all duration-300"
+      data-header-cta
+      style="opacity: 0;"
     >
       Prendre RDV
       <span class="text-primary bg-secondary rounded-full p-2">
         <ArrowUpRight />
       </span>
-    </button>
+    </a>
   </div>
 
   <!-- Mobile Menu Button -->
-  <div class="flex lg:hidden col-span-1 items-center justify-end">
+  <div class="flex lg:hidden col-span-1 items-center justify-end" data-header-mobile style="opacity: 0;">
     <button
       id="menu-toggle"
       class="relative z-50 w-10 h-10 flex flex-col items-center justify-center gap-1.5 cursor-pointer"
@@ -120,7 +128,8 @@ const links = [
       ))
     }
   </nav>
-  <button
+  <a
+    href="/contact"
     class="mobile-link mt-10 md:mt-12 bg-white text-primary pl-6 pr-3 py-3 rounded-full font-semibold flex items-center gap-3 font-sans hover:bg-secondary hover:cursor-pointer transition-all duration-300 translate-y-8 opacity-0 text-lg md:text-xl"
     style={`transition-delay: ${links.length * 75}ms`}
   >
@@ -128,7 +137,7 @@ const links = [
     <span class="text-white bg-primary rounded-full p-2">
       <ArrowUpRight class="w-5 h-5 md:w-6 md:h-6" />
     </span>
-  </button>
+  </a>
 </div>
 
 <script>

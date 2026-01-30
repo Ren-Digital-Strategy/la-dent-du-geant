@@ -48,21 +48,23 @@ const allMembers = [...teamData.dentists, ...teamData.assistants].map(
   class="w-full flex flex-col items-center gap-12 justify-center pb-12 md:pb-40"
 >
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-    <h2 class="text-primary font-bold text-3xl lg:text-5xl max-w-2xl">
+    <h2 class="text-primary font-bold text-3xl lg:text-5xl max-w-2xl" data-reveal-title>
       <span class="text-tertiary">Une équipe</span> passionnée à votre écoute.
     </h2>
-    <button
+    <a
       class="bg-primary h-fit text-white pl-4 md:pl-6 pr-2 py-2 rounded-full font-semibold flex items-center gap-2 font-sans hover:bg-primary/80 hover:cursor-pointer transition-all duration-300 w-fit text-sm md:text-base self-center place-self-end"
+      href="/equipe"
+      data-reveal-cta
     >
       Voir l'équipe
       <span class="text-primary bg-secondary rounded-full p-2">
         <ArrowUpRight />
       </span>
-    </button>
+    </a>
   </div>
 
   <!-- Carousel container -->
-  <div class="w-full relative" data-team-carousel>
+  <div class="w-full relative" data-team-carousel data-reveal-section>
     <!-- Carousel track -->
     <div class="overflow-hidden">
       <div class="team-carousel-track flex gap-4 md:gap-6 select-none">

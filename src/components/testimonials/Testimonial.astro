@@ -1,65 +1,115 @@
 ---
 import TestimonialCard from "./TestimonialCard.astro";
+import {
+  fetchGoogleReviews,
+  type FormattedReview,
+} from "../../lib/google-business";
 import avatar from "../../assets/testimonial/1.png";
 
-const testimonials = [
+// Avis de fallback en cas d'erreur API
+const fallbackTestimonials = [
   {
     rating: 5,
     text: "J'ai été très satisfait de mes soins. L'équipe est très professionnelle et attentive.",
-    author: "John Doe",
+    author: "Patient satisfait",
     image: avatar,
   },
   {
     rating: 5,
-    text: "J'ai été très satisfait de mes soins. L'équipe est très professionnelle et attentive.",
-    author: "John Doe",
+    text: "Un cabinet moderne avec une équipe à l'écoute. Je recommande vivement !",
+    author: "Patient satisfait",
     image: avatar,
   },
   {
     rating: 5,
-    text: "J'ai été très satisfait de mes soins. L'équipe est très professionnelle et attentive.",
-    author: "John Doe",
-    image: avatar,
-  },
-  {
-    rating: 5,
-    text: "J'ai été très satisfait de mes soins. L'équipe est très professionnelle et attentive.",
-    author: "John Doe",
-    image: avatar,
-  },
-  {
-    rating: 5,
-    text: "J'ai été très satisfait de mes soins. L'équipe est très professionnelle et attentive.",
-    author: "John Doe",
-    image: avatar,
-  },
-  {
-    rating: 5,
-    text: "J'ai été très satisfait de mes soins. L'équipe est très professionnelle et attentive.",
-    author: "John Doe",
+    text: "Excellente prise en charge, des professionnels compétents et bienveillants.",
+    author: "Patient satisfait",
     image: avatar,
   },
 ];
+
+interface Testimonial {
+  rating: number;
+  text: string;
+  author: string;
+  image: typeof avatar | string;
+}
+
+let testimonials: Testimonial[] = [];
+let averageRating = 0;
+let totalCount = 0;
+
+try {
+  const hasPlacesConfig =
+    !!import.meta.env.GOOGLE_PLACES_API_KEY &&
+    !!import.meta.env.GOOGLE_PLACE_ID;
+
+  if (hasPlacesConfig) {
+    const result = await fetchGoogleReviews();
+    testimonials = result.reviews.map((review) => ({
+      rating: review.rating,
+      text: review.text,
+      author: review.author,
+      image: review.image,
+    }));
+    averageRating = result.averageRating;
+    totalCount = result.totalCount;
+  }
+} catch (error) {
+  console.error("Erreur lors de la récupération des avis Google:", error);
+}
+
+// Utiliser les avis de fallback si aucun avis n'a été récupéré
+if (testimonials.length === 0) {
+  testimonials = fallbackTestimonials;
+}
 ---
 
 <section
   class="w-full flex flex-col items-center gap-12 justify-center pt-12 md:pt-24 md:pb-32 overflow-hidden"
 >
-  <h2
-    class="text-primary font-bold max-w-full md:max-w-2/3 xl:text-5xl text-3xl"
-  >
-    Ce que <span class="text-tertiary">nos patients</span> disent de nous
-  </h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div class="flex flex-col items-center gap-4">
+    <h2
+      class="text-primary font-bold max-w-full xl:text-5xl text-3xl text-center"
+      data-reveal-title
+    >
+      Ce que <span class="text-tertiary">nos patients</span> disent de nous
+    </h2>
     {
-      testimonials.map((testimonial, index) => (
-        <TestimonialCard
-          rating={testimonial.rating}
-          text={testimonial.text}
-          author={testimonial.author}
-          image={testimonial.image}
-        />
+      totalCount > 0 && (
+        <p class="text-primary/60 text-base">
+          Note moyenne: {averageRating.toFixed(1)}/5 basée sur {totalCount} avis
+        </p>
+      )
+    }
+  </div>
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+    data-reveal-cards
+  >
+    {
+      testimonials.map((testimonial) => (
+        <div data-reveal-card>
+          <TestimonialCard
+            rating={testimonial.rating}
+            text={testimonial.text}
+            author={testimonial.author}
+            image={testimonial.image}
+          />
+        </div>
       ))
     }
   </div>
+  {
+    totalCount > 6 && (
+      <a
+        href="https://www.google.com/maps/place/La+Dent+du+Geant"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-tertiary hover:text-tertiary/80 font-semibold transition-colors"
+      >
+        Voir tous les avis sur Google ({totalCount})
+      </a>
+    )
+  }
 </section>

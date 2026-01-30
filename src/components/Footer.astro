@@ -4,11 +4,10 @@ import logoWhite from "../assets/logo blanc.png";
 import { Facebook, Instagram } from "@lucide/astro";
 
 const pageLinks = [
-  { label: "Accueil", href: "#" },
-  { label: "Nos services", href: "#" },
-  { label: "Notre équipe", href: "#" },
-  { label: "Guide", href: "#" },
-  { label: "Contact", href: "#" },
+  { label: "Accueil", href: "/" },
+  { label: "Nos services", href: "/nos-services" },
+  { label: "Notre équipe", href: "/equipe" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const schedule = [
@@ -38,6 +37,7 @@ const schedule = [
     <!-- Logo and title -->
     <div
       class="flex items-center justify-center gap-3 md:gap-6 mb-10 md:mb-12 lg:mb-16"
+      data-reveal-title
     >
       <Image
         src={logoWhite}
@@ -56,9 +56,10 @@ const schedule = [
     <!-- Three column content -->
     <div
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12 mb-10 md:mb-12 lg:mb-16 max-w-[1280px] mx-auto"
+      data-reveal-cards
     >
       <!-- Pages Menu -->
-      <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-4" data-reveal-card>
         <h3 class="font-sans text-sm text-[#e2cbb9] tracking-tight">Pages</h3>
         <ul class="flex flex-col gap-2 font-sans">
           {
@@ -77,7 +78,7 @@ const schedule = [
       </div>
 
       <!-- Contact Info -->
-      <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-4" data-reveal-card>
         <h3 class="font-sans text-sm text-[#e2cbb9] tracking-tight">Contact</h3>
         <div class="flex flex-col gap-3 text-white font-sans">
           <a
@@ -100,7 +101,7 @@ const schedule = [
       </div>
 
       <!-- Schedule -->
-      <div class="flex flex-col gap-4 md:col-span-2 lg:col-span-1">
+      <div class="flex flex-col gap-4 md:col-span-2 lg:col-span-1" data-reveal-card>
         <h3 class="font-sans text-sm text-[#e2cbb9] tracking-tight">
           Horaires
         </h3>
@@ -124,6 +125,7 @@ const schedule = [
     <!-- Bottom bar -->
     <div
       class="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-4 max-w-[1280px] mx-auto"
+      data-reveal-section
     >
       <!-- Copyright -->
       <div

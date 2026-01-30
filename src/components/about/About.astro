@@ -37,6 +37,7 @@ const cards = [
   >
     <h2
       class="relative text-primary font-bold max-w-2xl text-center text-3xl lg:text-5xl"
+      data-reveal-title
     >
       Vous vous reconnaissez dans l'une de ces <span class="text-tertiary"
         >situations ?</span
@@ -51,14 +52,16 @@ const cards = [
     </h2>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 w-full">
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 w-full" data-reveal-cards>
     {
       cards.map((card, index) => (
-        <AboutCard
-          key={index}
-          description={card.description}
-          image={card.image}
-        />
+        <div data-reveal-card>
+          <AboutCard
+            key={index}
+            description={card.description}
+            image={card.image}
+          />
+        </div>
       ))
     }
   </div>

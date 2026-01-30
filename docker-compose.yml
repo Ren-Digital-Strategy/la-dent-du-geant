@@ -7,6 +7,8 @@ services:
         # Variables passées au build time
         - DIRECTUS_URL=${DIRECTUS_URL}
         - PUBLIC_DIRECTUS_URL=${PUBLIC_DIRECTUS_URL}
+        - GOOGLE_PLACES_API_KEY=${GOOGLE_PLACES_API_KEY}
+        - GOOGLE_PLACE_ID=${GOOGLE_PLACE_ID}
     ports:
       - "4321:4321"
     environment:
@@ -16,4 +18,7 @@ services:
       # Variables Directus (injectées par Dokploy)
       - DIRECTUS_URL=${DIRECTUS_URL}
       - PUBLIC_DIRECTUS_URL=${PUBLIC_DIRECTUS_URL}
+      # Variables Google Places API (injectées par Dokploy)
+      - GOOGLE_PLACES_API_KEY=${GOOGLE_PLACES_API_KEY}
+      - GOOGLE_PLACE_ID=${GOOGLE_PLACE_ID}
     restart: unless-stopped

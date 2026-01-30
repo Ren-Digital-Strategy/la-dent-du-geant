@@ -20,12 +20,13 @@ const avatars = [avatar1, avatar2, avatar3, avatar4];
     <Image src={logoBackground} alt="" class="w-full h-auto opacity-20" />
   </div>
   <!-- Overlapping avatars -->
-  <div class="relative z-10 flex items-center justify-center">
+  <div class="relative z-10 flex items-center justify-center" data-reveal-gallery>
     {
       avatars.map((avatar, index) => (
         <div
           class="avatar-circle w-20 h-20 md:w-28 md:h-28 lg:w-[140px] lg:h-[140px] rounded-full overflow-hidden border-4 border-white bg-white"
           style={`margin-left: ${index === 0 ? "0" : "-1.5rem"};`}
+          data-reveal-gallery-item
         >
           <Image
             src={avatar}
@@ -42,7 +43,7 @@ const avatars = [avatar1, avatar2, avatar3, avatar4];
   <div
     class="relative z-10 flex flex-col items-center justify-center gap-6 max-w-3xl"
   >
-    <h2 class="text-primary font-bold text-3xl lg:text-5xl text-center">
+    <h2 class="text-primary font-bold text-3xl lg:text-5xl text-center" data-reveal-title>
       Prêt(e) à faire de votre santé bucco-dentaire une priorité ?
     </h2>
     <p class="text-primary/70 text-base font-sans text-center">
@@ -51,12 +52,14 @@ const avatars = [avatar1, avatar2, avatar3, avatar4];
       disposition pour répondre à toutes vos questions.
     </p>
   </div>
-  <button
+  <a
     class="relative z-10 bg-primary text-white pl-4 md:pl-6 pr-2 py-2 rounded-full font-semibold flex items-center gap-2 font-sans hover:bg-primary/80 hover:cursor-pointer transition-all duration-300 w-fit text-sm md:text-base"
+    href="/contact"
+    data-reveal-cta
   >
     Contactez le cabinet
     <span class="text-primary bg-secondary rounded-full p-2">
       <ArrowUpRight />
     </span>
-  </button>
+  </a>
 </section>

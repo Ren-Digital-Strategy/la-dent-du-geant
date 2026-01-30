@@ -102,13 +102,13 @@ function formatDate(dateString: string) {
             </a>
 
             {/* En-tête avec caractéristiques */}
-            <div class="bg-[#fdf9f2] border border-[#e9eaeb] rounded-2xl p-6 md:p-8 flex flex-col gap-6">
+            <div class="bg-[#fdf9f2] border border-[#e9eaeb] rounded-2xl p-6 md:p-8 flex flex-col gap-6" data-reveal-scale>
               {/* Titre et date */}
               <div class="flex flex-col gap-2">
                 <p class="text-sm text-[#535862] font-medium">
                   Publié le {formatDate(offre.date_created)}
                 </p>
-                <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-[#3c3c3c] leading-tight">
+                <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-[#3c3c3c] leading-tight" data-hero-title style="clip-path: inset(0 0 100% 0); transform: translateY(100%);">
                   {offre.titre}
                 </h1>
               </div>
@@ -238,7 +238,7 @@ function formatDate(dateString: string) {
             </div>
 
             {/* Contenu de l'offre */}
-            <div class="flex flex-col gap-8">
+            <div class="flex flex-col gap-8" data-reveal-section>
               {/* Description */}
               <div class="flex flex-col gap-4">
                 <h2 class="text-xl md:text-2xl font-bold text-[#3c3c3c]">
@@ -277,7 +277,7 @@ function formatDate(dateString: string) {
             </div>
 
             {/* CTA Postuler en bas */}
-            <div class="bg-[#f8f1e7] rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="bg-[#f8f1e7] rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6" data-reveal-cta>
               <div class="flex flex-col gap-2 text-center md:text-left">
                 <h3 class="text-lg md:text-xl font-bold text-[#3c3c3c]">
                   Intéressé(e) par ce poste ?

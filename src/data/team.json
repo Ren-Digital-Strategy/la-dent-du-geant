@@ -38,7 +38,7 @@
     },
     {
       "name": "Héloïse Caisse",
-      "role": "Hygiéniste: inculquer les bonnes techniques d'hygiène et optimiser la santé bucco-dentaire. Actes essentiellement préventifs pour prévenir les pathologies ou les guérir",
+      "role": "Hygiéniste",
       "description": "Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
       "image": "../assets/dentists/heloise.jpg"
     }
@@ -46,7 +46,7 @@
   "assistants": [
     {
       "name": "Ysaline Delbecq",
-      "role": "Office manager: ressources humaines, communication, organisation interne, support en gestion",
+      "role": "Office manager",
       "description": "Dentiste généraliste avec plus de 10 ans d'expérience. Je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
       "image": "../assets/assistants/ysaline.jpg"
     },

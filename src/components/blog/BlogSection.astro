@@ -116,11 +116,13 @@ function formatDate(dateString: string) {
         <div
           id="articles-grid"
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          data-reveal-cards
         >
           {articles.map((article) => (
             <article
               class="article-card bg-[#fdf9f2] rounded-[24px] overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col"
               data-badges={article.badges?.map((b) => b.badges_id.id).join(",")}
+              data-reveal-card
               data-title={article.titre.toLowerCase()}
               data-description={article.description.toLowerCase()}
               data-badge-names={article.badges
