@@ -13,7 +13,7 @@ import { Bike, Bus, Car, MapPin, TrainFront } from "@lucide/astro";
       data-reveal-title
     >
       <span>Accédez au cabinet</span>
-      <span
+      <!-- <span
         class="inline-block w-16 h-10 md:w-20 md:h-12 lg:w-24 lg:h-16 rounded-full overflow-hidden shrink-0"
       >
         <Image
@@ -23,7 +23,7 @@ import { Bike, Bus, Car, MapPin, TrainFront } from "@lucide/astro";
           height={1000}
           class="w-full h-full object-cover"
         />
-      </span>
+      </span> -->
       <span>facilement</span>
     </h2>
     <p
@@ -56,7 +56,10 @@ import { Bike, Bus, Car, MapPin, TrainFront } from "@lucide/astro";
         class="w-full h-full"></iframe>
     </div>
 
-    <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" data-reveal-cards>
+    <div
+      class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+      data-reveal-cards
+    >
       <div class="w-full flex flex-col gap-6 p-4 rounded-3xl" data-reveal-card>
         <div class="flex items-center gap-2 font-sans font-semibold text-lg">
           <div class="p-3 bg-tertiary/70 rounded-xl">
@@ -100,8 +103,9 @@ import { Bike, Bus, Car, MapPin, TrainFront } from "@lucide/astro";
           À Vélo & Piéton
         </div>
         <p class="text-primary/70 text-base font-sans">
-          Accès direct et sécurisé via le RAVeL qui passe devant le cabinet.
-          Parking vélo disponible pour stationner votre deux-roues en sécurité.
+          Accès direct et sécurisé via le RAVeL qui passe à proximité directe du
+          cabinet. Parking vélo disponible pour stationner votre deux-roues en
+          sécurité.
         </p>
       </div>
     </div>

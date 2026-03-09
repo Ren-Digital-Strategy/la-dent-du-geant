@@ -16,7 +16,7 @@ interface Props {
 }
 
 const {
-  images = [hero, hero2, hero3, hero4], // Par défaut utilise hero.jpg
+  images = [hero3, hero, hero2, hero4], // Par défaut utilise hero.jpg
   interval = 5000,
   alt = "Hero image",
 } = Astro.props;
@@ -83,7 +83,7 @@ const {
           data-hero-cta
           style="opacity: 0;"
         >
-          Prendre un premier rendez-vous
+          Contactez-nous
           <span class="text-primary bg-tertiary/60 rounded-full p-1.5 md:p-2">
             <Phone class="text-primary w-4 h-4 md:w-5 md:h-5" />
           </span>
@@ -92,19 +92,35 @@ const {
       <div
         class="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-2 text-white mt-auto text-sm md:text-base"
       >
-        <div class="flex items-center gap-2 md:gap-3" data-hero-feature style="opacity: 0;">
+        <div
+          class="flex items-center gap-2 md:gap-3"
+          data-hero-feature
+          style="opacity: 0;"
+        >
           <Asterisk class="w-4 h-4 md:w-5 md:h-5 shrink-0" />
           <p class="font-medium">Technologies de Pointe</p>
         </div>
-        <div class="flex items-center gap-2 md:gap-3" data-hero-feature style="opacity: 0;">
+        <div
+          class="flex items-center gap-2 md:gap-3"
+          data-hero-feature
+          style="opacity: 0;"
+        >
           <Asterisk class="w-4 h-4 md:w-5 md:h-5 shrink-0" />
-          <p class="font-medium">Équipe à l'Écoute</p>
+          <p class="font-medium">Équipe pédagogique et à l'écoute</p>
         </div>
-        <div class="flex items-center gap-2 md:gap-3" data-hero-feature style="opacity: 0;">
+        <div
+          class="flex items-center gap-2 md:gap-3"
+          data-hero-feature
+          style="opacity: 0;"
+        >
           <Asterisk class="w-4 h-4 md:w-5 md:h-5 shrink-0" />
           <p class="font-medium">Soins de Haute Précision</p>
         </div>
-        <div class="flex items-center gap-2 md:gap-3" data-hero-feature style="opacity: 0;">
+        <div
+          class="flex items-center gap-2 md:gap-3"
+          data-hero-feature
+          style="opacity: 0;"
+        >
           <Asterisk class="w-4 h-4 md:w-5 md:h-5 shrink-0" />
           <p class="font-medium">Cadre Moderne & Apaisant</p>
         </div>

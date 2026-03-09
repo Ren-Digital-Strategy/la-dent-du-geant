@@ -18,22 +18,54 @@ const imageMap: Record<string, ImageMetadata> = {
   "Véronique Gueben": veroniqueImg,
 };
 
-const { assistants } = teamData;
+const officeManager = (teamData as any).officeManager ?? [];
+const assistants = (teamData as any).assistants ?? [];
 ---
 
+<!-- Office Manager -->
 <section class="w-full flex flex-col gap-12 pb-12 md:pb-40">
-  <div class="flex flex-col gap-4">
-    <h2 class="text-primary font-bold text-3xl lg:text-5xl max-w-2xl" data-reveal-title>
-      Notre équipe d'Assistantes et d'Office Manager
+  <div class="flex flex-col gap-4 mb-20">
+    <h2
+      class="text-primary font-bold text-3xl lg:text-5xl max-w-2xl"
+      data-reveal-title
+    >
+      Notre <span class="text-[#7B8A96]">office</span> manager
     </h2>
-    <p class="text-primary/80 text-base font-sans max-w-xl">
-      Chaque praticien apporte son expertise pour construire avec vous le plan
-      de traitement le plus adapté.
-    </p>
   </div>
 
   <div
-    class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-x-8 lg:gap-y-20 pt-12"
+    class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-x-8 lg:gap-y-40 pt-12"
+    data-reveal-cards
+  >
+    {
+      officeManager.map((member) => (
+        <div data-reveal-card>
+          <NosAssistantsCard
+            name={member.name}
+            role={member.role}
+            description={member.description}
+            fullDescription={member.fullDescription}
+            image={imageMap[member.name]?.src || member.image}
+          />
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<!-- Équipe d'assistantes -->
+<section class="w-full flex flex-col gap-12 pb-12 md:pb-40">
+  <div class="flex flex-col gap-4 mb-20">
+    <h2
+      class="text-primary font-bold text-3xl lg:text-5xl max-w-2xl"
+      data-reveal-title
+    >
+      Notre équipe <span class="text-[#7B8A96]">d'assistantes</span>
+    </h2>
+  </div>
+
+  <div
+    class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-x-8 lg:gap-y-40 pt-12"
     data-reveal-cards
   >
     {

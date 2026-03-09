@@ -2,7 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-
+import { Image } from "astro:assets";
+import equipe from "../assets/equipe/2.jpg";
 const DIRECTUS_URL = import.meta.env.DIRECTUS_URL || "http://localhost:8055";
 
 interface OffreEmploi {
@@ -81,7 +82,10 @@ function formatDate(dateString: string) {
       </div>
 
       <!-- Liste des offres -->
-      <div class="w-full max-w-3xl flex flex-col gap-4 lg:gap-6 px-4" data-reveal-cards>
+      <div
+        class="w-full max-w-3xl flex flex-col gap-4 lg:gap-6 px-4"
+        data-reveal-cards
+      >
         {
           offres.length === 0 ? (
             <div class="text-center py-12">
@@ -167,28 +171,8 @@ function formatDate(dateString: string) {
                       </span>
                     </div>
 
-                    {/* Type de contrat */}
-                    <div class="flex items-center gap-1.5">
-                      <svg
-                        class="w-4 h-4 text-[#535862] flex-shrink-0"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                        />
-                      </svg>
-                      <span class="text-xs md:text-sm font-semibold text-[#535862]">
-                        {offre.type_contrat}
-                      </span>
-                    </div>
-
-                    {/* Rémunération */}
-                    {offre.remuneration && (
+                    {/* Type de contrat (masqué pour les indépendants) */}
+                    {!offre.type_contrat?.toLowerCase().includes("indépendant") && (
                       <div class="flex items-center gap-1.5">
                         <svg
                           class="w-4 h-4 text-[#535862] flex-shrink-0"
@@ -200,15 +184,16 @@ function formatDate(dateString: string) {
                             stroke-linecap="round"
                             stroke-linejoin="round"
                             stroke-width="2"
-                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                           />
                         </svg>
                         <span class="text-xs md:text-sm font-semibold text-[#535862]">
-                          {offre.remuneration}
+                          {offre.type_contrat}
                         </span>
                       </div>
                     )}
-                  </div>
+
+                      </div>
 
                   {/* Bouton Voir l'offre */}
                   <a
@@ -222,6 +207,20 @@ function formatDate(dateString: string) {
             ))
           )
         }
+      </div>
+
+      <!-- Note candidatures spontanées -->
+      <div class="w-full max-w-3xl px-4 mt-4">
+        <p class="text-sm text-[#535862] italic leading-relaxed">
+          L'équipe d'assistants-secrétaires est au complet pour l'instant. Les candidatures spontanées sont toutefois acceptées sur{" "}
+          <a
+            href="mailto:bienvenue@ladentdugeant.be"
+            class="underline hover:text-[#3c3c3c] transition-colors duration-200"
+          >
+            bienvenue@ladentdugeant.be
+          </a>{" "}
+          pour notre réserve de recrutement.
+        </p>
       </div>
     </section>
 
@@ -237,10 +236,12 @@ function formatDate(dateString: string) {
           class="w-full lg:w-[560px] h-[400px] md:h-[500px] lg:h-[614px] rounded-3xl relative overflow-hidden"
           data-reveal-scale
         >
-          <img
-            src="https://www.figma.com/api/mcp/asset/984f8acb-e041-4c80-ba7f-61f554adfd12"
-            alt="Équipe du cabinet"
+          <Image
+            src={equipe}
+            alt="Recrutement"
             class="absolute inset-0 w-full h-full object-cover"
+            width={1000}
+            height={1000}
           />
           <!-- Overlay avec citation -->
           <div
@@ -268,7 +269,10 @@ function formatDate(dateString: string) {
         </div>
 
         <!-- Contenu texte et bouton -->
-        <div class="w-full lg:w-[560px] flex flex-col gap-8 lg:gap-12" data-reveal-right>
+        <div
+          class="w-full lg:w-[560px] flex flex-col gap-8 lg:gap-12"
+          data-reveal-right
+        >
           <div class="flex flex-col gap-4 lg:gap-6">
             <h2
               class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#3c3c3c] leading-tight tracking-tight"
@@ -285,7 +289,7 @@ function formatDate(dateString: string) {
 
           <!-- Bouton Contact -->
           <a
-            href="mailto:contact@ladentdugeant.be"
+            href="mailto:bienvenue@ladentdugeant.be"
             class="bg-[#3c3c3c] hover:bg-[#2c2c2c] transition-colors duration-200 flex items-center justify-between pl-3 pr-1.5 py-1.5 rounded-full w-fit group"
           >
             <span class="text-base md:text-lg font-semibold text-white px-3">
@@ -315,4 +319,3 @@ function formatDate(dateString: string) {
     <Footer />
   </div>
 </Layout>
-

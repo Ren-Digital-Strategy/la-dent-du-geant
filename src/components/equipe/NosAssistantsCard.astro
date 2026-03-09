@@ -14,7 +14,7 @@ interface Props {
   image: string;
 }
 
-const { name, role, description, fullDescription, image } = Astro.props;
+const { name, role, fullDescription, image } = Astro.props;
 const hasFullDescription = fullDescription && Object.keys(fullDescription).length > 0;
 const cardId = `card-${name.replace(/\s+/g, '-').toLowerCase()}`;
 ---
@@ -35,12 +35,11 @@ const cardId = `card-${name.replace(/\s+/g, '-').toLowerCase()}`;
   <!-- Contenu -->
   <div class="bg-secondary rounded-t-3xl px-5 pt-32 pb-4">
     <h3 class="text-primary font-bold text-lg text-center">{name}</h3>
-    <p class="text-quinary text-sm font-sans mt-1 text-center">{role}</p>
   </div>
 
   <div class="bg-[#E5DDD7] rounded-b-3xl px-5 py-4">
     <p class="text-primary/70 text-sm font-sans leading-relaxed text-center">
-      {description}
+      {role}
     </p>
     {hasFullDescription && (
       <button
@@ -66,16 +65,15 @@ const cardId = `card-${name.replace(/\s+/g, '-').toLowerCase()}`;
   >
     <div class="flex flex-col gap-1">
       <h3 class="text-primary font-bold text-xl lg:text-2xl">{name}</h3>
-      <p class="text-quinary text-sm lg:text-base font-sans">{role}</p>
     </div>
   </div>
 
-  <!-- Zone basse: fond pour description -->
+  <!-- Zone basse: fond pour role -->
   <div
     class="bg-[#E5DDD7] rounded-3xl px-6 lg:px-8 pb-6 lg:pb-8 pt-4 pl-[230px] lg:pl-[280px]"
   >
     <p class="text-primary/70 text-sm lg:text-base font-sans leading-relaxed">
-      {description}
+      {role}
     </p>
     {hasFullDescription && (
       <button
@@ -111,17 +109,17 @@ const cardId = `card-${name.replace(/\s+/g, '-').toLowerCase()}`;
   >
     <div class="modal-content bg-white rounded-3xl max-w-lg w-full max-h-[85vh] overflow-y-auto shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)] transform scale-95 opacity-0 transition-all duration-300 border border-[#e5ddd7]">
       <!-- Header avec image -->
-      <div class="bg-secondary rounded-t-3xl p-6 flex items-center gap-4">
+      <div class="bg-secondary rounded-t-3xl p-6 flex items-start gap-5">
         <img
           src={image}
           alt={name}
-          class="w-20 h-20 object-cover object-top rounded-xl"
+          class="w-28 h-36 object-cover object-top rounded-xl flex-shrink-0"
         />
-        <div>
+        <div class="flex-1 pt-1">
           <h3 class="text-primary font-bold text-xl">{name}</h3>
-          <p class="text-quinary text-sm font-sans">{role}</p>
+          <p class="text-quinary text-sm font-sans mt-1">{role}</p>
         </div>
-        <button class="close-modal-btn ml-auto p-2 hover:bg-primary/10 rounded-full transition-colors">
+        <button class="close-modal-btn ml-auto p-2 hover:bg-primary/10 rounded-full transition-colors flex-shrink-0">
           <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>

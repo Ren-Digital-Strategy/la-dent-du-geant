@@ -1,0 +1,101 @@
+---
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Mentions légales - La Dent du Géant">
+  <div class="px-4 md:px-8 lg:px-10">
+    <Header />
+
+    <section class="w-full max-w-3xl mx-auto flex flex-col gap-10 py-16 md:py-24">
+      <div class="flex flex-col gap-3">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-primary tracking-tight">
+          Mentions légales
+        </h1>
+        <p class="text-primary/60 font-sans text-sm">
+          Conformément aux dispositions légales en vigueur en Belgique et dans l'Union Européenne.
+        </p>
+      </div>
+
+      <!-- 1. Éditeur du site -->
+      <div class="flex flex-col gap-4">
+        <h2 class="text-xl md:text-2xl font-bold text-primary">1. Éditeur du site</h2>
+        <div class="bg-secondary rounded-2xl p-6 flex flex-col gap-2 font-sans text-sm text-primary/80 leading-relaxed">
+          <p><span class="font-semibold text-primary">Nom du cabinet :</span> Cabinet Dentaire La Dent du Géant</p>
+          <p><span class="font-semibold text-primary">Forme juridique :</span> SRL</p>
+          <p><span class="font-semibold text-primary">Adresse du siège social :</span> Chaussée de Mons 457, 7810 Ath</p>
+          <p><span class="font-semibold text-primary">Numéro d'entreprise (BCE/TVA) :</span> BE0734640287</p>
+          <p>
+            <span class="font-semibold text-primary">Téléphone :</span>{" "}
+            <a href="tel:+3268282156" class="hover:text-tertiary transition-colors">068 28 21 56</a>
+          </p>
+          <p>
+            <span class="font-semibold text-primary">Email de contact :</span>{" "}
+            <a href="mailto:bienvenue@ladentdugeant.be" class="hover:text-tertiary transition-colors">bienvenue@ladentdugeant.be</a>
+          </p>
+          <p><span class="font-semibold text-primary">Directeur de la publication :</span> Julien Van de Velde</p>
+        </div>
+      </div>
+
+      <!-- 2. Hébergement -->
+      <div class="flex flex-col gap-4">
+        <h2 class="text-xl md:text-2xl font-bold text-primary">2. Hébergement du site</h2>
+        <div class="bg-secondary rounded-2xl p-6 flex flex-col gap-2 font-sans text-sm text-primary/80 leading-relaxed">
+          <p><span class="font-semibold text-primary">Hébergeur :</span> HOSTINGER INTERNATIONAL LTD</p>
+          <p><span class="font-semibold text-primary">Adresse :</span> 61 Lordou Vironos Street, 6023 Larnaca, Chypre</p>
+          <p>
+            <span class="font-semibold text-primary">Contact :</span>{" "}
+            <a href="https://www.hostinger.fr/contact" target="_blank" rel="noopener noreferrer" class="hover:text-tertiary transition-colors underline">
+              www.hostinger.fr/contact
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <!-- 3. Profession réglementée -->
+      <div class="flex flex-col gap-4">
+        <h2 class="text-xl md:text-2xl font-bold text-primary">3. Profession réglementée (Secteur Dentaire)</h2>
+        <p class="font-sans text-sm text-primary/80 leading-relaxed">
+          Les praticiens exerçant au sein du Cabinet Dentaire La Dent du Géant sont soumis aux règles déontologiques de leur profession.
+        </p>
+        <div class="bg-secondary rounded-2xl p-6 flex flex-col gap-2 font-sans text-sm text-primary/80 leading-relaxed">
+          <p><span class="font-semibold text-primary">Autorité de surveillance :</span> SPF Santé Publique, Sécurité de la Chaîne alimentaire et Environnement (Avenue Galilée 5/2, 1210 Bruxelles).</p>
+          <p><span class="font-semibold text-primary">Titre professionnel :</span> Dentistes (titre octroyé en Belgique).</p>
+          <p><span class="font-semibold text-primary">Statut INAMI :</span> Les praticiens du cabinet exercent en tant que prestataires <span class="font-semibold">déconventionnés</span>.</p>
+          <p><span class="font-semibold text-primary">Règles professionnelles :</span> Les praticiens sont inscrits à l'INAMI et respectent le code de déontologie dentaire belge.</p>
+        </div>
+      </div>
+
+      <!-- 4. Politique de rendez-vous -->
+      <div class="flex flex-col gap-4">
+        <h2 class="text-xl md:text-2xl font-bold text-primary">4. Politique de rendez-vous et d'annulation</h2>
+        <p class="font-sans text-sm text-primary/80 leading-relaxed">
+          Nous demandons à nos patients de confirmer leur rendez-vous par e-mail ou par téléphone au plus tard 48h avant celui-ci. En cas d'empêchement, veuillez nous prévenir au plus vite.{" "}
+          <span class="font-semibold text-primary">Tout rendez-vous manqué ou annulé tardivement entraînera une indemnité forfaitaire de 50€.</span>{" "}
+          Ce système vise à garantir la disponibilité de nos praticiens et à maintenir des délais de prise en charge raisonnables pour tous nos patients.
+        </p>
+      </div>
+
+      <!-- 5. Propriété intellectuelle -->
+      <div class="flex flex-col gap-4">
+        <h2 class="text-xl md:text-2xl font-bold text-primary">5. Propriété intellectuelle</h2>
+        <p class="font-sans text-sm text-primary/80 leading-relaxed">
+          L'ensemble de ce site (structure, textes, photographies, logos, etc.) constitue une œuvre protégée par les lois en vigueur sur la propriété intellectuelle. Toute reproduction, représentation, modification ou adaptation, intégrale ou partielle, est strictement interdite sans l'accord écrit et préalable du Cabinet Dentaire La Dent du Géant.
+        </p>
+      </div>
+
+      <!-- 6. Protection des données -->
+      <div class="flex flex-col gap-4">
+        <h2 class="text-xl md:text-2xl font-bold text-primary">6. Protection des données personnelles (RGPD)</h2>
+        <p class="font-sans text-sm text-primary/80 leading-relaxed">
+          Le Cabinet Dentaire La Dent du Géant accorde une grande importance à la protection de vos données personnelles et au secret médical. Les informations recueillies via d'éventuels formulaires ou e-mails sont traitées avec la plus grande confidentialité.
+          Pour en savoir plus sur la gestion de vos données et vos droits (droit d'accès, de rectification, de suppression), veuillez consulter notre{" "}
+          <a href="/confidentialite" class="underline hover:text-tertiary transition-colors">politique de confidentialité</a>.
+        </p>
+      </div>
+    </section>
+
+    <Footer />
+  </div>
+</Layout>

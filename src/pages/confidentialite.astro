@@ -1,0 +1,164 @@
+---
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Politique de confidentialité - La Dent du Géant">
+  <div class="px-4 md:px-8 lg:px-10">
+    <Header />
+
+    <section class="w-full max-w-3xl mx-auto flex flex-col gap-10 py-16 md:py-24">
+      <div class="flex flex-col gap-3">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-primary tracking-tight">
+          Politique de confidentialité
+        </h1>
+        <p class="text-primary/60 font-sans text-sm">
+          Gestion des données personnelles — Conformément au RGPD et à la législation belge en vigueur.
+        </p>
+      </div>
+
+      <!-- 1. Responsable du traitement -->
+      <div class="flex flex-col gap-4">
+        <h2 class="text-xl md:text-2xl font-bold text-primary">1. Responsable du traitement</h2>
+        <p class="font-sans text-sm text-primary/80 leading-relaxed">
+          Le responsable du traitement des données collectées via ce site web est :
+        </p>
+        <div class="bg-secondary rounded-2xl p-6 flex flex-col gap-2 font-sans text-sm text-primary/80 leading-relaxed">
+          <p><span class="font-semibold text-primary">Nom du cabinet :</span> Cabinet Dentaire La Dent du Géant</p>
+          <p><span class="font-semibold text-primary">Adresse :</span> Chaussée de Mons 457, 7810 Ath</p>
+          <p>
+            <span class="font-semibold text-primary">E-mail :</span>{" "}
+            <a href="mailto:bienvenue@ladentdugeant.be" class="hover:text-tertiary transition-colors">bienvenue@ladentdugeant.be</a>
+          </p>
+          <p><span class="font-semibold text-primary">Numéro d'entreprise (BCE) :</span> BE0734640287</p>
+        </div>
+      </div>
+
+      <!-- 2. Données collectées -->
+      <div class="flex flex-col gap-4">
+        <h2 class="text-xl md:text-2xl font-bold text-primary">2. Quelles données collectons-nous et pourquoi ?</h2>
+        <p class="font-sans text-sm text-primary/80 leading-relaxed">
+          Étant donné que notre site a pour vocation de présenter notre philosophie et nos services, nous ne proposons pas de prise de rendez-vous directe en ligne. Les données que nous pouvons être amenés à traiter via le site sont les suivantes :
+        </p>
+        <div class="flex flex-col gap-3">
+          <div class="bg-secondary rounded-2xl p-5 flex flex-col gap-1.5 font-sans text-sm text-primary/80 leading-relaxed">
+            <p class="font-semibold text-primary">Données de communication</p>
+            <p>Si vous nous contactez par l'adresse e-mail indiquée sur le site, nous collecterons votre adresse e-mail, votre nom, et le contenu de votre message.</p>
+            <p class="italic text-primary/60">Finalité : Répondre à vos questions ou gérer votre dossier.</p>
+          </div>
+          <div class="bg-secondary rounded-2xl p-5 flex flex-col gap-1.5 font-sans text-sm text-primary/80 leading-relaxed">
+            <p class="font-semibold text-primary">Données de navigation (Cookies)</p>
+            <p>Lors de votre visite, des données techniques (adresse IP, type de navigateur, pages consultées) peuvent être recueillies.</p>
+            <p class="italic text-primary/60">Finalité : Assurer le bon fonctionnement du site et réaliser des statistiques de visite anonymes.</p>
+          </div>
+        </div>
+        <p class="font-sans text-sm text-primary/60 italic leading-relaxed border-l-2 border-tertiary/40 pl-4">
+          Note : Les données médicales proprement dites (radiographies, questionnaires médicaux, bilans complets) sont gérées en interne au cabinet, sous le sceau du strict secret médical, et ne transitent pas par ce site vitrine.
+        </p>
+      </div>
+
+      <!-- 3. Base légale -->
+      <div class="flex flex-col gap-4">
+        <h2 class="text-xl md:text-2xl font-bold text-primary">3. Base légale du traitement</h2>
+        <p class="font-sans text-sm text-primary/80 leading-relaxed">Nous traitons vos données sur les bases légales suivantes :</p>
+        <ul class="flex flex-col gap-2 font-sans text-sm text-primary/80 leading-relaxed">
+          <li class="flex items-start gap-2">
+            <span class="text-tertiary mt-1.5 flex-shrink-0">•</span>
+            <span><span class="font-semibold text-primary">Votre consentement :</span> Pour le dépôt des cookies non essentiels (via notre bannière CookieYes).</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-tertiary mt-1.5 flex-shrink-0">•</span>
+            <span><span class="font-semibold text-primary">L'exécution de mesures précontractuelles ou contractuelles :</span> Lorsque vous nous contactez pour des renseignements, un devis ou une prise de rendez-vous.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-tertiary mt-1.5 flex-shrink-0">•</span>
+            <span><span class="font-semibold text-primary">Notre intérêt légitime :</span> Pour assurer la sécurité et le bon fonctionnement de notre site web.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-tertiary mt-1.5 flex-shrink-0">•</span>
+            <span><span class="font-semibold text-primary">L'obligation légale et le secret médical :</span> Pour la tenue de vos dossiers de santé une fois devenu patient du cabinet.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 4. Accès aux données -->
+      <div class="flex flex-col gap-4">
+        <h2 class="text-xl md:text-2xl font-bold text-primary">4. Qui a accès à vos données ?</h2>
+        <p class="font-sans text-sm text-primary/80 leading-relaxed">
+          Vos informations sont strictement confidentielles. Au sein du cabinet, elles sont uniquement accessibles à nos praticiens (dentistes, endodontiste, implantologue) et à notre équipe administrative (Inès, Véronique, Madeline et Sandrine) dans le cadre strict de leurs fonctions (prise de rendez-vous, suivi mutuelle, accueil).
+        </p>
+        <p class="font-sans text-sm text-primary/80 leading-relaxed">
+          Vos données ne sont <span class="font-semibold text-primary">jamais</span> vendues ou cédées à des tiers. Elles peuvent être hébergées par des prestataires techniques de confiance (comme notre hébergeur web Hostinger), soumis aux mêmes obligations de confidentialité (RGPD).
+        </p>
+      </div>
+
+      <!-- 5. Durée de conservation -->
+      <div class="flex flex-col gap-4">
+        <h2 class="text-xl md:text-2xl font-bold text-primary">5. Durée de conservation</h2>
+        <div class="bg-secondary rounded-2xl p-6 flex flex-col gap-2 font-sans text-sm text-primary/80 leading-relaxed">
+          <p><span class="font-semibold text-primary">E-mails de contact :</span> Conservés le temps nécessaire au traitement de votre demande, puis intégrés à votre dossier patient le cas échéant.</p>
+          <p><span class="font-semibold text-primary">Dossiers médicaux (hors site web) :</span> Conservés pendant 30 ans après le dernier contact, conformément à la législation belge.</p>
+          <p><span class="font-semibold text-primary">Cookies :</span> Les choix liés aux cookies sont conservés pour une durée maximale de 12 mois via l'outil CookieYes.</p>
+        </div>
+      </div>
+
+      <!-- 6. Vos droits -->
+      <div class="flex flex-col gap-4">
+        <h2 class="text-xl md:text-2xl font-bold text-primary">6. Vos droits (RGPD)</h2>
+        <p class="font-sans text-sm text-primary/80 leading-relaxed">Conformément à la réglementation, vous disposez des droits suivants concernant vos données personnelles :</p>
+        <ul class="flex flex-col gap-2 font-sans text-sm text-primary/80 leading-relaxed">
+          {[
+            "Droit d'accès et d'information.",
+            "Droit de rectification (si vos données sont inexactes).",
+            "Droit à l'effacement (\"droit à l'oubli\").",
+            "Droit à la limitation du traitement.",
+            "Droit de retirer votre consentement à tout moment (notamment pour les cookies).",
+          ].map((droit) => (
+            <li class="flex items-start gap-2">
+              <span class="text-tertiary mt-1.5 flex-shrink-0">•</span>
+              <span>{droit}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="font-sans text-sm text-primary/80 leading-relaxed">
+          Pour exercer ces droits, vous pouvez nous contacter à :{" "}
+          <a href="mailto:bienvenue@ladentdugeant.be" class="hover:text-tertiary transition-colors underline">bienvenue@ladentdugeant.be</a>.
+        </p>
+      </div>
+
+      <!-- 7. Cookies -->
+      <div class="flex flex-col gap-4">
+        <h2 class="text-xl md:text-2xl font-bold text-primary">7. Gestion des Cookies (CookieYes)</h2>
+        <p class="font-sans text-sm text-primary/80 leading-relaxed">
+          Notre site utilise des "cookies" (petits fichiers textes déposés sur votre terminal) pour fonctionner correctement et mesurer son audience.
+        </p>
+        <p class="font-sans text-sm text-primary/80 leading-relaxed">
+          La gestion de votre consentement est assurée par la solution <span class="font-semibold text-primary">CookieYes</span>, conforme au RGPD. Lors de votre première visite, une bannière vous permet d'accepter tous les cookies, de refuser les cookies non essentiels, ou de personnaliser vos choix par catégorie.
+        </p>
+        <p class="font-sans text-sm text-primary/80 leading-relaxed">
+          Vous pouvez modifier vos préférences à tout moment en cliquant sur le lien de gestion des cookies présent sur le site.
+        </p>
+      </div>
+
+      <!-- 8. Autorité de contrôle -->
+      <div class="flex flex-col gap-4">
+        <h2 class="text-xl md:text-2xl font-bold text-primary">8. Autorité de contrôle</h2>
+        <p class="font-sans text-sm text-primary/80 leading-relaxed">
+          Si vous estimez, après nous avoir contactés, que vos droits sur vos données ne sont pas respectés, vous pouvez adresser une réclamation à l'Autorité de Protection des Données (APD) en Belgique :
+        </p>
+        <div class="bg-secondary rounded-2xl p-6 flex flex-col gap-2 font-sans text-sm text-primary/80 leading-relaxed">
+          <p>
+            <span class="font-semibold text-primary">Site web :</span>{" "}
+            <a href="https://www.autoriteprotectiondonnees.be" target="_blank" rel="noopener noreferrer" class="hover:text-tertiary transition-colors underline">
+              www.autoriteprotectiondonnees.be
+            </a>
+          </p>
+          <p><span class="font-semibold text-primary">Adresse :</span> Rue de la Presse, 35, 1000 Bruxelles.</p>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+  </div>
+</Layout>

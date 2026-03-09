@@ -7,15 +7,17 @@ const pageLinks = [
   { label: "Accueil", href: "/" },
   { label: "Nos services", href: "/nos-services" },
   { label: "Notre équipe", href: "/equipe" },
+  { label: "Blog", href: "/blog" },
+  { label: "Recrutement", href: "/recrutement" },
   { label: "Contact", href: "/contact" },
 ];
 
 const schedule = [
-  { day: "Lundi", hours: "8:30 AM - 12:30 PM, 2-6 PM" },
-  { day: "Mardi", hours: "8:30 AM - 12:30 PM, 2-6 PM" },
-  { day: "Mercredi", hours: "8:30 AM - 12:30 PM, 2-4 PM" },
-  { day: "Jeudi", hours: "8:30 AM - 12:30 PM, 2-6 PM" },
-  { day: "Vendredi", hours: "8:30 AM - 12:30 PM,  2-5 PM" },
+  { day: "Lundi", hours: "8:30 AM - 6:30 PM" },
+  { day: "Mardi", hours: "8:30 AM - 6:30 PM" },
+  { day: "Mercredi", hours: "8:30 AM - 6:30 PM" },
+  { day: "Jeudi", hours: "8:30 AM - 6:30 PM" },
+  { day: "Vendredi", hours: "8:30 AM - 5:30 PM" },
   { day: "Samedi", hours: "Fermé" },
   { day: "Dimanche", hours: "Fermé" },
 ];
@@ -101,7 +103,10 @@ const schedule = [
       </div>
 
       <!-- Schedule -->
-      <div class="flex flex-col gap-4 md:col-span-2 lg:col-span-1" data-reveal-card>
+      <div
+        class="flex flex-col gap-4 md:col-span-2 lg:col-span-1"
+        data-reveal-card
+      >
         <h3 class="font-sans text-sm text-[#e2cbb9] tracking-tight">
           Horaires
         </h3>
@@ -146,15 +151,20 @@ const schedule = [
           <span>{new Date().getFullYear()}</span>
         </div>
         <span class="hidden sm:inline text-[15.8px] tracking-tight">/</span>
-        <a href="#" class="hover:text-tertiary transition-colors">
-          Conditions générales
+        <a href="/mentions-legales" class="hover:text-tertiary transition-colors">
+          Mentions légales
+        </a>
+        <span class="hidden sm:inline text-[15.8px] tracking-tight">/</span>
+        <a href="/confidentialite" class="hover:text-tertiary transition-colors">
+          Confidentialité
         </a>
       </div>
 
       <!-- Social Links -->
       <div class="flex items-center gap-4 md:gap-4">
         <a
-          href="#"
+          href="https://www.facebook.com/LaDentduGeant/?locale=fr_FR"
+          target="_blank"
           class="text-white hover:text-tertiary transition-colors"
           aria-label="Facebook"
         >
