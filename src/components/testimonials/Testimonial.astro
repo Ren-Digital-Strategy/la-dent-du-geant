@@ -46,7 +46,7 @@ try {
 
   if (hasPlacesConfig) {
     const result = await fetchGoogleReviews();
-    testimonials = result.reviews.map((review) => ({
+    testimonials = result.reviews.slice(0, 3).map((review) => ({
       rating: review.rating,
       text: review.text,
       author: review.author,
@@ -84,12 +84,12 @@ if (testimonials.length === 0) {
     }
   </div>
   <div
-    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch"
     data-reveal-cards
   >
     {
       testimonials.map((testimonial) => (
-        <div data-reveal-card>
+        <div data-reveal-card class="h-full">
           <TestimonialCard
             rating={testimonial.rating}
             text={testimonial.text}

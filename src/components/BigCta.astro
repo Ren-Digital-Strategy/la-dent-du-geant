@@ -15,12 +15,15 @@ const avatars = [avatar1, avatar2, avatar3, avatar4];
 >
   <!-- Logo background en bas au milieu -->
   <div
-    class="absolute left-1/2 -translate-x-1/2 -bottom-[50px] w-[300px] pointer-events-none z-0"
+    class="absolute left-1/2 -translate-x-1/2 -bottom-[50px] w-[350px] pointer-events-none z-0"
   >
     <Image src={logoBackground} alt="" class="w-full h-auto opacity-20" />
   </div>
   <!-- Overlapping avatars -->
-  <div class="relative z-10 flex items-center justify-center" data-reveal-gallery>
+  <div
+    class="relative z-10 flex items-center justify-center"
+    data-reveal-gallery
+  >
     {
       avatars.map((avatar, index) => (
         <div
@@ -43,7 +46,10 @@ const avatars = [avatar1, avatar2, avatar3, avatar4];
   <div
     class="relative z-10 flex flex-col items-center justify-center gap-6 max-w-3xl"
   >
-    <h2 class="text-primary font-bold text-3xl lg:text-5xl text-center" data-reveal-title>
+    <h2
+      class="text-primary font-bold text-3xl lg:text-5xl text-center"
+      data-reveal-title
+    >
       Prêt(e) à faire de votre santé bucco-dentaire une priorité ?
     </h2>
     <p class="text-primary/70 text-base font-sans text-center">

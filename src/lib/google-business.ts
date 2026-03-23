@@ -78,7 +78,7 @@ export async function fetchGoogleReviews(): Promise<{
   const data: PlaceDetailsResponseNew = await response.json();
 
   const reviews: FormattedReview[] = (data.reviews || [])
-    .filter((review) => review.text?.text || review.originalText?.text)
+    .filter((review) => review.rating >= 3 && (review.text?.text || review.originalText?.text))
     .map((review, index) => ({
       id: review.name || `review-${index}`,
       rating: review.rating,
