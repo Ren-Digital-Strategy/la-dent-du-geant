@@ -9,6 +9,7 @@ services:
         - PUBLIC_DIRECTUS_URL=${PUBLIC_DIRECTUS_URL}
         - GOOGLE_PLACES_API_KEY=${GOOGLE_PLACES_API_KEY}
         - GOOGLE_PLACE_ID=${GOOGLE_PLACE_ID}
+        - RESEND_API_KEY=${RESEND_API_KEY}
     ports:
       - "4321:4321"
     environment:
@@ -21,4 +22,5 @@ services:
       # Variables Google Places API (injectées par Dokploy)
       - GOOGLE_PLACES_API_KEY=${GOOGLE_PLACES_API_KEY}
       - GOOGLE_PLACE_ID=${GOOGLE_PLACE_ID}
+      - RESEND_API_KEY=${RESEND_API_KEY}
     restart: unless-stopped
