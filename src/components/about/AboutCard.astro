@@ -6,9 +6,10 @@ interface Props {
   key: number;
   description: string;
   image: ImageMetadata;
+  imageClass?: string;
 }
 
-const { key, description, image } = Astro.props;
+const { key, description, image, imageClass = "" } = Astro.props;
 ---
 
 <div
@@ -16,7 +17,7 @@ const { key, description, image } = Astro.props;
   class="relative w-full overflow-hidden rounded-[20px] md:rounded-[25px] xl:rounded-[30px] group flex items-end justify-center h-[420px] sm:h-[450px] md:h-[380px] lg:h-[450px] xl:h-[540px]"
 >
   <Image
-    class="w-full h-auto max-h-full object-contain"
+    class={`w-full h-auto max-h-full object-contain ${imageClass}`}
     src={image}
     alt={description}
     width={1000}

@@ -3,12 +3,18 @@ import { Image } from "astro:assets";
 import forme from "../../assets/forme.png";
 
 import card1 from "../../assets/about/1.png";
-import card2 from "../../assets/about/2.png";
+import card2 from "../../assets/pomme.png";
 import card3 from "../../assets/about/3.png";
 import card4 from "../../assets/about/4.png";
 import AboutCard from "./AboutCard.astro";
 
-const cards = [
+interface Card {
+  description: string;
+  image: ImageMetadata;
+  imageClass?: string;
+}
+
+const cards: Card[] = [
   {
     description: "Des douleurs dentaires vous gâchent le quotidien ?",
     image: card1,
@@ -16,6 +22,7 @@ const cards = [
   {
     description: "Manger est devenu inconfortable ou difficile ?",
     image: card2,
+    imageClass: "-translate-y-10 xl:-translate-y-16",
   },
   {
     description: "Vous êtes complexé(e) par l'apparence de votre sourire ?",
@@ -52,7 +59,10 @@ const cards = [
     </h2>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 w-full" data-reveal-cards>
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 w-full"
+    data-reveal-cards
+  >
     {
       cards.map((card, index) => (
         <div data-reveal-card>
@@ -60,6 +70,7 @@ const cards = [
             key={index}
             description={card.description}
             image={card.image}
+            imageClass={card.imageClass}
           />
         </div>
       ))

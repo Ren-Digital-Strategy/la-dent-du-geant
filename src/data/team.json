@@ -81,7 +81,7 @@
         "interets": "Voyage, padel, sport mécanique",
         "role": "Implantologue"
       },
-      "image": "../assets/dentists/alexis.jpg"
+      "image": "../assets/dentists/alexis2.png"
     },
     {
       "name": "Aude Quillet",
@@ -92,7 +92,7 @@
         "interets": "Activités sportives (natation, fitness), manuelles (couture, peinture, dessin) et lecture",
         "role": "Dentiste généraliste"
       },
-      "image": "../assets/dentists/aude.jpg"
+      "image": "../assets/dentists/aude2.png"
     },
     {
       "name": "Héloïse Caisse",
@@ -103,7 +103,7 @@
         "interets": "Natation et piano",
         "role": "Hygiéniste : inculquer les bonnes techniques d'hygiène et optimiser la santé bucco-dentaire. Actes essentiellement préventifs pour prévenir les pathologies ou les guérir."
       },
-      "image": "../assets/dentists/heloise.jpg"
+      "image": "../assets/dentists/heloise2.png"
     }
   ],
   "officeManager": [
