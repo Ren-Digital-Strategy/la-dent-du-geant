@@ -24,3 +24,21 @@ services:
       - GOOGLE_PLACE_ID=${GOOGLE_PLACE_ID}
       - RESEND_API_KEY=${RESEND_API_KEY}
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      # Middleware : redirige www.ladentdugeant.be -> ladentdugeant.be (301 permanent)
+      - "traefik.http.middlewares.ddg-redirect-www.redirectregex.regex=^https?://www\\.ladentdugeant\\.be/(.*)"
+      - "traefik.http.middlewares.ddg-redirect-www.redirectregex.replacement=https://ladentdugeant.be/$${1}"
+      - "traefik.http.middlewares.ddg-redirect-www.redirectregex.permanent=true"
+      # Router HTTPS pour le www (redirection uniquement, pas de backend)
+      - "traefik.http.routers.ddg-www-secure.rule=Host(`www.ladentdugeant.be`)"
+      - "traefik.http.routers.ddg-www-secure.entrypoints=websecure"
+      - "traefik.http.routers.ddg-www-secure.tls=true"
+      - "traefik.http.routers.ddg-www-secure.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.ddg-www-secure.middlewares=ddg-redirect-www"
+      - "traefik.http.routers.ddg-www-secure.service=noop@internal"
+      # Router HTTP pour le www (redirige aussi les requêtes en clair sur le port 80)
+      - "traefik.http.routers.ddg-www-web.rule=Host(`www.ladentdugeant.be`)"
+      - "traefik.http.routers.ddg-www-web.entrypoints=web"
+      - "traefik.http.routers.ddg-www-web.middlewares=ddg-redirect-www"
+      - "traefik.http.routers.ddg-www-web.service=noop@internal"
