@@ -32,6 +32,7 @@ services:
       - "traefik.http.middlewares.ddg-redirect-www.redirectregex.permanent=true"
       # Router HTTPS pour le www (redirection uniquement, pas de backend)
       - "traefik.http.routers.ddg-www-secure.rule=Host(`www.ladentdugeant.be`)"
+      - "traefik.http.routers.ddg-www-secure.priority=1000"
       - "traefik.http.routers.ddg-www-secure.entrypoints=websecure"
       - "traefik.http.routers.ddg-www-secure.tls=true"
       - "traefik.http.routers.ddg-www-secure.tls.certresolver=letsencrypt"
@@ -39,6 +40,7 @@ services:
       - "traefik.http.routers.ddg-www-secure.service=noop@internal"
       # Router HTTP pour le www (redirige aussi les requêtes en clair sur le port 80)
       - "traefik.http.routers.ddg-www-web.rule=Host(`www.ladentdugeant.be`)"
+      - "traefik.http.routers.ddg-www-web.priority=1000"
       - "traefik.http.routers.ddg-www-web.entrypoints=web"
       - "traefik.http.routers.ddg-www-web.middlewares=ddg-redirect-www"
       - "traefik.http.routers.ddg-www-web.service=noop@internal"
