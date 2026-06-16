@@ -1,0 +1,418 @@
+---
+import { Image } from "astro:assets";
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+import BigCta from "../components/BigCta.astro";
+import forme from "../assets/forme.png";
+
+const cabinetPhotos = [
+  "DSC06396.jpg",
+  "DSC06410.jpg",
+  "DSC06421.jpg",
+  "DSC06590.jpg",
+  "DSC06608.jpg",
+  "DSC06625-Modifier.jpg",
+  "DSC06685-Modifier.jpg",
+  "DSC06702.jpg",
+  "DSC06716.jpg",
+  "DSC06730.jpg",
+  "DSC06895.jpg",
+  "DSC06911.jpg",
+  "DSC06938.jpg",
+  "DSC07001.jpg",
+  "DSC07014.jpg",
+  "DSC07055.jpg",
+  "DSC07072.jpg",
+  "DSC07199.jpg",
+  "DSC07245.jpg",
+  "DSC07254.jpg",
+  "DSC07286.jpg",
+  "DSC07288.jpg",
+  "DSC07317.jpg",
+  "DSC07329.jpg",
+  "DSC07357.jpg",
+  "DSC07376.jpg",
+  "DSC07404-Modifier.jpg",
+  "DSC07416.jpg",
+  "DSC07432.jpg",
+  "DSC07488.jpg",
+  "DSC07496.jpg",
+  "DSC07512.jpg",
+  "DSC07530.jpg",
+  "DSC07551.jpg",
+  "DSC07591.jpg",
+  "DSC07602.jpg",
+  "DSC07647.jpg",
+  "DSC07682.jpg",
+];
+
+const values = [
+  {
+    title: "Bienveillance",
+    description:
+      "Chaque patient est accueilli avec attention et respect, dans un environnement chaleureux pensé pour dissiper l'anxiété et mettre à l'aise dès la première visite.",
+  },
+  {
+    title: "Transparence",
+    description:
+      "Chaque traitement vous est expliqué en détail, avec un plan de soins clair, pour que vous puissiez décider en toute connaissance de cause — sans surprise.",
+  },
+  {
+    title: "Formation continue",
+    description:
+      "Toute l'équipe suit régulièrement des formations aux techniques les plus récentes, pour vous garantir des soins à la pointe de la dentisterie moderne.",
+  },
+];
+---
+
+<Layout title="Notre Cabinet - La Dent du Géant">
+  <div class="px-4 md:px-8 lg:px-10">
+    <Header />
+
+    <!-- Hero -->
+    <section class="pt-20 md:pt-32 pb-16 md:pb-24">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-12 md:mb-20">
+          <div class="relative inline-block">
+            <h1
+              class="text-4xl md:text-5xl lg:text-6xl font-bold text-primary"
+              data-hero-title
+              style="clip-path: inset(0 0 100% 0); transform: translateY(100%);"
+            >
+              Notre <span class="text-tertiary">Cabinet</span>
+            </h1>
+            <Image
+              class="w-10 md:w-12 absolute -top-8 -right-10 md:-right-14 hidden md:block"
+              src={forme}
+              alt="Forme"
+              width={1000}
+              height={1000}
+            />
+          </div>
+          <p
+            class="mt-4 md:mt-6 text-primary/70 font-sans max-w-2xl mx-auto text-base md:text-lg"
+            data-hero-text
+            style="clip-path: inset(0 0 100% 0); transform: translateY(100%);"
+          >
+            Un espace pensé pour vous — où la qualité des soins rime avec
+            écoute, modernité et bienveillance, depuis 2022.
+          </p>
+        </div>
+
+        <!-- Qui sommes-nous -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-20 md:mb-32 items-center">
+          <div data-reveal-left>
+            <p class="text-sm font-semibold text-tertiary uppercase tracking-widest font-sans mb-3">
+              Qui sommes-nous
+            </p>
+            <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">
+              Une équipe pluridisciplinaire,<br />un seul objectif : votre sourire
+            </h2>
+            <p class="text-primary/70 font-sans text-base md:text-lg leading-relaxed mb-4">
+              Implanté à l'entrée d'Ath, le cabinet réunit une équipe formée en
+              continu : <strong class="text-primary">4 dentistes généralistes</strong>,
+              1 endodontiste spécialiste, 1 implantologue, 1 hygiéniste dentaire,
+              4 assistantes-secrétaires et 1 office manager. Une structure
+              complète, pensée pour répondre à l'ensemble de vos besoins en un
+              seul endroit.
+            </p>
+            <p class="text-primary/70 font-sans text-base md:text-lg leading-relaxed">
+              Tous nos praticiens sont déconventionnés et mobilisent les
+              techniques les plus modernes pour vous offrir des soins adaptés,
+              durables et respectueux de vos dents naturelles.
+            </p>
+          </div>
+          <div class="grid grid-cols-2 gap-4" data-reveal-right>
+            <div class="rounded-2xl overflow-hidden aspect-[3/4] col-span-1">
+              <img
+                src={`/images/cabinet/${cabinetPhotos[0]}`}
+                alt="Cabinet La Dent du Géant"
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="flex flex-col gap-4">
+              <div class="rounded-2xl overflow-hidden aspect-square">
+                <img
+                  src={`/images/cabinet/${cabinetPhotos[1]}`}
+                  alt="Espace d'accueil"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div class="rounded-2xl overflow-hidden aspect-square">
+                <img
+                  src={`/images/cabinet/${cabinetPhotos[2]}`}
+                  alt="Salle de soins"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notre histoire -->
+        <div class="mb-20 md:mb-32">
+          <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+            <p
+              class="text-sm font-semibold text-tertiary uppercase tracking-widest font-sans mb-3"
+              data-reveal-section
+            >
+              Notre histoire
+            </p>
+            <h2
+              class="text-3xl md:text-4xl font-bold text-primary mb-6"
+              data-reveal-title
+            >
+              Une vision, une mission, des valeurs
+            </h2>
+            <p
+              class="text-primary/70 font-sans text-base md:text-lg leading-relaxed"
+              data-reveal-section
+            >
+              Fondé en août 2022 par <strong class="text-primary">Julien Van de Velde</strong>,
+              dentiste généraliste et endodontiste spécialiste, le cabinet est
+              né d'une conviction forte : chaque patient mérite des soins de
+              qualité, expliqués avec transparence et dispensés dans un cadre
+              rassurant. L'écoute, la prévention et le confort guident chacun
+              de nos actes — avec un seul objectif : vous redonner le sourire.
+            </p>
+          </div>
+
+          <!-- Valeurs -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-reveal-gallery>
+            {
+              values.map((value) => (
+                <div
+                  class="bg-white rounded-2xl p-8 shadow-sm"
+                  data-reveal-gallery-item
+                >
+                  <div class="w-10 h-1 bg-tertiary rounded-full mb-5" />
+                  <h3 class="text-xl font-bold text-primary mb-3">
+                    {value.title}
+                  </h3>
+                  <p class="text-primary/70 font-sans text-sm leading-relaxed">
+                    {value.description}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Galerie -->
+        <div class="mb-20 md:mb-32">
+          <div class="text-center max-w-2xl mx-auto mb-12 md:mb-16">
+            <p
+              class="text-sm font-semibold text-tertiary uppercase tracking-widest font-sans mb-3"
+              data-reveal-section
+            >
+              Galerie
+            </p>
+            <h2
+              class="text-3xl md:text-4xl font-bold text-primary"
+              data-reveal-title
+            >
+              Un cadre pensé pour votre confort
+            </h2>
+          </div>
+
+          <div
+            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4"
+            id="gallery-grid"
+            data-reveal-gallery
+          >
+            {
+              cabinetPhotos.map((filename, index) => (
+                <button
+                  class="gallery-item group relative overflow-hidden rounded-xl md:rounded-2xl aspect-square cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-tertiary focus:ring-offset-2"
+                  data-index={index}
+                  data-reveal-gallery-item
+                  aria-label={`Voir la photo ${index + 1}`}
+                >
+                  <img
+                    src={`/images/cabinet/${filename}`}
+                    alt={`Cabinet La Dent du Géant - photo ${index + 1}`}
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-colors duration-300 flex items-center justify-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6"
+                      />
+                    </svg>
+                  </div>
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <BigCta />
+    <Footer />
+  </div>
+</Layout>
+
+<!-- Lightbox -->
+<div
+  id="lightbox"
+  class="fixed inset-0 z-[100] bg-primary/95 backdrop-blur-sm flex items-center justify-center opacity-0 invisible transition-all duration-300"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Galerie photo"
+>
+  <!-- Close -->
+  <button
+    id="lightbox-close"
+    class="absolute top-4 right-4 md:top-6 md:right-6 z-10 w-10 h-10 flex items-center justify-center text-white/70 hover:text-white transition-colors"
+    aria-label="Fermer"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+
+  <!-- Prev -->
+  <button
+    id="lightbox-prev"
+    class="absolute left-3 md:left-6 z-10 w-11 h-11 flex items-center justify-center text-white/70 hover:text-white transition-colors bg-white/10 hover:bg-white/20 rounded-full"
+    aria-label="Image précédente"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+    </svg>
+  </button>
+
+  <!-- Image -->
+  <div class="relative max-w-5xl max-h-[85vh] w-full mx-16 md:mx-24 flex items-center justify-center">
+    <img
+      id="lightbox-img"
+      src=""
+      alt=""
+      class="max-w-full max-h-[85vh] object-contain rounded-xl shadow-2xl transition-opacity duration-200"
+    />
+  </div>
+
+  <!-- Next -->
+  <button
+    id="lightbox-next"
+    class="absolute right-3 md:right-6 z-10 w-11 h-11 flex items-center justify-center text-white/70 hover:text-white transition-colors bg-white/10 hover:bg-white/20 rounded-full"
+    aria-label="Image suivante"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+    </svg>
+  </button>
+
+  <!-- Counter -->
+  <div
+    class="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/50 text-sm font-sans"
+    id="lightbox-counter"
+  ></div>
+</div>
+
+<script>
+  function initLightbox() {
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById(
+      "lightbox-img"
+    ) as HTMLImageElement | null;
+    const lightboxClose = document.getElementById("lightbox-close");
+    const lightboxPrev = document.getElementById("lightbox-prev");
+    const lightboxNext = document.getElementById("lightbox-next");
+    const lightboxCounter = document.getElementById("lightbox-counter");
+    const galleryItems =
+      document.querySelectorAll<HTMLButtonElement>(".gallery-item");
+
+    if (!lightbox || !lightboxImg) return;
+
+    const images: { src: string; alt: string }[] = [];
+    let currentIndex = 0;
+
+    galleryItems.forEach((btn) => {
+      const img = btn.querySelector("img");
+      if (img) {
+        images.push({ src: img.src, alt: img.alt });
+      }
+    });
+
+    function openLightbox(index: number) {
+      currentIndex = index;
+      updateImage();
+      lightbox.classList.remove("opacity-0", "invisible");
+      lightbox.classList.add("opacity-100", "visible");
+      document.body.style.overflow = "hidden";
+      lightboxClose?.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.add("opacity-0", "invisible");
+      lightbox.classList.remove("opacity-100", "visible");
+      document.body.style.overflow = "";
+    }
+
+    function updateImage() {
+      const { src, alt } = images[currentIndex];
+      if (lightboxImg) {
+        lightboxImg.style.opacity = "0";
+        setTimeout(() => {
+          lightboxImg.src = src;
+          lightboxImg.alt = alt;
+          lightboxImg.style.opacity = "1";
+        }, 150);
+      }
+      if (lightboxCounter) {
+        lightboxCounter.textContent = `${currentIndex + 1} / ${images.length}`;
+      }
+    }
+
+    function prev() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      updateImage();
+    }
+
+    function next() {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateImage();
+    }
+
+    galleryItems.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const index = parseInt(btn.dataset.index ?? "0", 10);
+        openLightbox(index);
+      });
+    });
+
+    lightboxClose?.addEventListener("click", closeLightbox);
+    lightboxPrev?.addEventListener("click", prev);
+    lightboxNext?.addEventListener("click", next);
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (lightbox.classList.contains("invisible")) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    });
+  }
+
+  document.addEventListener("astro:page-load", initLightbox);
+  initLightbox();
+</script>

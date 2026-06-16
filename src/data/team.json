@@ -3,12 +3,12 @@
     {
       "name": "Julien Van de Velde",
       "role": "Fondateur, gérant, dentiste généraliste et endodontiste spécialiste",
-      "description": "Fondateur et gérant du cabinet, je dirige notre équipe avec passion et bienveillance, en offrant des soins personnalisés à chaque patient.",
+      "description": "Fondateur du cabinet, Julien conjugue expertise en dentisterie générale et en endodontie spécialisée pour offrir à chaque patient une prise en charge complète, précise et bienveillante.",
       "fullDescription": {
-        "diplome": "Master en sciences dentaires à l'Université Catholique de Louvain (UCL) en 2016\nCertificat universitaire en endodontie spécialisée à l'UCL en 2018",
+        "diplome": "Master en sciences dentaires à l'Université Catholique de Louvain (UCL) en 2016\nCertificat universitaire en endodontie spécialisée à l'UCL",
         "formations": [
           "Thérapeutique occlusale par le Professeur Abjean à Concarneau en 2019",
-          "GRF (esthétique) par les Professeurs Gilles Tirlet et Jean-Pierre Attal à Paris en 2020 - 2021 - 2022 - 2023",
+          "GRF (esthétique) à Paris en 2020 - 2021 - 2022 - 2023",
           "Cone Beam CT en 2021"
         ],
         "motDuFondateur": [
@@ -16,8 +16,9 @@
           "Je prends toujours le temps de réaliser une analyse complète avant d'envisager un traitement. Tous les soins sont réalisés sous digue afin de garantir une hygiène optimale et des résultats durables.",
           "Je me suis entouré d'une équipe pluridisciplinaire passionnée et investie, avec laquelle nous partageons les mêmes valeurs : bienveillance, transparence et formation continue. Ensemble, nous mettons la technologie et l'innovation au service de soins précis, sûrs et adaptés à chaque patient.",
           "Mon engagement quotidien est de vous proposer des soins de qualité, pensés pour le long terme, dans un environnement moderne, chaleureux et rassurant.",
-          "En dehors du cabinet, je me ressource à travers les sports de glisse sur l'eau et la musique, des passions qui nourrissent mon énergie et ma rigueur au quotidien."
+          "En dehors du cabinet, je me ressource à travers le vélo, le kitesurf, le foil, le wakeboard, la guitare et le saxophone — des passions qui nourrissent mon énergie et ma rigueur au quotidien."
         ],
+        "interets": "Vélo, kitesurf, foil, wakeboard, guitare, saxophone",
         "role": "Fondateur, gérant, dentiste généraliste et endodontiste spécialiste"
       },
       "image": "../../assets/dentists/julien.jpg"
@@ -25,13 +26,14 @@
     {
       "name": "Guillem Busca",
       "role": "Dentiste généraliste",
-      "description": "Dentiste généraliste passionné, j'offre des soins personnalisés avec rigueur et bienveillance.",
+      "description": "Passionné par son métier, Guillem met sa rigueur et son sens du détail au service de soins de qualité — avec une attention constante portée à l'esthétique et au confort de chaque patient.",
       "fullDescription": {
         "diplome": "Master en sciences dentaires à l'Université Catholique de Louvain (UCL) en 2016",
         "formations": [
           "Thérapeutique occlusale par le Professeur Abjean à Concarneau en 2019",
-          "GRF (esthétique) par les Professeurs Gilles Tirlet et Jean-Pierre Attal à Paris en 2020 - 2021 - 2022 - 2023",
-          "Cone Beam CT en 2021"
+          "GRF (esthétique) à Paris en 2020 - 2021 - 2022 - 2023",
+          "Cone Beam CT en 2021",
+          "Endodontie Dentozo en 2024 - 2025"
         ],
         "interets": "Échecs, natation, randonnée",
         "role": "Dentiste généraliste"
@@ -41,13 +43,13 @@
     {
       "name": "Alex Minaberry",
       "role": "Dentiste généraliste",
-      "description": "Dentiste généraliste, j'allie technicité et écoute pour des soins de qualité.",
+      "description": "Doté d'une approche à la fois technique et humaine, Alex s'engage à proposer des soins adaptés à chaque patient, dans un climat de confiance et d'écoute.",
       "fullDescription": {
         "diplome": "Master en sciences dentaires à l'Université Catholique de Louvain (UCL) en 2021",
         "formations": [
-          "GRF (esthétique) par les Professeurs Gilles Tirlet et Jean-Pierre Attal à Paris en 2024 - 2025 - 2026 - 2027"
+          "GRF (esthétique) à Paris en 2024 - 2025"
         ],
-        "interets": "Musique, dessin, surf",
+        "interets": "Musique, dessin, sport",
         "role": "Dentiste généraliste"
       },
       "image": "../assets/dentists/alex.jpg"
@@ -55,13 +57,13 @@
     {
       "name": "Maxence Verdebout",
       "role": "Dentiste généraliste",
-      "description": "Dentiste généraliste dynamique, je m'investis pour offrir des soins adaptés à chaque patient.",
+      "description": "Fraîchement diplômé et passionné par la chirurgie, Maxence apporte au cabinet une énergie nouvelle et une expertise en implantologie en cours de spécialisation.",
       "fullDescription": {
         "diplome": "Master en sciences dentaires à l'Université Libre de Bruxelles (ULB) en 2024",
         "formations": [
-          "Certificat universitaire en implantologie et chirurgies orales à l'ULB en 2024 - 2025 - 2026 - 2027"
+          "Certificat universitaire en implantologie et chirurgies orales à l'ULB en 2024 - 2027"
         ],
-        "interets": "Footballeur reconverti au triathlon avec une préférence pour la course à pied, les bons restos entre amis/famille, les jeux de société",
+        "interets": "Footballeur reconverti au triathlon, avec une préférence pour la course à pied, les bons restos entre amis et en famille, les jeux de société",
         "role": "Dentiste généraliste"
       },
       "image": "../assets/dentists/maxence.jpg"
@@ -69,14 +71,14 @@
     {
       "name": "Alexis Fontaine",
       "role": "Implantologue",
-      "description": "Implantologue passionné, je vous accompagne pour retrouver un sourire complet et fonctionnel.",
+      "description": "Spécialiste en implantologie, Alexis accompagne ses patients à chaque étape de leur traitement — de la planification à la pose — pour un résultat durable et naturel.",
       "fullDescription": {
         "diplome": "Master en sciences dentaires à l'Université Catholique de Louvain (UCL) en 2018",
         "formations": [
           "Thérapeutique occlusale par le Professeur Abjean José à Concarneau",
-          "GRF (esthétique) par les Professeurs Gilles Tirlet et Jean-Pierre Attal à Paris",
-          "Sapo implantologie Paris",
-          "D esthétique Liège"
+          "GRF (esthétique) à Paris",
+          "SAPO implantologie à Paris",
+          "D-esthétique à Liège"
         ],
         "interets": "Voyage, padel, sport mécanique",
         "role": "Implantologue"
@@ -86,18 +88,18 @@
     {
       "name": "Aude Quillet",
       "role": "Dentiste généraliste",
-      "description": "Dentiste généraliste attentive, j'offre des soins personnalisés dans une approche bienveillante.",
+      "description": "Sensible à la relation patient, Aude pratique une dentisterie attentive et personnalisée, avec le souci du détail et le confort du patient au cœur de sa pratique.",
       "fullDescription": {
         "diplome": "Master en sciences dentaires à l'Université Libre de Bruxelles (ULB) en 2025",
-        "interets": "Activités sportives (natation, fitness), manuelles (couture, peinture, dessin) et lecture",
+        "interets": "Natation, fitness, couture, peinture, dessin et lecture",
         "role": "Dentiste généraliste"
       },
       "image": "../assets/dentists/aude2.png"
     },
     {
       "name": "Héloïse Caisse",
-      "role": "Hygiéniste",
-      "description": "Hygiéniste dentaire, je vous aide à adopter les bonnes techniques pour une santé bucco-dentaire optimale.",
+      "role": "Hygiéniste dentaire",
+      "description": "Première alliée de votre santé bucco-dentaire, Héloïse vous guide vers les bonnes habitudes et assure un suivi préventif rigoureux pour protéger votre sourire sur le long terme.",
       "fullDescription": {
         "diplome": "Diplôme d'hygiéniste à la Haute école de la province de Liège (HEPL) et à l'Université de Liège (ULiège) en 2022",
         "interets": "Natation et piano",
@@ -110,15 +112,15 @@
     {
       "name": "Ysaline Delbecq",
       "role": "Office manager",
-      "description": "Office manager passionnée, je gère les ressources humaines, la communication et l'organisation interne du cabinet.",
+      "description": "Pilier de l'organisation du cabinet, Ysaline orchestre les ressources humaines, la communication et la gestion interne avec méthode et bienveillance — pour que tout fonctionne, même en coulisses.",
       "fullDescription": {
-        "diplome": "Master en communication multilingue à l'Université Catholique de Louvain (UCL) en 2018 - erasmus à Oslo",
+        "diplome": "Master en communication multilingue à l'Université Catholique de Louvain (UCL) en 2018 — Erasmus à Oslo",
         "formations": [
           "Federgon : législation sociale et bien-être au travail en 2019",
           "Gestion de projet en 2023",
-          "Cybersécurité, Teams, IA en 2024"
+          "Cybersécurité, Teams et IA en 2024"
         ],
-        "interets": "Voyage, yoga, pilates, padel, randonnée, vélo et de manière générale, tous les sports outdoor",
+        "interets": "Voyage, yoga, pilates, padel, randonnée, vélo — et tous les sports outdoor en général",
         "role": "Ressources humaines, communication, organisation interne, support en gestion"
       },
       "image": "../assets/assistants/ysaline.jpg"
@@ -128,9 +130,9 @@
     {
       "name": "Inès Lemaire",
       "role": "Secrétaire médicale et assistante en dentisterie générale, endodontie et implantologie",
-      "description": "Assistante dentaire polyvalente, je veille à ce que tout soit prêt pour vos soins en dentisterie et implantologie.",
+      "description": "Polyvalente et réactive, Inès est à vos côtés aussi bien au téléphone lors de votre prise de rendez-vous qu'en salle de soins pendant vos traitements.",
       "fullDescription": {
-        "diplome": "Secrétariat médical et bureautique en 2022 à l'EAFC Mouscron",
+        "diplome": "Diplôme de secrétaire médicale et bureautique en 2022",
         "interets": "Lecture, cinéma, séries",
         "role": "Secrétaire médicale et assistante en dentisterie générale, endodontie et implantologie"
       },
@@ -139,13 +141,13 @@
     {
       "name": "Véronique Gueben",
       "role": "Secrétaire médicale et assistante en dentisterie générale, endodontie et implantologie",
-      "description": "Assistante dentaire expérimentée, je m'occupe de la préparation du cabinet et de votre accueil.",
+      "description": "Forte de 14 ans d'expérience dans le secteur dentaire, Véronique allie professionnalisme et douceur pour vous accueillir et assurer un suivi irréprochable de votre dossier.",
       "fullDescription": {
         "formations": [
-          "Professeure dans l'enseignement supérieur reconvertie dans le secteur dentaire depuis 14 ans",
+          "Professeure dans l'enseignement supérieur, reconvertie dans le secteur dentaire depuis 14 ans",
           "Formation en secrétariat en 2021"
         ],
-        "interets": "La marche, la musique, la lecture, le dessin",
+        "interets": "Marche, musique, lecture, dessin",
         "role": "Secrétaire médicale et assistante en dentisterie générale, endodontie et implantologie"
       },
       "image": "../assets/assistants/veronique.jpg"
@@ -153,9 +155,11 @@
     {
       "name": "Sandrine Meyfroyd",
       "role": "Secrétaire médicale et assistante en dentisterie générale et endodontie",
-      "description": "Assistante dentaire et secrétaire médicale, j'assure la préparation du matériel et le suivi de vos rendez-vous.",
+      "description": "Souriante et organisée, Sandrine veille à ce que chaque rendez-vous se déroule dans les meilleures conditions — du matériel stérilisé à la gestion de votre agenda.",
       "fullDescription": {
-        "formations": ["Formation de secrétaire médicale en 2024"],
+        "formations": [
+          "Formation de secrétaire médicale en 2024"
+        ],
         "interets": "Cuisine, promenade, voyage et shopping",
         "role": "Secrétaire médicale et assistante en dentisterie générale et endodontie"
       },
@@ -164,10 +168,10 @@
     {
       "name": "Madeline Barbosa",
       "role": "Secrétaire médicale et assistante en dentisterie générale et endodontie",
-      "description": "Assistante dentaire et secrétaire médicale, je vous accueille et assure le suivi de votre dossier avec le sourire.",
+      "description": "Avec plus de 15 ans d'expérience, Madeline est le visage chaleureux du cabinet : elle vous accueille avec le sourire et s'assure que votre parcours de soins se déroule sans accroc.",
       "fullDescription": {
         "formations": [
-          "Formation de secrétaire médicale et administrative à l'ARCPP en 2009"
+          "Formation de secrétaire médicale et administrative en 2009"
         ],
         "interets": "Voyages, gastronomie, musique, lecture et fitness",
         "role": "Secrétaire médicale et assistante en dentisterie générale et endodontie"
