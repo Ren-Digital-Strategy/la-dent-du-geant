@@ -1,6 +1,20 @@
 ---
 import { Image } from "astro:assets";
 import tarification from "../assets/tarification.jpg";
+
+interface Props {
+  titleAccent?: string;
+  title?: string;
+  paragraphs?: string[];
+}
+const {
+  titleAccent = "Une tarification",
+  title = " claire pour des soins de qualité",
+  paragraphs = [
+    "Le cabinet applique des compléments pour garantir des traitements de la meilleure qualité, y compris pour les patients BIM. Ce choix nous permet de consacrer le temps nécessaire à chaque patient, d'utiliser des matériaux de la plus haute qualité et d'investir dans des technologies innovantes. C'est la garantie de vous offrir des soins durables et à la pointe de la dentisterie.",
+    "Aucun traitement n'est engagé sans que vous ayez reçu au préalable une estimation d'honoraires la plus précise possible. Notre priorité est la transparence pour que vous puissiez prendre votre décision en toute confiance.",
+  ],
+} = Astro.props;
 ---
 
 <section
@@ -14,24 +28,10 @@ import tarification from "../assets/tarification.jpg";
     data-reveal-right
   >
     <h2 class="text-primary font-bold max-w-2/3 xl:text-3xl text-xl">
-      <span class="text-tertiary">Une tarification</span> claire pour des soins de
-      qualité
+      <span class="text-tertiary">{titleAccent}</span>{title}
     </h2>
     <div class="flex flex-col gap-4 w-full">
-      <p class="text-primary/80 text-base font-sans">
-        Le cabinet applique des compléments pour garantir des traitements de la
-        meilleure qualité, y compris pour les patients BIM. Ce choix nous permet
-        de consacrer le temps nécessaire à chaque patient, d'utiliser des
-        matériaux de la plus haute qualité et d'investir dans des technologies
-        innovantes. C'est la garantie de vous offrir des soins durables et à la
-        pointe de la dentisterie.
-      </p>
-      <p class="text-primary/80 text-base font-sans">
-        Aucun traitement n'est engagé sans que vous ayez reçu au préalable une
-        estimation d'honoraires la plus précise possible. Notre priorité est la
-        transparence pour que vous puissiez prendre votre décision en toute
-        confiance.
-      </p>
+      {paragraphs.map((p) => <p class="text-primary/80 text-base font-sans">{p}</p>)}
     </div>
   </div>
 </section>

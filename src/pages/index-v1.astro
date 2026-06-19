@@ -1,0 +1,36 @@
+---
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/about/About.astro";
+import Goal from "../components/goal/Goal.astro";
+import Features from "../components/features/Features.astro";
+import Team from "../components/team/Team.astro";
+import Gallery from "../components/Gallery.astro";
+import Tarification from "../components/Tarification.astro";
+import Testimonial from "../components/testimonials/Testimonial.astro";
+import Faq from "../components/Faq.astro";
+import Location from "../components/Location.astro";
+import BigCta from "../components/BigCta.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="La Dent du Geant" noindex>
+  <div class="px-4 md:px-8 lg:px-10">
+    <Header />
+    <Hero />
+    <About />
+    <Goal />
+    <Features />
+    <Team />
+  </div>
+  <Gallery />
+  <div class="px-4 md:px-8 lg:px-10">
+    <Tarification />
+    <Testimonial />
+    <Faq />
+    <Location />
+    <BigCta />
+    <Footer />
+  </div>
+</Layout>

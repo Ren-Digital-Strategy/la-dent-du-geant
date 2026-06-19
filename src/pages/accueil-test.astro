@@ -1,4 +1,7 @@
 ---
+// PAGE DE TEST — v2 SEO de la page d'accueil (cluster "dentiste ath").
+// NE remplace PAS la page d'accueil : accessible sur /accueil-test.
+// Réutilise les composants partagés (non modifiés) + couche v2 inline.
 import Header from "../components/Header.astro";
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
@@ -45,7 +48,7 @@ const specialites = [
   { titre: "Esthétique & occlusodontie", texte: "Éclaircissement, facettes, et gouttières sur mesure pour le bruxisme." },
 ];
 
-// JSON-LD
+// JSON-LD (repris de 05-meta-schema.json)
 const schemaDentist = {
   "@context": "https://schema.org",
   "@type": "Dentist",
@@ -72,6 +75,7 @@ const schemaDentist = {
   foundingDate: "2022-08-01",
 };
 
+// JSON-LD FAQ — aligné mot pour mot sur la FAQ réellement affichée (composant Faq)
 const schemaFaq = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -87,22 +91,25 @@ const schemaFaq = {
 
 <Layout
   title="Dentiste à Ath | Cabinet dentaire La Dent du Géant (Maffle)"
-  description="Cabinet dentaire pluridisciplinaire à Ath (Maffle) : équipe de 12 membres, plateau technique moderne, soins sous digue. RDV au +32 68 28 21 56."
+  description="Cabinet dentaire pluridisciplinaire à Ath (Maffle) : équipe de 12 praticiens, plateau technique moderne, soins sous digue. RDV au +32 68 28 21 56."
   canonical="https://www.ladentdugeant.be/"
+  noindex
 >
-  <!-- JSON-LD -->
+  <!-- JSON-LD v2 -->
   <script type="application/ld+json" set:html={JSON.stringify(schemaDentist)} is:inline />
   <script type="application/ld+json" set:html={JSON.stringify(schemaFaq)} is:inline />
 
   <div class="px-4 md:px-8 lg:px-10">
     <Header />
 
+    <!-- HERO : composant d'origine (slider + étiquettes + animations).
+         H1 SEO discret + nouveau texte ; accroche et CTA inchangés. -->
     <Hero
       h1="Dentiste à Ath — Cabinet dentaire La Dent du Géant (Maffle)"
       text="Un cabinet pluridisciplinaire à l'entrée d'Ath : une équipe de 12 membres, un plateau technique de pointe et des soins réalisés sous digue, où l'on prend le temps de tout vous expliquer."
     />
 
-    <!-- INTRO pluridisciplinaire -->
+    <!-- INTRO pluridisciplinaire — passage le plus dense en sémantique "dentiste à Ath" -->
     <section class="w-full py-12 md:py-20">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-5 items-stretch">
 
@@ -133,13 +140,13 @@ const schemaFaq = {
               <Users class="text-quaternary w-5 h-5" />
             </div>
             <span class="text-tertiary font-bold text-4xl md:text-5xl leading-none">12</span>
-            <span class="text-primary/70 text-sm font-sans leading-snug">membres du cabinet</span>
+            <span class="text-primary/70 text-sm font-sans leading-snug">membres du cabinet (4 généralistes, 1 endodontiste, 1 implantologue, 1 hygiéniste, 4 assistantes-secrétaires, 1 office manager)</span>
           </div>
 
           <!-- 4,3/5 -->
           <div class="bg-white/60 backdrop-blur-md border border-white/40 rounded-[24px] p-6 md:p-7 flex flex-col gap-3" data-reveal-card>
             <div class="w-11 h-11 rounded-2xl bg-tertiary/20 flex items-center justify-center">
-              <Star class="text-quaternary w-5 h-5" fill="currentColor" stroke="currentColor" stroke-width="0.5" />
+              <Star class="text-quaternary w-5 h-5" fill="currentColor" />
             </div>
             <span class="text-tertiary font-bold text-4xl md:text-5xl leading-none">4,3/5</span>
             <span class="text-primary/70 text-sm font-sans leading-snug">sur 29 avis Google</span>
@@ -168,7 +175,7 @@ const schemaFaq = {
     <Goal glass />
     <Features />
 
-    <!-- PLATEAU TECHNIQUE -->
+    <!-- PLATEAU TECHNIQUE v2 (photos renommées) -->
     <section class="w-full py-12 md:py-24 flex flex-col gap-8 md:gap-12">
       <div class="flex flex-col gap-3 max-w-3xl">
         <span class="text-quaternary font-semibold text-sm md:text-base uppercase tracking-wide">Plateau technique</span>
@@ -198,12 +205,12 @@ const schemaFaq = {
     </section>
 
     <Team
-      intro="Douze personnes vous accueillent au cabinet dentaire La Dent du Géant à Ath : dentistes généralistes, endodontiste spécialiste, implantologue et hygiéniste dentaire — diplômés des universités belges (UCL, ULB, ULiège) — épaulés par une office manager et quatre assistantes. En formation continue, l'équipe travaille en coordination, de l'accueil et du suivi de votre dossier jusqu'aux soins."
+      intro="Douze praticiens et collaborateurs vous accueillent au cabinet dentaire La Dent du Géant à Ath : dentistes généralistes, endodontiste spécialiste, implantologue et hygiéniste dentaire, tous diplômés des universités belges (UCL, ULB, ULiège). En formation continue, l'équipe travaille en coordination — de l'accueil et du suivi de votre dossier jusqu'aux soins — pour une prise en charge globale."
     />
   </div>
 
   <div class="px-4 md:px-8 lg:px-10">
-    <!-- DENTISTERIE PRÉVENTIVE ET CONSERVATRICE -->
+    <!-- DENTISTERIE PRÉVENTIVE ET CONSERVATRICE v2 -->
     <section class="w-full py-12 md:py-24 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
       <div class="flex flex-col gap-4 max-w-2xl">
         <span class="text-quaternary font-semibold text-sm md:text-base uppercase tracking-wide">Notre philosophie</span>
@@ -261,7 +268,7 @@ const schemaFaq = {
       </figure>
     </section>
 
-    <!-- TOUS NOS SOINS -->
+    <!-- TOUS NOS SOINS v2 (gamme complète + maillage interne) -->
     <section class="w-full py-12 md:py-24 flex flex-col gap-8">
       <div class="flex flex-col gap-3 max-w-3xl">
         <span class="text-quaternary font-semibold text-sm md:text-base uppercase tracking-wide">Nos soins</span>
@@ -313,7 +320,7 @@ const schemaFaq = {
     <Faq />
     <Location />
 
-    <!-- BLOC AUTEUR (EEAT) -->
+    <!-- BLOC AUTEUR v2 (EEAT) — composant réutilisable -->
     <AuthorBio imageData={imgJulien} />
 
     <BigCta />

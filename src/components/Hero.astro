@@ -13,17 +13,28 @@ interface Props {
   images?: ImageMetadata[];
   interval?: number; // Intervalle en ms (défaut: 5000)
   alt?: string;
+  h1?: string;
+  accroche?: string;
+  text?: string;
+  ctaText?: string;
+  ctaHref?: string;
 }
 
 const {
   images = [hero3, hero, hero2, hero4], // Par défaut utilise hero.jpg
   interval = 5000,
   alt = "Hero image",
+  // Contenu paramétrable — valeurs par défaut = page d'accueil actuelle (home inchangée)
+  h1 = "", // H1 SEO discret ; vide => non rendu
+  accroche = "Retrouvez le plaisir d'un sourire sain et durable",
+  text = "Notre équipe de spécialistes vous accompagne avec bienveillance et les technologies les plus modernes pour préserver votre santé bucco-dentaire sur le long terme.",
+  ctaText = "Contactez-nous",
+  ctaHref = "/contact",
 } = Astro.props;
 ---
 
 <section
-  class="relative isolate h-[60vh] md:h-screen w-full flex items-center justify-center px-4 md:px-8 lg:px-[60px] rounded-[20px] md:rounded-[30px] lg:rounded-[40px] overflow-hidden"
+  class="relative isolate h-[60vh] md:h-[70vh] lg:h-[65vh] w-full flex items-center justify-center px-4 md:px-8 lg:px-[60px] rounded-[20px] md:rounded-[30px] lg:rounded-[40px] overflow-hidden"
   data-carousel
   data-interval={interval}
 >
@@ -58,32 +69,37 @@ const {
   <!-- Contenu du hero -->
   <div class="relative z-10 h-full grid grid-cols-1 lg:grid-cols-12 w-full">
     <div
-      class="col-span-1 lg:col-span-5 h-full flex flex-col justify-between py-10 md:py-16 lg:py-20"
+      class="col-span-1 lg:col-span-5 h-full flex flex-col justify-between py-10 md:py-12 lg:py-14"
     >
       <div class="flex flex-col gap-4 md:gap-5 lg:gap-6 mt-auto">
+        {
+          h1 && (
+            <h1 class="text-white/75 text-center md:text-left text-xs md:text-sm font-semibold uppercase tracking-wide">
+              {h1}
+            </h1>
+          )
+        }
         <h2
-          class="text-white text-center md:text-left text-3xl md:text-5xl lg:text-7xl font-extrabold"
+          class="text-white text-center md:text-left text-3xl md:text-5xl lg:text-6xl font-extrabold"
           data-hero-title
           style="clip-path: inset(0 0 100% 0); transform: translateY(100%);"
         >
-          Retrouvez le plaisir d'un sourire sain et durable
+          {accroche}
         </h2>
         <p
           class="text-white text-center md:text-left text-base md:text-lg lg:text-xl font-sans"
           data-hero-text
           style="clip-path: inset(0 0 100% 0); transform: translateY(100%);"
         >
-          Notre équipe de spécialistes vous accompagne avec bienveillance et les
-          technologies les plus modernes pour préserver votre santé
-          bucco-dentaire sur le long terme.
+          {text}
         </p>
         <a
           class="bg-white text-primary text-center md:text-left pl-4 md:pl-6 pr-2 py-2 rounded-full font-semibold flex justify-center md:justify-start items-center gap-2 font-sans hover:bg-white/80 hover:cursor-pointer transition-all duration-300 w-fit text-sm md:text-base mx-auto md:mx-0"
-          href="/contact"
+          href={ctaHref}
           data-hero-cta
           style="opacity: 0;"
         >
-          Contactez-nous
+          {ctaText}
           <span class="text-primary bg-tertiary/60 rounded-full p-1.5 md:p-2">
             <Phone class="text-primary w-4 h-4 md:w-5 md:h-5" />
           </span>

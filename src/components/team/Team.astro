@@ -42,28 +42,35 @@ const allMembers = [...teamData.dentists, ...teamData.assistants].map(
     image: imageMap[member.name]?.src || member.image,
   }),
 );
+
+interface Props {
+  intro?: string;
+}
+const { intro = "" } = Astro.props;
 ---
 
 <section
   class="w-full flex flex-col items-center gap-12 justify-center pb-12 md:pb-40"
 >
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-    <h2
-      class="text-primary font-bold text-3xl lg:text-5xl max-w-2xl"
-      data-reveal-title
-    >
-      <span class="text-tertiary">Une équipe</span> passionnée à votre écoute.
-    </h2>
-    <a
-      class="bg-primary h-fit text-white pl-4 md:pl-6 pr-2 py-2 rounded-full font-semibold flex items-center gap-2 font-sans hover:bg-primary/80 hover:cursor-pointer transition-all duration-300 w-fit text-sm md:text-base self-center place-self-end"
-      href="/equipe"
-      data-reveal-cta
-    >
-      Voir l'équipe
-      <span class="text-primary bg-secondary rounded-full p-2">
-        <ArrowUpRight />
-      </span>
-    </a>
+  <div class="flex flex-col gap-5 w-full">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 gap-y-4 w-full items-center">
+      <div class="flex flex-col gap-4 max-w-2xl">
+        <h2 class="text-primary font-bold text-3xl lg:text-5xl" data-reveal-title>
+          <span class="text-tertiary">Une équipe</span> passionnée à votre écoute.
+        </h2>
+      </div>
+      <a
+        class="bg-primary h-fit text-white pl-4 md:pl-6 pr-2 py-2 rounded-full font-semibold flex items-center gap-2 font-sans hover:bg-primary/80 hover:cursor-pointer transition-all duration-300 w-fit text-sm md:text-base place-self-start md:place-self-end"
+        href="/equipe"
+        data-reveal-cta
+      >
+        Voir l'équipe
+        <span class="text-primary bg-secondary rounded-full p-2">
+          <ArrowUpRight />
+        </span>
+      </a>
+    </div>
+    {intro && <p class="text-primary/70 text-base md:text-lg font-sans max-w-3xl">{intro}</p>}
   </div>
 
   <!-- Carousel container -->

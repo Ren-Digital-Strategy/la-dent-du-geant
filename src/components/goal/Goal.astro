@@ -5,6 +5,12 @@ import goal2 from "../../assets/goals/2.jpg";
 import goal3 from "../../assets/goals/3.jpg";
 import goal4 from "../../assets/goals/4.png";
 import GoalCard from "./GoalCard.astro";
+
+interface Props {
+  glass?: boolean;
+}
+const { glass = false } = Astro.props;
+
 const goals = [
   {
     title: "Soulager durablement",
@@ -61,6 +67,7 @@ const goals = [
             title={goal.title}
             description={goal.description}
             image={goal.image}
+            glass={glass}
           />
         </div>
       ))

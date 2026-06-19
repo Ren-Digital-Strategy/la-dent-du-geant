@@ -8,14 +8,18 @@ interface Props {
   description: string;
   image: ImageMetadata;
   reverse?: boolean;
+  glass?: boolean;
 }
 
-const { key, title, description, image, reverse = false } = Astro.props;
+const { key, title, description, image, reverse = false, glass = false } = Astro.props;
+const bgClass = glass
+  ? "bg-white/60 backdrop-blur-md border border-white/40"
+  : "bg-white";
 ---
 
 <div
   id={`goal-card-${key}`}
-  class={`w-full bg-white rounded-[24px] p-4 md:p-6 xl:p-3 flex flex-col ${reverse ? "sm:flex-row-reverse" : "sm:flex-row"} items-center gap-4 md:gap-6 xl:gap-8`}
+  class={`w-full ${bgClass} rounded-[24px] p-4 md:p-6 xl:p-3 flex flex-col ${reverse ? "sm:flex-row-reverse" : "sm:flex-row"} items-center gap-4 md:gap-6 xl:gap-8`}
 >
   <div class="w-full sm:w-[216px] shrink-0">
     <Image
