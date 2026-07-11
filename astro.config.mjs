@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import node from '@astrojs/node';
+import cloudflare from '@astrojs/cloudflare';
 import sitemap from '@astrojs/sitemap';
 
 import tailwindcss from '@tailwindcss/vite';
@@ -8,7 +8,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.ladentdugeant.be',
-  output: 'server',
+  output: 'static',
   integrations: [
     sitemap({
       filter: (page) =>
@@ -16,9 +16,7 @@ export default defineConfig({
     }),
   ],
 
-  adapter: node({
-    mode: 'standalone',
-  }),
+  adapter: cloudflare(),
 
   vite: {
     plugins: [tailwindcss()],

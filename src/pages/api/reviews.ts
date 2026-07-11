@@ -1,6 +1,8 @@
 import type { APIRoute } from "astro";
 import { fetchGoogleReviews, type FormattedReview } from "../../lib/google-business";
 
+export const prerender = false;
+
 // Cache simple en mémoire pour éviter trop d'appels API
 let cachedReviews: {
   data: FormattedReview[];
@@ -11,8 +13,9 @@ let cachedReviews: {
 
 const CACHE_DURATION = 1000 * 60 * 60; // 1 heure
 
-export const GET: APIRoute = async ({ url }) => {
+export const GET: APIRoute = async ({ url, locals }) => {
   const limit = parseInt(url.searchParams.get("limit") || "5");
+  const env = (locals as any)?.runtime?.env ?? import.meta.env;
 
   try {
     // Vérifier le cache
@@ -35,7 +38,7 @@ export const GET: APIRoute = async ({ url }) => {
     }
 
     // Récupérer les avis depuis Google Places
-    const { reviews, totalCount, averageRating } = await fetchGoogleReviews();
+    const { reviews, totalCount, averageRating } = await fetchGoogleReviews(env);
 
     // Mettre en cache
     cachedReviews = {

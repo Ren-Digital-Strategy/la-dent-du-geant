@@ -37,6 +37,23 @@ interface BlogArticle {
   badges: Badge[];
 }
 
+export async function getStaticPaths() {
+  const DIRECTUS_URL = import.meta.env.DIRECTUS_URL || "http://localhost:8055";
+  try {
+    const response = await fetch(
+      `${DIRECTUS_URL}/items/blog?filter[status][_eq]=published&fields=id`
+    );
+    if (response.ok) {
+      const data = await response.json();
+      const articles = data.data || [];
+      return articles.map((a: { id: string }) => ({ params: { id: a.id } }));
+    }
+  } catch (error) {
+    console.error("Erreur lors de la récupération des articles:", error);
+  }
+  return [];
+}
+
 let article: BlogArticle | null = null;
 
 try {

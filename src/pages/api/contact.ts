@@ -1,9 +1,13 @@
 import type { APIRoute } from "astro";
 import { Resend } from "resend";
 
-const resend = new Resend(import.meta.env.RESEND_API_KEY);
+export const prerender = false;
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
+  // Sur Cloudflare, les secrets runtime sont dans locals.runtime.env ;
+  // en dev local (node), on retombe sur import.meta.env.
+  const env = (locals as any)?.runtime?.env ?? import.meta.env;
+  const resend = new Resend(env.RESEND_API_KEY);
   try {
     const formData = await request.formData();
     const name = formData.get("name")?.toString();

@@ -43,13 +43,15 @@ interface PlaceDetailsResponseNew {
  * Récupère les avis via l'API Google Places (New)
  * Limite: maximum 5 avis retournés par Google
  */
-export async function fetchGoogleReviews(): Promise<{
+export async function fetchGoogleReviews(
+  env: Record<string, any> = import.meta.env
+): Promise<{
   reviews: FormattedReview[];
   totalCount: number;
   averageRating: number;
 }> {
-  const apiKey = import.meta.env.GOOGLE_PLACES_API_KEY;
-  const placeId = import.meta.env.GOOGLE_PLACE_ID;
+  const apiKey = env.GOOGLE_PLACES_API_KEY;
+  const placeId = env.GOOGLE_PLACE_ID;
 
   if (!apiKey) {
     throw new Error("GOOGLE_PLACES_API_KEY is not set");
