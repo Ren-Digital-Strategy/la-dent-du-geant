@@ -5,7 +5,7 @@ import Footer from "../../components/Footer.astro";
 
 const { id } = Astro.params;
 // URL pour les appels API côté serveur
-const DIRECTUS_URL = import.meta.env.DIRECTUS_URL || 'http://localhost:8055';
+const DIRECTUS_URL = import.meta.env.DIRECTUS_URL || import.meta.env.PUBLIC_DIRECTUS_URL ||'http://localhost:8055';
 // URL publique pour les assets (images) côté client
 const PUBLIC_DIRECTUS_URL = import.meta.env.PUBLIC_DIRECTUS_URL || 'http://localhost:8055';
 
@@ -38,7 +38,7 @@ interface BlogArticle {
 }
 
 export async function getStaticPaths() {
-  const DIRECTUS_URL = import.meta.env.DIRECTUS_URL || "http://localhost:8055";
+  const DIRECTUS_URL = import.meta.env.DIRECTUS_URL || import.meta.env.PUBLIC_DIRECTUS_URL ||"http://localhost:8055";
   try {
     const response = await fetch(
       `${DIRECTUS_URL}/items/blog?filter[status][_eq]=published&fields=id`

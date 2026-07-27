@@ -3,7 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 
-const DIRECTUS_URL = import.meta.env.DIRECTUS_URL || "http://localhost:8055";
+const DIRECTUS_URL = import.meta.env.DIRECTUS_URL || import.meta.env.PUBLIC_DIRECTUS_URL ||"http://localhost:8055";
 
 interface OffreEmploi {
   id: string;
@@ -23,7 +23,7 @@ interface OffreEmploi {
 
 export async function getStaticPaths() {
   const DIRECTUS_URL =
-    import.meta.env.DIRECTUS_URL || "http://localhost:8055";
+    import.meta.env.DIRECTUS_URL || import.meta.env.PUBLIC_DIRECTUS_URL ||"http://localhost:8055";
 
   try {
     const response = await fetch(
