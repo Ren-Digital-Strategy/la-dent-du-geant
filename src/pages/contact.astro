@@ -300,7 +300,8 @@ const schedule = [
     const btnSpinner = document.getElementById("btn-spinner");
     const formMessage = document.getElementById("form-message");
 
-    if (!form) return;
+    if (!form || form.dataset.contactBound === "1") return;
+    form.dataset.contactBound = "1";
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -362,5 +363,4 @@ const schedule = [
   }
 
   document.addEventListener("astro:page-load", initContactForm);
-  initContactForm();
 </script>
